@@ -92,7 +92,7 @@ const routes: Routes = [
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class ComponentsDashEntrepriseModule {
+export class ComponentsDashDoctorModule {
   constructor() {
     defineElement(lottie.loadAnimation);
   }

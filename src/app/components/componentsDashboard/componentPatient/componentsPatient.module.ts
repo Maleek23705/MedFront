@@ -5,12 +5,14 @@ import {
   NgbToastModule, NgbProgressbarModule
 } from '@ng-bootstrap/ng-bootstrap';
 
+
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { CountUpModule } from 'ngx-countup';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { LeafletModule } from '@bluehalo/ngx-leaflet';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { SimplebarAngularModule } from 'simplebar-angular';
+import { TranslateModule } from '@ngx-translate/core';
 
 // Swiper Slider
 import { SlickCarouselModule } from 'ngx-slick-carousel';
@@ -22,25 +24,24 @@ import { defineElement } from "@lordicon/element";
 import lottie from 'lottie-web';
 import { RouterModule, Routes } from '@angular/router';
 
+
 // Pages Routing
 // import { PagesRoutingModule } from "./pages-routing.module";
- const routes: Routes = [
+const routes: Routes = [
   {
-        path: 'reclamations',
-        //component: AdduserComponent,
-        loadChildren: () => import('../commonComponentsDash/reclamations/reclamations.module').then(m => m.ReclamationsModule),
-  },
- ]
-
-
+        path: 'patients',
+        //component: AddPatientComponent,
+        loadChildren: () => import('../componentPatient/crudPatients/crudPatients.module').then(m => m.CrudPatientsModule),
+  }
+]
 @NgModule({
   declarations: [
-   
   ],
   imports: [
     CommonModule,
     FormsModule,
     NgbToastModule,
+    TranslateModule,
     NgbProgressbarModule,
     RouterModule.forChild(routes),
     FlatpickrModule.forRoot(),
@@ -55,7 +56,7 @@ import { RouterModule, Routes } from '@angular/router';
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class ComponentsDashUserModule {
+export class ComponentsPatientModule {
   constructor() {
     defineElement(lottie.loadAnimation);
   }

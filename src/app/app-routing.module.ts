@@ -20,8 +20,8 @@ const routes: Routes = [
   { path: 'landing', loadChildren: () => import('./landing/landing.module').then(m => m.LandingModule)},
   // NEW MSK
   { path: 'admin', component: LayoutAdminComponent, loadChildren: () => import('./components/componentsAdmin/componentsAdmin.module').then(m => m.ComponentsAdminModule) },
-  { path: 'patient',component: LayoutPatientComponent , loadChildren: () => import('./components/componentsDashboard/componentDashPatient/componentsDashPatient.module').then(m => m.ComponentsDashUserModule)  },
-  { path: 'doctor',component: LayoutDoctorComponent , loadChildren: () => import('./components/componentsDashboard/componentsDashDoctor/componentsDashDoctor.module').then(m => m.ComponentsDashEntrepriseModule )  },
+  { path: 'patient',component: LayoutPatientComponent , loadChildren: () => import('./components/componentsDashboard/componentPatient/componentsPatient.module').then(m => m.ComponentsPatientModule)  },
+  { path: 'doctor',component: LayoutDoctorComponent , loadChildren: () => import('./components/componentsDashboard/componentsDashDoctor/componentsDashDoctor.module').then(m => m.ComponentsDashDoctorModule )  },
   { path: 'secretary',component: LayoutSecretaryComponent , loadChildren: () => import('./components/componentsDashboard/componentsDashSecretary/componentsDashSecretary.module').then(m => m.ComponentsDashSecretaryModule )  },
   { path: 'website',component: LayoutWebSiteComponent , loadChildren: () => import('./components/componentsDashboard/componentDashWebSite/componentsDashWebSite.module').then(m => m.ComponentsDashWebSiteModule )  }
 ];

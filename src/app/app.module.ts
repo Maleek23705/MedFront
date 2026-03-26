@@ -55,9 +55,6 @@ import { Viewcategories } from './components/componentsAdmin/categories/viewcate
 import { Viewcauses } from './components/componentsAdmin/causes/viewcauses/viewcauses';
 import { Addcause } from './components/componentsAdmin/causes/addcause/addcause';
 import { Editcause } from './components/componentsAdmin/causes/editcause/editcause';
-import { Viewreclamations } from './components/componentsAdmin/reclamations/viewreclamations/viewreclamations';
-import { Addreclamation } from './components/componentsAdmin/reclamations/addreclamation/addreclamation';
-import { Editreclamation } from './components/componentsAdmin/reclamations/editreclamation/editreclamation';
 //----------------------
 import { ViewreclamationsExtern } from './components/componentsDashboard/commonComponentsDash/reclamations/viewreclamations/viewreclamations';
 import { LayoutsPatientModule } from './layoutsPatient/layoutPatient.module';
@@ -65,8 +62,6 @@ import  { LayoutsSecretaryModule } from './layoutsSecretary/layoutsSecretary.mod
 import { LayoutsWebSiteModule } from './layoutsWebSite/layoutsWebSite.module';
 import { LayoutsAdminModule } from './layoutsAdmin/layoutAdmin.module';
 import { LayoutsDoctorModule } from './layoutsDoctor/layoutsDoctor.module';
-//import { Addreclamation } from './components/componentsDashboard/commonComponentsDash/reclamations/editereclamations/viewreclamations';
-//import { Editreclamation } from './components/componentsAdmin/reclamations/editreclamation/editreclamation';
 
 
 

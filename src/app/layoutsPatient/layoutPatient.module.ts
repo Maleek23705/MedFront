@@ -14,7 +14,6 @@ import { LayoutPatientComponent } from './layoutPatient.component';
 import { FooterPatientComponent } from './footerPatient/footerPatient.component';
 import { HorizontalPatientComponent } from './horizontal-patient/horizontalPatient.component';
 import { HorizontalTopbarPatientComponent } from './horizontal-topbar-Patient/horizontal-topbar-patient.component';
-import { RightsidebarPatientComponent } from './rightsidebarPatient/rightsidebarPatient.component';
 import { SidebarPatientComponent } from './sidebarPatient/sidebarPatient.component';
 import { TopbarPatientComponent } from './topbarPatient/topbarPatient.component';
 import { TwoColumnPatientComponent } from './two-column-patient/two-columnPatient.component';
@@ -31,7 +30,6 @@ import { VerticalPatientComponent } from './verticalPatient/verticalPatient.comp
     FooterPatientComponent,
     VerticalPatientComponent,
     HorizontalTopbarPatientComponent,
-    RightsidebarPatientComponent,
     SidebarPatientComponent
   ],
   imports: [

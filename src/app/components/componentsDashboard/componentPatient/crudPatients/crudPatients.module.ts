@@ -23,10 +23,7 @@ import lottie from 'lottie-web';
 import { RouterModule, Routes } from '@angular/router';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
-import { AddDoctorsComponent } from './add-doctors/add-doctors.component';
-import { UpdateDoctorsComponent } from './update-doctors/update-doctors.component';
-import { CreateDoctorsComponent } from './create-doctors/create-doctors.component';
-import { DeleteDoctorsComponent } from './delete-doctors/delete-doctors.component';
+import { AddPatient } from './addPatient/addPatient';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { createTranslateLoader } from 'src/app/app.module';
@@ -40,46 +37,25 @@ import { LanguageService } from 'src/app/core/services/language.service';
 // import { PagesRoutingModule } from "./pages-routing.module";
  const routes: Routes = [
   {
-      path: '',
-      //component: AdduserComponent,
-      data: {
-          title: 'reclamations'
-      }, 
-      children: [ 
-          {
-              path: 'add',
-              component: AddDoctorsComponent,
+        path: '',
+              //component: AddPatient,
               data: {
-                  title: 'Add doctor'
-              }
-          },
-          {
-              path: 'edit/:id',
-              component: UpdateDoctorsComponent,
-              data: {
-                  title: 'Edit doctor'
-              }
-          },
-          {
-             path: 'create',
-              component: CreateDoctorsComponent,
-              data: {
-                  title: 'Create doctor'
-              }
-
-          }
-
-          
-        ]
- } 
+                  title: 'patients'
+              }, 
+              children: [ 
+                  {
+                      path: 'add',
+                      component: AddPatient,
+                      data: {
+                          title: 'Add patient'
+                      }
+                  }
+                ]}
 ]
 
 @NgModule({
   declarations: [
-    AddDoctorsComponent, 
-    UpdateDoctorsComponent, 
-    CreateDoctorsComponent, 
-    DeleteDoctorsComponent
+    AddPatient
   ],
   imports: [
     CommonModule,
@@ -103,7 +79,7 @@ import { LanguageService } from 'src/app/core/services/language.service';
   providers: [LanguageService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class DoctorsModule {
+export class CrudPatientsModule {
   constructor() {
     defineElement(lottie.loadAnimation);
   }
