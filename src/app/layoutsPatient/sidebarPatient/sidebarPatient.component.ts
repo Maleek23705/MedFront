@@ -1,151 +1,140 @@
-import { Component, OnInit, EventEmitter, Output, ViewChild, ElementRef, HostListener } from '@angular/core';
+import {
+  Component, OnInit, OnDestroy, Output, EventEmitter,
+  HostListener, ViewChild, TemplateRef, ApplicationRef,
+  EmbeddedViewRef, Injector, EnvironmentInjector
+} from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
+import { DomPortal, TemplatePortal } from '@angular/cdk/portal';
+import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { MENU } from './menu';
 import { MenuItem } from './menu.model';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-sidebar-patient',
   templateUrl: './sidebarPatient.component.html',
   standalone: false
 })
-export class SidebarPatientComponent implements OnInit {
+export class SidebarPatientComponent implements OnInit, OnDestroy {
 
-  menu: any;
-  toggle: any = true;
   menuItems: MenuItem[] = [];
-  activeDropdownPos = { top: 0, left: 0 };
+  activeItem: MenuItem | null = null;
+  activeSubItem: MenuItem | null = null;
+  dropdownPosition: { top: number; left: number } | null = null;
 
-  @ViewChild('sideMenu') sideMenu!: ElementRef;
+  private dropdownRef: EmbeddedViewRef<any> | null = null;
+
+  @ViewChild('dropdownPortal') dropdownPortal!: TemplateRef<any>;
   @Output() mobileMenuButtonClicked = new EventEmitter();
 
-  constructor(private router: Router, public translate: TranslateService) {
-    translate.setDefaultLang('en');
-  }
+  constructor(
+    private router: Router,
+    private appRef: ApplicationRef,
+    private injector: EnvironmentInjector
+  ) {}
 
   ngOnInit(): void {
     this.menuItems = MENU;
+
     this.router.events.subscribe((event) => {
-      if (document.documentElement.getAttribute('data-layout') != 'twocolumn') {
-        if (event instanceof NavigationEnd) {
-          this.initActiveMenu();
-        }
+      if (event instanceof NavigationEnd) {
+        this.closeDropdown();
+        this.initActiveMenu();
       }
     });
   }
 
-  ngAfterViewInit() {
-    setTimeout(() => this.initActiveMenu(), 0);
+  ngOnDestroy(): void {
+    this.removeDropdownFromBody();
   }
 
-  // Ferme dropdown si click en dehors
-  @HostListener('document:click', ['$event'])
-  onDocumentClick(event: MouseEvent) {
-    const target = event.target as HTMLElement;
-    if (!target.closest('.nav-item.dropdown')) {
-      this.menuItems.forEach((item: any) => item.isCollapsed = true);
+  // Toggle item principal — calcule la position et injecte dans le body
+  toggleItem(item: MenuItem, event: Event, liRef: HTMLElement) {
+    event.stopPropagation();
+    this.activeSubItem = null;
+
+    if (this.activeItem === item) {
+      this.activeItem = null;
+      this.dropdownPosition = null;
+      this.removeDropdownFromBody();
+      return;
+    }
+
+    this.activeItem = item;
+
+    const rect = liRef.getBoundingClientRect();
+    this.dropdownPosition = {
+      top: rect.bottom + 4, 
+      left: rect.left      
+    };
+
+    this.renderDropdownInBody();
+  }
+
+  // Injecte le ng-template dans le body
+  renderDropdownInBody() {
+    this.removeDropdownFromBody();
+
+    this.dropdownRef = this.dropdownPortal.createEmbeddedView({});
+    this.appRef.attachView(this.dropdownRef);
+
+    const domElem = (this.dropdownRef.rootNodes[0] as HTMLElement);
+    document.body.appendChild(domElem);
+  }
+
+  removeDropdownFromBody() {
+    if (this.dropdownRef) {
+      this.appRef.detachView(this.dropdownRef);
+      this.dropdownRef.destroy();
+      this.dropdownRef = null;
     }
   }
 
-  toggleItem(item: any, event?: MouseEvent) {
-    const wasCollapsed = item.isCollapsed;
-
-    // Ferme tout
-    this.menuItems.forEach((menuItem: any) => menuItem.isCollapsed = true);
-
-    // Calcule position du dropdown selon l'élément cliqué
-    if (!wasCollapsed) return;
-
-    if (event) {
-      const el = (event.currentTarget as HTMLElement);
-      const rect = el.getBoundingClientRect();
-      this.activeDropdownPos = {
-        top: rect.bottom + 6,
-        left: rect.left
-      };
-    }
-
-    item.isCollapsed = false;
+  toggleSubItem(subitem: MenuItem, event: Event) {
+    event.stopPropagation();
+    this.activeSubItem = this.activeSubItem === subitem ? null : subitem;
+    this.renderDropdownInBody(); // re-render pour mettre à jour
+    
   }
 
-  removeActivation(items: any) {
-    items.forEach((item: any) => item.classList.remove('active'));
+  closeDropdown() {
+    this.activeItem = null;
+    this.activeSubItem = null;
+    this.dropdownPosition = null;
+    this.removeDropdownFromBody();
   }
 
-  activateParentDropdown(item: any) {
-    item.classList.add('active');
-    let parentCollapseDiv = item.closest('.collapse.menu-dropdown');
-    if (parentCollapseDiv) {
-      parentCollapseDiv.parentElement.children[0].classList.add('active');
-      if (parentCollapseDiv.parentElement.closest('.collapse.menu-dropdown')) {
-        if (parentCollapseDiv.parentElement.closest('.collapse').previousElementSibling)
-          parentCollapseDiv.parentElement.closest('.collapse').previousElementSibling.classList.add('active');
-      }
-      return false;
-    }
-    return false;
-  }
-
-  updateActive(event: any) {
-    const ul = document.getElementById('navbar-nav');
-    if (ul) {
-      const items = Array.from(ul.querySelectorAll('a.nav-link'));
-      this.removeActivation(items);
-    }
-    this.activateParentDropdown(event.target);
-    this.menuItems.forEach((item: any) => item.isCollapsed = true);
+  hasItems(item: MenuItem): boolean {
+    return !!item.subItems && item.subItems.length > 0;
   }
 
   initActiveMenu() {
-    let pathName = window.location.pathname;
-    if (environment.production) {
-      pathName = pathName.replace('/velzon/angular/default', '');
-    }
-    const active = this.findMenuItem(pathName, this.menuItems);
-    if (active) this.toggleItem(active);
+    const currentUrl = this.router.url;
 
-    const ul = document.getElementById('navbar-nav');
-    if (ul) {
-      const items = Array.from(ul.querySelectorAll('a.nav-link'));
-      let activeItems = items.filter((x: any) => x.classList.contains('active'));
-      this.removeActivation(activeItems);
-      let matchingMenuItem = items.find((x: any) => {
-        if (environment.production) {
-          let path = x.pathname.replace('/velzon/angular/default', '');
-          return path === pathName;
-        }
-        return x.pathname === pathName;
-      });
-      if (matchingMenuItem) this.activateParentDropdown(matchingMenuItem);
-    }
-  }
-
-  private findMenuItem(pathname: string, menuItems: any[]): any {
-    for (const menuItem of menuItems) {
-      if (menuItem.link && menuItem.link === pathname) return menuItem;
-      if (menuItem.subItems) {
-        const found = this.findMenuItem(pathname, menuItem.subItems);
-        if (found) return found;
+    this.menuItems.forEach((item: MenuItem) => {
+      if (item.subItems) {
+        item.subItems.forEach((sub: MenuItem) => {
+          if (sub.link === currentUrl) {
+            this.activeItem = item;
+          }
+          if (sub.subItems) {
+            sub.subItems.forEach((subSub: MenuItem) => {
+              if (subSub.link === currentUrl) {
+                this.activeItem = item;
+                this.activeSubItem = sub;
+              }
+            });
+          }
+        });
       }
-    }
-    return null;
+    });
   }
 
-  hasItems(item: MenuItem) {
-    return item.subItems !== undefined ? item.subItems.length > 0 : false;
-  }
-
-  toggleMobileMenu(event: any) {
-    const sidebarsize = document.documentElement.getAttribute('data-sidebar-size');
-    document.documentElement.setAttribute('data-sidebar-size',
-      sidebarsize === 'sm-hover-active' ? 'sm-hover' : 'sm-hover-active');
+  @HostListener('document:click')
+  onDocumentClick() {
+    this.closeDropdown();
   }
 
   SidebarHide() {
     document.body.classList.remove('vertical-sidebar-enable');
-  }
-  isActiveLink(link: string): boolean {
-    return window.location.pathname === link;
   }
 }

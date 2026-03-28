@@ -1,0 +1,101 @@
+<div class="mb-4">
+  <h3 class="mb-4">Stay Engaged</h3>
+
+  <div class="row g-3">
+
+    <!-- Card 1: Health Tip -->
+    <div class="col-md-4">
+      <div class="h-100 p-3 d-flex flex-column gap-3"
+        style="background:#eff6ff; border:1px solid #bfdbfe; border-radius:16px;">
+
+        <div class="d-flex align-items-center gap-3">
+          <div class="d-flex align-items-center justify-content-center flex-shrink-0"
+            style="width:40px;height:40px;border-radius:10px;background:#bfdbfe;">
+            <i class="ri-lightbulb-line" style="font-size:16px;color:#3b82f6;"></i>
+          </div>
+          <span class="fw-semibold" style="font-size:14px;color:#3b82f6;">Health Tip</span>
+        </div>
+
+        <hr class="m-0" style="border:none;height:1px;background:#bfdbfe;">
+
+        <p class="mb-0" style="font-size:13px;color:#6b7280;line-height:1.65;">
+          Take small steps every day to support your health and well-being.
+        </p>
+
+        <p class="mb-0" id="tipExtra" style="font-size:13px;color:#6b7280;line-height:1.65;display:none;">
+          Staying hydrated, eating balanced meals, and keeping active can help you feel better and maintain your overall wellness.
+        </p>
+
+        <button class="btn btn-link p-0 d-flex align-items-center gap-1 text-decoration-none"
+          style="color:#3b82f6;font-size:12px;font-weight:500;width:fit-content;"
+          onclick="
+            const e=document.getElementById('tipExtra');
+            const open=e.style.display==='block';
+            e.style.display=open?'none':'block';
+            this.innerHTML=open
+              ?'Read more <i class=\'ri-arrow-down-s-line\'></i>'
+              :'Show less <i class=\'ri-arrow-up-s-line\'></i>';
+          ">
+          Read more <i class="ri-arrow-down-s-line"></i>
+        </button>
+
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="col-md-4">
+      <div class="h-100 p-3 d-flex flex-column gap-3"
+        style="background:#f0fdf8; border:1px solid #a7f3d0; border-radius:16px;">
+
+        <div class="d-flex align-items-center gap-3">
+          <div style="width:40px;height:40px;border-radius:10px;background:#a7f3d0;"
+            class="d-flex align-items-center justify-content-center">
+            <i class="ri-heart-line" style="color:#10b981;"></i>
+          </div>
+          <span class="fw-semibold" style="color:#10b981;">Wellness Reminder</span>
+        </div>
+
+        <hr class="m-0" style="background:#a7f3d0;height:1px;border:none;">
+
+        <p class="mb-0" style="font-size:13px;color:#6b7280;">
+          Stay on track with your health by setting reminders for your daily routines.
+        </p>
+
+        <!-- bouton directement après texte -->
+        <button class="btn w-100 fw-semibold"
+          style="background:#10b981;color:#fff;border-radius:10px;font-size:13px;border:none;">
+          Set Reminder
+        </button>
+
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="col-md-4">
+      <div class="h-100 p-3 d-flex flex-column gap-3"
+        style="background:#fffbeb; border:1px solid #fcd34d; border-radius:16px;">
+
+        <div class="d-flex align-items-center gap-3">
+          <div style="width:40px;height:40px;border-radius:10px;background:#fcd34d;"
+            class="d-flex align-items-center justify-content-center">
+            <i class="ri-message-3-line" style="color:#f59e0b;"></i>
+          </div>
+          <span class="fw-semibold" style="color:#f59e0b;">Need Help?</span>
+        </div>
+
+        <hr class="m-0" style="background:#fcd34d;height:1px;border:none;">
+
+        <p class="mb-0" style="font-size:13px;color:#6b7280;">
+          Have questions or need guidance? Get quick support anytime.
+        </p>
+
+        <!-- bouton directement après texte -->
+        <button class="btn w-100 fw-semibold"
+          style="background:#f59e0b;color:#fff;border-radius:10px;font-size:13px;border:none;">
+          Start Chat
+        </button>
+
+      </div>
+    </div>
+  </div>
+</div>

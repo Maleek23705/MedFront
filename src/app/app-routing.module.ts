@@ -19,11 +19,11 @@ const routes: Routes = [
   { path: 'pages', loadChildren: () => import('./extraspages/extraspages.module').then(m => m.ExtraspagesModule), canActivate: [AuthGuard] },
   { path: 'landing', loadChildren: () => import('./landing/landing.module').then(m => m.LandingModule)},
   // NEW MSK
-  { path: 'admin', component: LayoutAdminComponent, loadChildren: () => import('./components/componentsAdmin/componentsAdmin.module').then(m => m.ComponentsAdminModule) },
-  { path: 'dashPatient',component: LayoutPatientComponent , loadChildren: () => import('./components/componentsDashboard/componentPatient/componentsPatient.module').then(m => m.ComponentsPatientModule)  },
-  { path: 'dashDoctor',component: LayoutDoctorComponent , loadChildren: () => import('./components/componentsDashboard/componentsDashDoctor/componentsDashDoctor.module').then(m => m.ComponentsDashDoctorModule )  },
+  { path: 'admin', component: LayoutAdminComponent, loadChildren: () => import('./components/componentsAdmin/componentsAdmin.module').then(m => m.ComponentsAdminModule)},
+  { path: 'dashPatient',component: LayoutPatientComponent , loadChildren: () => import('./components/componentsDashboard/componentPatient/componentsPatient.module').then(m => m.ComponentsPatientModule)},
+  { path: 'dashDoctor',component: LayoutDoctorComponent , loadChildren: () => import('./components/componentsDashboard/componentsDashDoctor/componentsDashDoctor.module').then(m => m.ComponentsDashDoctorModule )},
   { path: 'dashSecretary',component: LayoutSecretaryComponent , loadChildren: () => import('./components/componentsDashboard/componentsDashSecretary/componentsDashSecretary.module').then(m => m.ComponentsDashSecretaryModule )  },
-  { path: 'website',component: LayoutWebSiteComponent , loadChildren: () => import('./components/componentsDashboard/componentDashWebSite/componentsDashWebSite.module').then(m => m.ComponentsDashWebSiteModule )  }
+  { path: 'website',component: LayoutWebSiteComponent , loadChildren: () => import('./components/componentsDashboard/componentDashWebSite/componentsDashWebSite.module').then(m => m.ComponentsDashWebSiteModule )}
 ];
 
 @NgModule({

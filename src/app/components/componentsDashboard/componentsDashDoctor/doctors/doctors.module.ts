@@ -60,8 +60,6 @@ import { LanguageService } from 'src/app/core/services/language.service';
                   title: 'Edit doctor'
               }
           }
-
-          
         ]
  } 
 ]

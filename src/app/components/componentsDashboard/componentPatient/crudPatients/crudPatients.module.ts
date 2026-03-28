@@ -46,7 +46,7 @@ import { ViewreclamationsExtern } from '../../commonComponentsDash/reclamations/
               }, 
               children: [ 
                   {
-                      path: 'add',
+                      path: 'ADD',
                       component: AddPatient,
                       data: {
                           title: 'Add patient'
