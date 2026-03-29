@@ -23,9 +23,11 @@ import lottie from 'lottie-web';
 import { RouterModule, Routes } from '@angular/router';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
-import { CreateInvoiceComponent } from './create-invoice/create-invoice.component';
-import { EditInvoiceComponent } from './edit-invoice/edit-invoice.component';
-import { ViewInvoicesComponent } from './view-invoices/view-invoices.component';
+import { CreateAppointmentComponent } from './create-appointment/create-appointment.component';
+import { UpdateAppointmentComponent } from './update-appointment/update-appointment.component';
+import { ViewAppointmentsComponent } from './view-appointments/view-appointments.component';
+import { WaitingListComponent } from './waiting-list/waiting-list.component';
+
 
 
 import { ReactiveFormsModule } from '@angular/forms';
@@ -43,28 +45,35 @@ import { LanguageService } from 'src/app/core/services/language.service';
       path: '',
       //component: AdduserComponent,
       data: {
-          title: 'Invoices'
+          title: 'Appointments'
       }, 
       children: [ 
           {
               path: 'create',
-              component: CreateInvoiceComponent,
+              component: CreateAppointmentComponent,
               data: {
-                  title: 'create invoice'
+                  title: 'Create Appointment'
               }
           },
           {
-              path: 'edit/:id',
-              component: EditInvoiceComponent,
+              path: 'update/:id',
+              component: UpdateAppointmentComponent,
               data: {
-                  title: 'Edit invoice'
+                  title: 'Update appointment'
               }
           },
           {
               path: 'view/:id',
-              component: ViewInvoicesComponent,
+              component: ViewAppointmentsComponent,
               data: {
-                  title: 'View invoices'
+                  title: 'View appointment'
+              }
+          },
+          {
+              path: 'waitingList',
+              component: WaitingListComponent,
+              data: {
+                  title: 'Waiting list'
               }
           }
         ]
@@ -73,9 +82,11 @@ import { LanguageService } from 'src/app/core/services/language.service';
 
 @NgModule({
   declarations: [
-    CreateInvoiceComponent, 
-    EditInvoiceComponent, 
-    ViewInvoicesComponent
+    CreateAppointmentComponent, 
+    UpdateAppointmentComponent, 
+    ViewAppointmentsComponent,
+    WaitingListComponent
+
   ],
   imports: [
     CommonModule,
@@ -99,7 +110,7 @@ import { LanguageService } from 'src/app/core/services/language.service';
   providers: [LanguageService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class InvoicesModule {
+export class AppointmentsModule {
   constructor() {
     defineElement(lottie.loadAnimation);
   }

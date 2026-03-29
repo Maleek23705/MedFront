@@ -1,0 +1,178 @@
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+            <h4 class="mb-sm-0">Medical Record</h4>
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="javascript: void(0);">Patients</a></li>
+                    <li class="breadcrumb-item active">New Record</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <form [formGroup]="userForm">
+        <div class="col-lg-12">
+            
+            <div class="card">
+                <div class="card-header align-items-center d-flex">
+                    <h4 class="card-title mb-0 flex-grow-1"><i class="ri-user-line align-bottom me-1"></i> Personal Information</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row gy-4">
+                        <div class="col-md-3">
+                            <label class="form-label">CIN (National ID) <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" 
+                                   [ngClass]="{'is-invalid': submitted && userForm.get('CIN')?.invalid}"
+                                   placeholder="Enter 8-digit ID number" formControlName="CIN">
+                            <div *ngIf="submitted && userForm.get('CIN')?.errors?.['required']" class="text-danger fs-12">CIN is required.</div>
+                            <div *ngIf="submitted && userForm.get('CIN')?.errors?.['pattern']" class="text-danger fs-12">Must be exactly 8 digits.</div>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">First Name <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" 
+                                   [ngClass]="{'is-invalid': submitted && userForm.get('FirstName')?.invalid}"
+                                   placeholder="Enter first name" formControlName="FirstName">
+                            <div *ngIf="submitted && userForm.get('FirstName')?.invalid" class="text-danger fs-12">First name is required.</div>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">Last Name <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" 
+                                   [ngClass]="{'is-invalid': submitted && userForm.get('LastName')?.invalid}"
+                                   placeholder="Enter last name" formControlName="LastName">
+                            <div *ngIf="submitted && userForm.get('LastName')?.invalid" class="text-danger fs-12">Last name is required.</div>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">Phone Number <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" 
+                                   [ngClass]="{'is-invalid': submitted && userForm.get('Phone')?.invalid}"
+                                   placeholder="e.g. +216 55 000 000" formControlName="Phone">
+                            <div *ngIf="submitted && userForm.get('Phone')?.invalid" class="text-danger fs-12">Phone is required.</div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Date of Birth <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" mwlFlatpickr 
+                                   [ngClass]="{'is-invalid': submitted && userForm.get('BirthDate')?.invalid}"
+                                   placeholder="Select birth date" formControlName="BirthDate">
+                            <div *ngIf="submitted && userForm.get('BirthDate')?.invalid" class="text-danger fs-12">Birth date is required.</div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label d-block">Gender <span class="text-danger">*</span></label>
+                            <div class="d-flex gap-3">
+                                <div class="form-check form-radio-primary">
+                                    <input class="form-check-input" type="radio" id="male" formControlName="Gender" value="male">
+                                    <label class="form-check-label" for="male">Male</label>
+                                </div>
+                                <div class="form-check form-radio-primary">
+                                    <input class="form-check-input" type="radio" id="female" formControlName="Gender" value="female">
+                                    <label class="form-check-label" for="female">Female</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header align-items-center d-flex bg-soft-success">
+                    <h4 class="card-title mb-0 flex-grow-1 text-success"><i class="ri-pulse-line align-bottom me-1"></i> Vitals</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row gy-3">
+                        <div class="col-md-3">
+                            <label class="form-label">Blood Pressure (mmHg)</label>
+                            <input type="text" class="form-control" placeholder="e.g. 120/80" formControlName="BloodPressure">
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">Heart Rate (bpm)</label>
+                            <input type="number" class="form-control" placeholder="e.g. 72" formControlName="HeartRate">
+                        </div>
+                        <div class="col-md-2">
+                            <label class="form-label">Weight (kg)</label>
+                            <input type="number" class="form-control" placeholder="0.0" formControlName="Weight">
+                        </div>
+                        <div class="col-md-2">
+                            <label class="form-label">Height (cm)</label>
+                            <input type="number" class="form-control" placeholder="0" formControlName="Height">
+                        </div>
+                        <div class="col-md-2">
+                            <label class="form-label">Temp (°C)</label>
+                            <input type="number" class="form-control" placeholder="37.0" formControlName="Temperature">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header align-items-center d-flex bg-soft-info">
+                    <h4 class="card-title mb-0 flex-grow-1 text-info"><i class="ri-history-line align-bottom me-1"></i> Medical History</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row gy-4">
+                        <div class="col-md-3">
+                            <label class="form-label">Blood Group <span class="text-danger">*</span></label>
+                            <select class="form-select" [ngClass]="{'is-invalid': submitted && userForm.get('BloodGroup')?.invalid}" formControlName="BloodGroup">
+                                <option value="">Select Group</option>
+                                <option value="A+">A+</option><option value="A-">A-</option>
+                                <option value="B+">B+</option><option value="B-">B-</option>
+                                <option value="O+">O+</option><option value="O-">O-</option>
+                                <option value="AB+">AB+</option><option value="AB-">AB-</option>
+                            </select>
+                            <div *ngIf="submitted && userForm.get('BloodGroup')?.invalid" class="text-danger fs-12">Required.</div>
+                        </div>
+                        <div class="col-md-9">
+                            <label class="form-label">Hereditary Diseases</label>
+                            <input type="text" class="form-control" placeholder="e.g. Family history of Diabetes" formControlName="HereditaryDiseases">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Chronic Diseases</label>
+                            <textarea class="form-control" rows="3" placeholder="e.g. Asthma, Diabetes..." formControlName="ChronicDiseases"></textarea>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Past Surgeries</label>
+                            <textarea class="form-control" rows="3" placeholder="Past operations..." formControlName="PastSurgeries"></textarea>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Allergies</label>
+                            <textarea class="form-control" rows="3" placeholder="Medicines, food..." formControlName="Allergies"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header align-items-center d-flex bg-soft-secondary">
+                    <h4 class="card-title mb-0 flex-grow-1 text-secondary"><i class="ri-file-upload-line align-bottom me-1"></i> Prescriptions & Lab Results</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row gy-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Upload Documents</label>
+                            <input type="file" class="form-control" (change)="onFileSelected($event)" multiple>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Doctor's Diagnosis</label>
+                            <textarea class="form-control" rows="3" placeholder="Enter clinical findings..." formControlName="Diagnosis"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-12">
+                <div class="card p-3">
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-success waves-effect waves-light me-2" (click)="onSubmit()">
+                            <i class="ri-save-line align-bottom me-1"></i> Save Medical Record
+                        </button>
+                        <button type="button" class="btn btn-danger waves-effect waves-light" (click)="userForm.reset()">
+                            Cancel
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </form>
+</div>

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-create-invoice',
-  standalone:false,
+  standalone : false,
   templateUrl: './create-invoice.component.html',
   styleUrl: './create-invoice.component.scss'
 })

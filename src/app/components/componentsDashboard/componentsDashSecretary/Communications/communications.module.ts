@@ -23,9 +23,8 @@ import lottie from 'lottie-web';
 import { RouterModule, Routes } from '@angular/router';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
-import { CreateInvoiceComponent } from './create-invoice/create-invoice.component';
-import { EditInvoiceComponent } from './edit-invoice/edit-invoice.component';
-import { ViewInvoicesComponent } from './view-invoices/view-invoices.component';
+import { GmailComponent } from './gmail/gmail.component';
+import { SmsComponent } from './sms/sms.component';
 
 
 import { ReactiveFormsModule } from '@angular/forms';
@@ -43,28 +42,21 @@ import { LanguageService } from 'src/app/core/services/language.service';
       path: '',
       //component: AdduserComponent,
       data: {
-          title: 'Invoices'
+          title: 'Communications'
       }, 
       children: [ 
           {
-              path: 'create',
-              component: CreateInvoiceComponent,
+              path: 'gmail',
+              component: GmailComponent,
               data: {
-                  title: 'create invoice'
+                  title: 'Gmail reminder'
               }
           },
           {
-              path: 'edit/:id',
-              component: EditInvoiceComponent,
+              path: 'sms',
+              component: SmsComponent,
               data: {
-                  title: 'Edit invoice'
-              }
-          },
-          {
-              path: 'view/:id',
-              component: ViewInvoicesComponent,
-              data: {
-                  title: 'View invoices'
+                  title: 'SMS reminder'
               }
           }
         ]
@@ -73,9 +65,8 @@ import { LanguageService } from 'src/app/core/services/language.service';
 
 @NgModule({
   declarations: [
-    CreateInvoiceComponent, 
-    EditInvoiceComponent, 
-    ViewInvoicesComponent
+    GmailComponent,
+    SmsComponent
   ],
   imports: [
     CommonModule,
@@ -99,7 +90,7 @@ import { LanguageService } from 'src/app/core/services/language.service';
   providers: [LanguageService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class InvoicesModule {
+export class CommunicationsModule {
   constructor() {
     defineElement(lottie.loadAnimation);
   }

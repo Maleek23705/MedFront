@@ -31,6 +31,31 @@ const routes: Routes = [
         //component: AdduserComponent,
         loadChildren: () => import('../commonComponentsDash/reclamations/reclamations.module').then(m => m.ReclamationsModule),
   },
+  {
+        path: 'appointments',
+        //component: AddDoctorsComponent,
+        loadChildren: () => import('../componentsDashSecretary/appointments/appointments.module').then(m => m.AppointmentsModule),
+  },
+  {
+        path: 'Communications',
+        //component: AddDoctorsComponent,
+        loadChildren: () => import('../componentsDashSecretary/Communications/communications.module').then(m => m.CommunicationsModule),
+  },
+  {
+        path: 'Invoices',
+        //component: AddDoctorsComponent,
+        loadChildren: () => import('../componentsDashSecretary/Invoices/invoices.module').then(m => m.InvoicesModule),
+  },
+  {
+        path: 'MedRecords',
+        //component: AddDoctorsComponent,
+        loadChildren: () => import('../componentsDashSecretary/MedRecords/MedRecords.module').then(m => m.MedRecordsModule),
+  },
+  {
+        path: 'Payments',
+        //component: AddDoctorsComponent,
+        loadChildren: () => import('../componentsDashSecretary/Payments/payments.module').then(m => m.PaymentsModule),
+  },
   // {
   //     path: '',
   //     //component: AdduserComponent,

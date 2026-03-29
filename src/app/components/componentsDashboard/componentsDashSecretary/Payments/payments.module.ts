@@ -23,10 +23,8 @@ import lottie from 'lottie-web';
 import { RouterModule, Routes } from '@angular/router';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
-import { CreateInvoiceComponent } from './create-invoice/create-invoice.component';
-import { EditInvoiceComponent } from './edit-invoice/edit-invoice.component';
-import { ViewInvoicesComponent } from './view-invoices/view-invoices.component';
-
+import { PendingPaymentsComponent } from './pending-payments/pending-payments.component';
+import { ViewPaymentsComponent } from './view-payments/view-payments.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { createTranslateLoader } from 'src/app/app.module';
@@ -43,28 +41,21 @@ import { LanguageService } from 'src/app/core/services/language.service';
       path: '',
       //component: AdduserComponent,
       data: {
-          title: 'Invoices'
+          title: 'Payments'
       }, 
       children: [ 
           {
-              path: 'create',
-              component: CreateInvoiceComponent,
-              data: {
-                  title: 'create invoice'
-              }
-          },
-          {
-              path: 'edit/:id',
-              component: EditInvoiceComponent,
-              data: {
-                  title: 'Edit invoice'
-              }
-          },
-          {
               path: 'view/:id',
-              component: ViewInvoicesComponent,
+              component: ViewPaymentsComponent,
               data: {
-                  title: 'View invoices'
+                  title: 'View payments'
+              }
+          },
+          {
+              path: 'pending/:id',
+              component: PendingPaymentsComponent,
+              data: {
+                  title: 'Pending payments'
               }
           }
         ]
@@ -73,9 +64,8 @@ import { LanguageService } from 'src/app/core/services/language.service';
 
 @NgModule({
   declarations: [
-    CreateInvoiceComponent, 
-    EditInvoiceComponent, 
-    ViewInvoicesComponent
+    ViewPaymentsComponent,
+    PendingPaymentsComponent
   ],
   imports: [
     CommonModule,
@@ -99,7 +89,7 @@ import { LanguageService } from 'src/app/core/services/language.service';
   providers: [LanguageService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class InvoicesModule {
+export class PaymentsModule {
   constructor() {
     defineElement(lottie.loadAnimation);
   }

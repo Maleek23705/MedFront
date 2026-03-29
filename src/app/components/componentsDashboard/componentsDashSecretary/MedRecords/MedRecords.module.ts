@@ -23,9 +23,9 @@ import lottie from 'lottie-web';
 import { RouterModule, Routes } from '@angular/router';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
-import { CreateInvoiceComponent } from './create-invoice/create-invoice.component';
-import { EditInvoiceComponent } from './edit-invoice/edit-invoice.component';
-import { ViewInvoicesComponent } from './view-invoices/view-invoices.component';
+import { CreateRecordComponent } from './create-record/create-record.component';
+import { EditRecordComponent } from './edit-record/edit-record.component';
+import { ViewRecordsComponent } from './view-records/view-records.component';
 
 
 import { ReactiveFormsModule } from '@angular/forms';
@@ -43,28 +43,28 @@ import { LanguageService } from 'src/app/core/services/language.service';
       path: '',
       //component: AdduserComponent,
       data: {
-          title: 'Invoices'
+          title: 'Medical Record'
       }, 
       children: [ 
           {
               path: 'create',
-              component: CreateInvoiceComponent,
+              component: CreateRecordComponent,
               data: {
-                  title: 'create invoice'
+                  title: 'Create record'
               }
           },
           {
               path: 'edit/:id',
-              component: EditInvoiceComponent,
+              component: EditRecordComponent,
               data: {
-                  title: 'Edit invoice'
+                  title: 'Edit record'
               }
           },
           {
               path: 'view/:id',
-              component: ViewInvoicesComponent,
+              component: ViewRecordsComponent,
               data: {
-                  title: 'View invoices'
+                  title: 'View records'
               }
           }
         ]
@@ -73,9 +73,10 @@ import { LanguageService } from 'src/app/core/services/language.service';
 
 @NgModule({
   declarations: [
-    CreateInvoiceComponent, 
-    EditInvoiceComponent, 
-    ViewInvoicesComponent
+    
+    CreateRecordComponent,
+    EditRecordComponent,
+    ViewRecordsComponent
   ],
   imports: [
     CommonModule,
@@ -99,7 +100,7 @@ import { LanguageService } from 'src/app/core/services/language.service';
   providers: [LanguageService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class InvoicesModule {
+export class MedRecordsModule {
   constructor() {
     defineElement(lottie.loadAnimation);
   }
