@@ -1,0 +1,175 @@
+<div class="app-menu navbar-menu">
+  <div class="navbar-brand-box">
+    <a routerLink="/" class="logo logo-dark">
+      <span class="logo-sm">
+        <img src="assets/images/logo-sm.png" alt="" height="22">
+      </span>
+      <span class="logo-lg">
+        <img src="assets/images/logo-dark.png" alt="" height="17">
+      </span>
+    </a>
+    <a routerLink="/" class="logo logo-light">
+      <span class="logo-sm">
+        <img src="assets/images/logo-sm.png" alt="" height="22">
+      </span>
+      <span class="logo-lg">
+        <img src="assets/images/logo-light.png" alt="" height="17">
+      </span>
+    </a>
+    <button type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover" id="vertical-hover">
+      <i class="ri-record-circle-line"></i>
+    </button>
+  </div>
+
+  <div id="scrollbar">
+    <div class="container-fluid">
+      <div id="two-column-menu"></div>
+
+      <ngx-simplebar class="sidebar-menu-scroll" style="max-height: calc(100vh - 70px)">
+        <ul class="metismenu list-unstyled navbar-nav" id="navbar-nav">
+
+          @for(item of menuItems; track $index){
+
+          @if(item.isTitle){
+          <li class="menu-title">
+            <span>{{ item.label }}</span>
+          </li>
+          }
+
+          @else {
+          <li class="nav-item" #menuItemRef>
+
+            <!-- ITEM AVEC SOUS-MENU -->
+            @if(hasItems(item)){
+            <a href="javascript:void(0);"
+               class="nav-link menu-link d-flex align-items-center justify-content-between"
+               [class.active]="activeItem === item"
+               (click)="toggleItem(item, $event, menuItemRef)">
+
+              <span class="d-flex align-items-center gap-2">
+                <i class="{{ item.icon }} nav-icon"></i>
+                {{ item.label }}
+              </span>
+
+              @if(item.badge){
+              <span class="badge badge-pill {{ item.badge.variant }}">
+                {{ item.badge.text }}
+              </span>
+              }
+
+              <!-- flèche animée -->
+              <i class="ri-arrow-down-s-line"
+                 [style.transition]="'transform 0.3s ease'"
+                 [style.transform]="item.isCollapsed ? 'rotate(0deg)' : 'rotate(180deg)'">
+              </i>
+
+            </a>
+            }
+
+            <!-- ITEM SIMPLE -->
+            @else {
+            <a [routerLink]="item.link"
+               routerLinkActive="active"
+               class="nav-link menu-link d-flex align-items-center justify-content-between"
+               (click)="closeDropdown()">
+
+              <span class="d-flex align-items-center gap-2">
+                <i class="{{ item.icon }} nav-icon"></i>
+                {{ item.label }}
+              </span>
+
+              @if(item.badge){
+              <span class="badge {{ item.badge.variant }}">
+                {{ item.badge.text }}
+              </span>
+              }
+
+            </a>
+            }
+
+          </li>
+          }
+          }
+
+        </ul>
+      </ngx-simplebar>
+    </div>
+  </div>
+
+  <div class="sidebar-background"></div>
+</div>
+
+<!-- Dropdown rendu dans le body -->
+<ng-template #dropdownPortal>
+  @if(activeItem && dropdownPosition){
+  <div class="dropdown-menu show shadow"
+       [style.position]="'fixed'"
+       [style.top.px]="dropdownPosition.top"
+       [style.left.px]="dropdownPosition.left"
+       [style.z-index]="9999"
+       [style.min-width.px]="200"
+       (click)="$event.stopPropagation()">
+
+    @for(subitem of activeItem.subItems; track $index){
+
+    <!-- SUBITEM AVEC SOUS-MENU -->
+    @if(hasItems(subitem)){
+    <div class="dropend">
+
+      <a href="javascript:void(0);"
+         class="dropdown-item d-flex align-items-center justify-content-between"
+         [class.active]="activeSubItem === subitem"
+         (click)="toggleSubItem(subitem, $event)">
+        <span class="d-flex align-items-center gap-2">
+          <i class="{{ subitem.icon }} nav-icon"></i>
+          {{ subitem.label }}
+
+          @if(subitem.badge){
+          <span class="badge badge-pill {{ subitem.badge.variant }}">
+            {{ subitem.badge.text }}
+          </span>
+          }
+        </span>
+        <!-- flèche animée -->
+        <i class="ri-arrow-down-s-line"
+           [style.transition]="'transform 0.3s ease'"
+           [style.transform]="subitem.isCollapsed ? 'rotate(0deg)' : 'rotate(180deg)'">
+        </i>
+      </a>
+      @if(activeSubItem === subitem){
+      <div class="dropdown-menu show" (click)="$event.stopPropagation()">
+        @for(subSubitem of subitem.subItems; track $index){
+        <a [routerLink]="subSubitem.link"
+           routerLinkActive="active"
+           class="dropdown-item d-flex align-items-center gap-2"
+           (click)="closeDropdown()">
+          <i *ngIf="subSubitem.icon" class="{{ subSubitem.icon }} nav-icon"></i>
+          {{ subSubitem.label }}
+        </a>
+        }
+      </div>
+      }
+    </div>
+    }
+    <!-- SUBITEM SIMPLE -->
+    @else {
+    <a [routerLink]="subitem.link"
+       routerLinkActive="active"
+       class="dropdown-item d-flex align-items-center gap-2"
+       style="color: #838fb9" 
+       (click)="closeDropdown()">
+      <i *ngIf="subitem.icon" class="{{ subitem.icon }} nav-icon fs-5"></i>
+      {{ subitem.label }}
+      @if(subitem.badge){
+      <span class="badge badge-pill  fs-6 {{ subitem.badge.variant }}">
+        {{ subitem.badge.text }}
+      </span>
+      }
+    </a>
+    }
+    }
+  </div>
+  }
+</ng-template>
+
+<div class="vertical-overlay" (click)="SidebarHide()"></div>

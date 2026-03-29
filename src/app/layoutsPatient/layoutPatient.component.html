@@ -1,0 +1,12 @@
+<!-- Vertical layout -->
+@if(isVerticalLayoutRequested()){
+<app-vertical-patient></app-vertical-patient> 
+} 
+
+<!-- Horizontal layout -->
+@if(isHorizontalLayoutRequested()){ 
+<app-horizontal-patient></app-horizontal-patient>
+ } 
+<!-- Semibox layout -->
+ @if(isSemiboxLayoutRequested()){
+<app-vertical-patient></app-vertical-patient>}

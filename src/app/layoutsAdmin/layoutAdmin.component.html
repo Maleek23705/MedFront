@@ -1,0 +1,18 @@
+<!-- Vertical layout -->
+@if(isVerticalLayoutRequested()){
+<!-- Appel of app-sidebar-admin   ici -->
+<app-vertical-admin></app-vertical-admin> 
+
+}
+
+<!-- Horizontal layout -->
+@if(isHorizontalLayoutRequested()){
+<app-horizontal-admin></app-horizontal-admin>
+}
+<!-- Two Columns layout -->
+@if(isTwoColumnLayoutRequested()){
+<app-two-column-admin></app-two-column-admin>
+}
+<!-- Semibox layout -->
+@if(isSemiboxLayoutRequested()){
+<app-vertical-admin></app-vertical-admin>}

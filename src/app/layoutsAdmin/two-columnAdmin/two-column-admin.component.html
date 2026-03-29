@@ -1,0 +1,24 @@
+<div id="layout-wrapper" (window:resize)="onResize($event)">
+    <!-- Top Bar -->
+    <app-topbar-admin (mobileMenuButtonClicked)="onToggleMobileMenu()"></app-topbar-admin>
+    <!-- Side Bar -->
+    @if(issemiboxLayoutRequested()){
+    <app-sidebar-admin></app-sidebar-admin>
+    }
+    @if(isTwoColumnLayoutRequested()){
+    <app-two-column-sidebar-admin></app-two-column-sidebar-admin>
+    }
+    <app-sidebar-admin id="side-bar" class="d-none"></app-sidebar-admin>
+    <div class="main-content">
+        <div class="page-content">
+            <div class="container-fluid">
+                <!-- Main Content -->
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+        <!-- Footer -->
+        <app-footer-admin></app-footer-admin>
+    </div>
+</div>
+<!-- Right Side Bar -->
+<app-rightsidebar-admin (settingsButtonClicked)="onSettingsButtonClicked()"></app-rightsidebar-admin>
