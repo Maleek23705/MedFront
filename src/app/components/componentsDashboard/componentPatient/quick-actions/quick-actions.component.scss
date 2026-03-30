@@ -1,0 +1,62 @@
+/* ── Quick Actions Card ────────────────────────────── */
+.qa-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px;
+  height: 100%;
+  border: 1px solid #e5e7eb;
+}
+
+.qa-card__label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #6b7280;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+
+.qa-card__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+/* Quick action item */
+.qa-item {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 13px;
+  font-weight: 500;
+  color: #374151;
+  text-align: center;
+}
+
+.qa-item:hover {
+  background: #f3f4f6;
+  transform: translateY(-2px);
+}
+
+/* icon */
+.qa-item__icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+/* colors */
+.qa-item__icon--blue   { background: rgba(59,130,246,0.12); color: #3b82f6; }
+.qa-item__icon--purple { background: rgba(139,92,246,0.12); color: #8b5cf6; }
+.qa-item__icon--orange { background: rgba(245,158,11,0.12); color: #f59e0b; }
+.qa-item__icon--teal   { background: rgba(20,184,166,0.12); color: #14b8a6; }

@@ -1,0 +1,75 @@
+/*
+ * Sidebar médecin : la zone menu est scrollable ; le logout reste toujours
+ * visible en bas sans être recouvert quand un sous-menu est déployé.
+ * (Velzon .navbar-menu est en position fixed + padding-bottom réservé au thème.)
+ */
+:host {
+  display: block;
+  height: 100%;
+}
+
+.doctor-sidebar-shell.navbar-menu {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100vh;
+  max-height: 100vh;
+  overflow: hidden !important;
+  padding-bottom: 0 !important;
+}
+
+.doctor-sidebar-scroll {
+  flex: 1 1 0;
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.doctor-sidebar-menu-panel {
+  flex: 1 1 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ngx-simplebar : hauteur bornée pour que le déploiement du menu scroll en interne */
+.doctor-sidebar-simplebar {
+  flex: 1 1 0;
+  min-height: 0;
+  display: flex !important;
+  flex-direction: column;
+  height: 100%;
+  max-height: 100%;
+  overflow: hidden;
+}
+
+:host ::ng-deep ngx-simplebar.doctor-sidebar-simplebar .simplebar-wrapper {
+  flex: 1 1 auto;
+  min-height: 0;
+  height: 100%;
+  max-height: 100%;
+}
+
+:host ::ng-deep ngx-simplebar.doctor-sidebar-simplebar .simplebar-mask {
+  height: 100%;
+  max-height: 100%;
+}
+
+:host ::ng-deep ngx-simplebar.doctor-sidebar-simplebar .simplebar-content-wrapper {
+  height: 100% !important;
+  max-height: 100% !important;
+}
+
+.doctor-sidebar-logout {
+  flex-shrink: 0;
+  padding-top: 1rem;
+  padding-bottom: 1.75rem;
+  background: inherit;
+
+  .nav-link {
+    border-radius: 0.5rem;
+    padding-top: 0.65rem;
+    padding-bottom: 0.65rem;
+  }
+}

@@ -1,26 +1,36 @@
-import { Component, OnInit, EventEmitter, Output, ViewChild, ElementRef } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 import { MENU } from './menu';
 import { MenuItem } from './menu.model';
 import { environment } from 'src/environments/environment';
+import { AuthenticationService } from 'src/app/core/services/auth.service';
 
 @Component({
     selector: 'app-sidebar-doctor',
     templateUrl: './sidebarDoctor.component.html',
+    styleUrl: './sidebarDoctor.component.scss',
     standalone: false
 })
-export class SidebarDoctorComponent implements OnInit {
+export class SidebarDoctorComponent implements OnInit, AfterViewInit {
 
   menu: any;
   toggle: any = true;
   menuItems: MenuItem[] = [];
-  @ViewChild('sideMenu') sideMenu!: ElementRef;
   @Output() mobileMenuButtonClicked = new EventEmitter();
 
-  constructor(private router: Router, public translate: TranslateService) {
+  constructor(
+    private router: Router,
+    public translate: TranslateService,
+    private authService: AuthenticationService
+  ) {
     translate.setDefaultLang('en');
+  }
+
+  logout(): void {
+    this.authService.logout();
+    this.router.navigate(['/auth/login']);
   }
 
   ngOnInit(): void {

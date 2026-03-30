@@ -1,0 +1,59 @@
+<div class="na-card">
+
+  <!-- Header -->
+  <div class="na-card__header">
+    <div class="na-card__titles">
+      <h3 class="na-card__title">Next Appointment</h3>
+      <p class="na-card__subtitle" *ngIf="appointment">
+        {{ appointment.doctorName }} · {{ appointment.specialty }}
+      </p>
+    </div>
+    <span class="na-card__badge">
+      <i class="ri-vidicon-line"></i> Telehealth
+    </span>
+  </div>
+
+  <!-- No appointment -->
+  <div *ngIf="!appointment" class="na-card__empty">
+    <i class="ri-calendar-check-line"></i>
+    <p>No upcoming appointments</p>
+  </div>
+
+  <!-- Appointment details -->
+  <ng-container *ngIf="appointment">
+
+    <div class="na-card__info">
+      <div class="na-card__info-row">
+        <i class="ri-calendar-line"></i>
+        <span>{{ appointment.date | date:'EEEE, MMMM d, y' }}</span>
+      </div>
+      <div class="na-card__info-row">
+        <i class="ri-time-line"></i>
+        <span>{{ appointment.time }}</span>
+      </div>
+      <div class="na-card__info-row" *ngIf="appointment.location">
+        <i class="ri-map-pin-line"></i>
+        <span>{{ appointment.location }}</span>
+      </div>
+    </div>
+
+    <!-- Countdown alert -->
+    <div class="na-card__alert" [class.na-card__alert--urgent]="getDaysUntil() === 0">
+      <i class="ri-alarm-warning-line"></i>
+      <span *ngIf="getDaysUntil() === 0">Today — check your schedule</span>
+      <span *ngIf="getDaysUntil() === 1">Starts tomorrow</span>
+      <span *ngIf="getDaysUntil() > 1">In {{ getDaysUntil() }} days</span>
+    </div>
+
+    <!-- Actions -->
+    <div class="na-card__actions">
+      <button class="na-btn na-btn--primary">
+        <i class="ri-vidicon-line"></i> Join Now
+      </button>
+      <button class="na-btn na-btn--ghost">
+        View Details
+      </button>
+    </div>
+
+  </ng-container>
+</div>

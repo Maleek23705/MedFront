@@ -25,8 +25,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 import { AddDoctorsComponent } from './add-doctors/add-doctors.component';
 import { UpdateDoctorsComponent } from './update-doctors/update-doctors.component';
-import { CreateDoctorsComponent } from './create-doctors/create-doctors.component';
-
+import { DeleteDoctorsComponent } from './delete-doctors/delete-doctors.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { createTranslateLoader } from 'src/app/app.module';
@@ -68,7 +67,6 @@ import { LanguageService } from 'src/app/core/services/language.service';
   declarations: [
     AddDoctorsComponent, 
     UpdateDoctorsComponent, 
-    CreateDoctorsComponent
   ],
   imports: [
     CommonModule,
