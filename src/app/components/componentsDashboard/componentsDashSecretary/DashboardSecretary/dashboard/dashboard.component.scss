@@ -1,0 +1,75 @@
+.dashboard-container {
+  padding: 0 1.5rem 1.5rem 1.5rem; // On réduit le padding haut car la bienvenue est au-dessus
+  background-color: #f8f9fa; // Un gris très léger plus moderne
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  // Header contenant les widgets
+  .dashboard-header {
+    width: 100%;
+  }
+
+  // Grille principale
+  .dashboard-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr; 
+    gap: 24px;
+    align-items: start;
+
+    // Responsive : Passage en une seule colonne sur tablette et mobile
+    @media (max-width: 1024px) {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+  }
+}
+
+// Panneaux de contenu
+.left-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  
+  // Conteneur pour le graphique d'engagement
+  app-engagement-panel-secretary {
+    display: block;
+    background: #ffffff;
+    border-radius: 12px;
+    // On peut ajouter une ombre ici si elle n'est pas dans le composant lui-même
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  }
+}
+
+.right-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  // Titre de section pour la file d'attente
+  h5 {
+    color: #495057;
+    font-size: 1rem;
+    margin-bottom: 8px;
+  }
+
+  // Rendre la file d'attente "collante" au scroll sur desktop
+  @media (min-width: 1025px) {
+    position: sticky;
+    top: 20px;
+  }
+}
+
+// Styles pour la section de bienvenue (si non gérés par des classes globales)
+.welcome-section {
+  .user-name {
+    color: #556ee6;
+    font-weight: 700;
+  }
+  
+  h6 {
+    color: #74788d;
+    font-weight: 400;
+  }
+}

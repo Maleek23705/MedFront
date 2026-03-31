@@ -66,4 +66,6 @@ export class LayoutDoctorComponent implements OnInit {
     return this.layoutType === 'twocolumn';
   }
 
+
 }
+

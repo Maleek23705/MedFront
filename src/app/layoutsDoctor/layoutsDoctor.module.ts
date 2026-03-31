@@ -10,6 +10,8 @@ import { TranslateModule } from '@ngx-translate/core';
 import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 
 // Component pages
+
+import { LayoutsPatientModule } from '../layoutsPatient/layoutPatient.module';
 import { LayoutDoctorComponent } from './layoutsDoctor.component';
 import { VerticalDoctorComponent } from './verticalDoctor/verticalDoctor.component';
 import { SidebarDoctorComponent } from './sidebarDoctor/sidebarDoctor.component';
@@ -30,6 +32,8 @@ import { A11yModule } from "@angular/cdk/a11y";
     TwoColumnSidebarDoctorComponent,
   ],
   imports: [
+
+    LayoutsPatientModule,
     CommonModule,
     RouterModule,
     NgbDropdownModule,
@@ -46,4 +50,7 @@ import { A11yModule } from "@angular/cdk/a11y";
   ],
   providers: [LanguageService]
 })
+
 export class LayoutsDoctorModule { }
+
+

@@ -9,4 +9,8 @@ export interface MenuItem {
   badge?: any;
   parentId?: number;
   isLayout?: boolean;
+
+  /** Utilisé par le sidebar two-column (id du panneau collapse) */
+  collapseid?: string;
+
 }

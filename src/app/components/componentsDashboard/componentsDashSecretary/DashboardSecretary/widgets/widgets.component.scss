@@ -1,0 +1,153 @@
+/* ── Variables de Couleurs (Thème Médical) ── */
+$blue-primary: #3b82f6;
+$green-success: #10b981;
+$orange-warning: #f59e0b;
+$gray-muted: #6b7280;
+$border-color: #e5e7eb;
+$bg-light: #f9fafb;
+
+/* ── Container Principal du Dashboard ── */
+.dashboard-layout {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ── Section Metrics (Anciennement Health Metrics) ── */
+.vitals-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px;
+  border: 1px solid $border-color;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+
+  &__title {
+    font-size: 12px;
+    font-weight: 600;
+    color: $gray-muted;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+  }
+}
+
+.vitals-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); // 2 colonnes comme sur l'exemple patient
+  gap: 16px;
+
+  @media (max-width: 576px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.vital-item {
+  border: 1px solid $border-color;
+  border-radius: 12px;
+  padding: 16px;
+  background: $bg-light;
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+.vital-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+
+  .vital-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: $gray-muted;
+  }
+
+  .vital-value {
+    font-size: 18px;
+    font-weight: 700;
+    color: #111827;
+
+    small {
+      font-size: 11px;
+      font-weight: 500;
+      color: $gray-muted;
+      margin-left: 2px;
+    }
+  }
+}
+
+/* ── Badges de Statut ── */
+.vital-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+
+  &--blue {
+    background: #dbeafe;
+    color: #2563eb;
+  }
+
+  &--green {
+    background: #dcfce7;
+    color: #16a34a;
+  }
+
+  &--orange {
+    background: #fef3c7;
+    color: #d97706;
+  }
+}
+
+/* ── Mini Graphiques à Barres ── */
+.vital-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  height: 40px;
+
+  span {
+    flex: 1;
+    background: #cbd5e1; // Couleur grise par défaut
+    border-radius: 3px;
+    height: 40%;
+    
+    // Variations de hauteur pour simuler une activité
+    &:nth-child(2) { height: 55%; }
+    &:nth-child(3) { height: 35%; }
+    &:nth-child(4) { height: 50%; }
+    &:nth-child(5) { height: 65%; }
+    &:nth-child(6) { height: 45%; }
+
+    &.active {
+      height: 80%;
+      background: $blue-primary; // La barre actuelle est bleue
+    }
+  }
+}
+
+/* ── Adaptations pour le Engagement Panel ── */
+.engagement-card {
+  border-radius: 16px;
+  transition: all 0.3s ease;
+  
+  .btn-link {
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  button.btn:not(.btn-link) {
+    transition: filter 0.2s ease;
+    &:hover {
+      filter: brightness(90%);
+    }
+  }
+}

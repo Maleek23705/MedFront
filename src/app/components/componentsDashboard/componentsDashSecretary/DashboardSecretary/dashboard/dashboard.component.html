@@ -1,0 +1,34 @@
+<div class="p-3 p-lg-4" style="display: flex; flex-direction: column; gap: 6px;">
+  <h1 style="font-weight: 700; font-size: 26px; display: flex; margin: 0; align-items: center;"> 
+    Welcome back, <span style="color: #556ee6; margin-left: 8px;">Secretary</span>!
+  </h1>
+  <h6 style="font-weight: 400; font-size: 14px; color: #74788d; margin: 0;">
+    Here is the clinic's activity overview for today.
+  </h6>
+</div>
+
+<div class="dashboard-container p-3 p-lg-4">
+  
+  <header class="dashboard-header" style="margin-bottom: 24px;">
+    <app-widgets></app-widgets>
+  </header>
+
+  <main class="dashboard-content">
+    
+    <section class="left-panel">
+      <div class="card-container mb-4">
+        <app-engagement-panel-secretary></app-engagement-panel-secretary>
+      </div>
+    </section>
+
+    <section class="right-panel">
+      <div class="sticky-top">
+        <h5 style="font-size: 16px; font-weight: 600; margin-bottom: 15px; color: #495057;">
+          Waiting Room Management
+        </h5>
+        <app-waiting-list-preview></app-waiting-list-preview>
+      </div>
+    </section>
+    
+  </main>
+</div>

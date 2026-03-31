@@ -1,0 +1,50 @@
+<div class="appointment-list-container">
+
+  <div class="list-header">
+    <h2>My Appointments</h2>
+  </div>
+
+  <div *ngIf="appointments.length === 0" class="empty-state">
+    <p>No appointments found.</p>
+  </div>
+
+  <ng-container *ngIf="appointments.length > 0">
+    <table class="appointments-table">
+      <thead>
+        <tr>
+          <th>Doctor</th>
+          <th>Specialty</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Location</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let appt of appointments">
+          <td>{{ appt.doctorName }}</td>
+          <td>{{ appt.specialty }}</td>
+          <td>{{ appt.date | date:'mediumDate' }}</td>
+          <td>{{ appt.time }}</td>
+          <td>{{ appt.location }}</td>
+          <td>
+            <span [ngClass]="getStatusClass(appt.status)" class="status-badge">
+              {{ appt.status | titlecase }}
+            </span>
+          </td>
+          <td>
+            <button
+              *ngIf="appt.status === 'scheduled'"
+              (click)="cancel(appt.id)"
+              class="btn-cancel">
+              Cancel
+            </button>
+            <span *ngIf="appt.status !== 'scheduled'">—</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </ng-container>
+
+</div>

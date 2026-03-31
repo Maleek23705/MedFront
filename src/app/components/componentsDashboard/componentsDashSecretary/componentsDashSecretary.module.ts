@@ -1,112 +1,78 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import {
-  NgbToastModule, NgbProgressbarModule
-} from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgbToastModule, NgbProgressbarModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { RouterModule, Routes } from '@angular/router';
 
+// Plugins
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { CountUpModule } from 'ngx-countup';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { LeafletModule } from '@bluehalo/ngx-leaflet';
-import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { SimplebarAngularModule } from 'simplebar-angular';
-
-// Swiper Slider
 import { SlickCarouselModule } from 'ngx-slick-carousel';
-
 import { LightboxModule } from 'ngx-lightbox';
 
-// Load Icons
+// Icons & Lottie
 import { defineElement } from "@lordicon/element";
 import lottie from 'lottie-web';
-import { RouterModule, Routes } from '@angular/router';
 
-// Pages Routing
-// import { PagesRoutingModule } from "./pages-routing.module";
+// --- IMPORT DU MODULE QUE TU VIENS DE CRÉER ---
+import { DashboardSecretaryModule } from './DashboardSecretary/dashboard-secretary.module'; 
+
+// Import du composant parent pour la route
+import { DashboardComponent } from './DashboardSecretary/dashboard/dashboard.component';
 
 const routes: Routes = [
   {
-        path: 'reclamations',
-        //component: AdduserComponent,
-        loadChildren: () => import('../commonComponentsDash/reclamations/reclamations.module').then(m => m.ReclamationsModule),
+    path: '',
+    component: DashboardComponent, 
+    data: { title: 'Secretary Dashboard' }
   },
   {
-        path: 'appointments',
-        //component: AddDoctorsComponent,
-        loadChildren: () => import('../componentsDashSecretary/appointments/appointments.module').then(m => m.AppointmentsModule),
+    path: 'appointments',
+    loadChildren: () => import('../componentsDashSecretary/appointments/appointments.module').then(m => m.AppointmentsModule),
   },
   {
-        path: 'Communications',
-        //component: AddDoctorsComponent,
-        loadChildren: () => import('../componentsDashSecretary/Communications/communications.module').then(m => m.CommunicationsModule),
+    path: 'Communications',
+    loadChildren: () => import('../componentsDashSecretary/Communications/communications.module').then(m => m.CommunicationsModule),
   },
   {
-        path: 'Invoices',
-        //component: AddDoctorsComponent,
-        loadChildren: () => import('../componentsDashSecretary/Invoices/invoices.module').then(m => m.InvoicesModule),
+    path: 'Invoices',
+    loadChildren: () => import('../componentsDashSecretary/Invoices/invoices.module').then(m => m.InvoicesModule),
   },
   {
-        path: 'MedRecords',
-        //component: AddDoctorsComponent,
-        loadChildren: () => import('../componentsDashSecretary/MedRecords/MedRecords.module').then(m => m.MedRecordsModule),
+    path: 'MedRecords',
+    loadChildren: () => import('../componentsDashSecretary/MedRecords/MedRecords.module').then(m => m.MedRecordsModule),
   },
   {
-        path: 'Payments',
-        //component: AddDoctorsComponent,
-        loadChildren: () => import('../componentsDashSecretary/Payments/payments.module').then(m => m.PaymentsModule),
-  },
-  // {
-  //     path: '',
-  //     //component: AdduserComponent,
-  //     data: {
-  //         title: 'users'
-  //     }, 
-  //     children: [ 
-  //         {
-  //             path: 'add',
-  //             component: AddUserComponent,
-  //             data: {
-  //                 title: 'Add user'
-  //             }
-  //         },
-  //         {
-  //             path: 'edit/:id',
-  //             component: EdituserComponent,
-  //             data: {
-  //                 title: 'Edit user'
-  //             }
-  //         },
-  //         {
-  //             path: 'view/:id',
-  //             component: ViewusersComponent,
-  //             data: {
-  //                 title: 'View user'
-  //             }
-  //         }
-           
-   ] 
-
+    path: 'Payments',
+    loadChildren: () => import('../componentsDashSecretary/Payments/payments.module').then(m => m.PaymentsModule),
+  }
+];
 
 @NgModule({
   declarations: [
-   
+    // ON LAISSE VIDE OU UNIQUEMENT LES COMPOSANTS QUI NE SONT PAS DANS DashboardSecretaryModule
   ],
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     NgbToastModule,
     NgbProgressbarModule,
-    RouterModule.forChild(routes),
-    FlatpickrModule.forRoot(),
+    NgbDropdownModule,
     CountUpModule,
     NgApexchartsModule,
-    LeafletModule,
-    NgbDropdownModule,
     SimplebarAngularModule,
     SlickCarouselModule,
     LightboxModule,
+    LeafletModule,
+    FlatpickrModule.forRoot(),
+    RouterModule.forChild(routes),
     
+    // --- ON AJOUTE TON MODULE ICI ---
+    DashboardSecretaryModule 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

@@ -1,0 +1,22 @@
+<div class="card-waiting-list">
+  <div class="card-header">
+    <h3>File d'attente</h3>
+    <span class="badge-count">{{ patients.length }}</span>
+  </div>
+
+  <div class="list-container">
+    <div class="patient-row" *ngFor="let p of patients">
+      <div class="patient-details">
+        <span class="patient-name">{{ p.nom }}</span>
+        <span class="appointment-time">{{ p.heure }}</span>
+      </div>
+      <span [class]="'status-badge ' + getBadgeClass(p.status)">
+        {{ p.status }}
+      </span>
+    </div>
+  </div>
+
+  <div class="card-footer">
+    <button class="btn-action">Gérer la file</button>
+  </div>
+</div>

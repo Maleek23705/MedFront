@@ -9,7 +9,6 @@ import { Store } from '@ngrx/store';
 @Component({
     selector: 'app-layout-patient',
     templateUrl: './layoutPatient.component.html',
-    styleUrls: ['./layoutPatient.component.scss'],
     standalone: false
 })
 

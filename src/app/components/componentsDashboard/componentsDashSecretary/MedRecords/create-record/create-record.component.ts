@@ -26,10 +26,10 @@ export class CreateRecordComponent implements OnInit {
   initForm() {
     this.userForm = this.fb.group({
       // Personal Information - Champs obligatoires
-      CIN: ['', [Validators.required, Validators.pattern('^[0-9]{8}$')]], // Exactement 8 chiffres
+      CIN: ['', [Validators.required, Validators.pattern('^[0-9]{8}$')]], 
       FirstName: ['', [Validators.required, Validators.minLength(2)]],
       LastName: ['', [Validators.required, Validators.minLength(2)]],
-      Phone: ['', [Validators.required, Validators.pattern('^[0-9]{8,15}$')]], // Entre 8 et 15 chiffres
+      Phone: ['', [Validators.required, Validators.pattern('^[0-9]{8,15}$')]], 
       BirthDate: [null, [Validators.required]],
       Gender: ['male', [Validators.required]],
 

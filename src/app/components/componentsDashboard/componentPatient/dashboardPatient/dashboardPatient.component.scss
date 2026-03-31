@@ -1,0 +1,42 @@
+/* ── Dashboard Layout ──────────────────────────────── */
+.dashboard-layout {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.dashboard-layout__header {
+  margin-bottom: 4px;
+}
+
+.dashboard-layout__title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1a1f2e;
+  margin: 0 0 4px;
+}
+
+.dashboard-layout__subtitle {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 0;
+}
+
+.dashboard-layout__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;   /* equal halves — adjust ratio below if needed */
+  gap: 20px;
+  align-items: stretch;
+}
+
+/* Next appointment takes slightly more space */
+.dashboard-layout__col--wide  { min-width: 0; }
+.dashboard-layout__col--narrow { min-width: 0; }
+
+/* Responsive: stack on small screens */
+@media (max-width: 768px) {
+  .dashboard-layout__row {
+    grid-template-columns: 1fr;
+  }
+}
