@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-general-settings',
@@ -11,33 +11,44 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 })
 export class GeneralSettingsComponent implements OnInit {
   settingsForm!: FormGroup;
-  // This property must match exactly what is used in the HTML
   isSaving = false;
+  logoPreview: string | ArrayBuffer | null = 'assets/images/default-clinic.png';
 
   constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
+    this.initForm();
+  }
+
+  initForm() {
     this.settingsForm = this.fb.group({
-      cabinetName: ['Medical Cabinet', Validators.required],
-      address: ['Tunis, Tunisia', Validators.required],
-      phone: ['+21623000', [Validators.required, Validators.pattern('^[0-9]{8}$')]],
+      clinicName: ['Mon Cabinet Médical', [Validators.required]],
       email: ['contact@cabinet.tn', [Validators.required, Validators.email]],
-      openingTime: ['08:00'],
-      closingTime: ['17:00'],
-      isCabinetOpen: [true]
+      phone: ['+216 71 000 000', [Validators.required]],
+      address: ['Grand Tunis, Tunisie'],
+      language: ['fr'],
+      notifications: [true],
+      darkMode: [false]
     });
   }
 
-  saveSettings() {
-    if (this.settingsForm.valid) {
-      // Changed from isSending to isSaving to match the class property
-      this.isSaving = true; 
-      
-      // Simulate API call to your .NET backend
-      setTimeout(() => {
-        alert('Settings updated successfully!');
-        this.isSaving = false;
-      }, 1000);
+  onLogoChange(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => this.logoPreview = reader.result;
+      reader.readAsDataURL(file);
     }
+  }
+
+  saveSettings() {
+    if (this.settingsForm.invalid) return;
+    
+    this.isSaving = true;
+    // Simulation d'appel API vers votre backend ASP.NET Core
+    setTimeout(() => {
+      this.isSaving = false;
+      alert('Settings updated successfully!');
+    }, 1500);
   }
 }

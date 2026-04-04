@@ -1,180 +1,54 @@
-// 1. Color Variables (Matching Secretary Dashboard Theme)
-$primary-blue: #556ee6;
-$success-green: #34c38f;
-$info-cyan: #50a5f1;
-$danger-red: #f46a6a;
+$sidebar-blue: #4c568c; 
+$success-green: #19b394;
 $border-color: #eff2f7;
-$bg-light: #f8f9fa;
 
-// 2. Page Header & Layout
-.page-title-box {
-  padding: 0 0 1.5rem 0;
-  
-  h4 {
-    font-size: 18px;
-    font-weight: 700;
-    color: #495057;
-    margin: 0;
-  }
-
-  .breadcrumb-item {
-    font-size: 13px;
-    a { color: $primary-blue; text-decoration: none; }
-    &.active { color: #74788d; }
-  }
-}
-
-// 3. Card Styling (Consistent with All Patients Table)
-.card {
-  border: none;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-  margin-bottom: 24px;
-  background-color: #ffffff;
-  overflow: hidden;
-
-  .card-header {
-    padding: 1.25rem;
-    background-color: transparent;
-    border-bottom: 1px solid $border-color;
-    display: flex;
-    align-items: center;
-
-    .card-title {
-      font-size: 16px;
-      font-weight: 600;
-      margin: 0;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-
-      i {
-        font-size: 1.2rem;
-        padding: 8px;
-        border-radius: 8px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-    }
-  }
-}
-
-// 4. Section Header Color Variations (Matching your HTML)
-.bg-soft-success { 
-  i { background: rgba($success-green, 0.15); color: $success-green; }
-  h4 { color: $success-green !important; }
-}
-
-.bg-soft-info { 
-  i { background: rgba($info-cyan, 0.15); color: $info-cyan; }
-  h4 { color: $info-cyan !important; }
-}
-
-.bg-soft-secondary { 
-  i { background: rgba($primary-blue, 0.15); color: $primary-blue; }
-  h4 { color: $primary-blue !important; }
-}
-
-// 5. Form Fields & Validation
-.form-label {
-  font-size: 13px;
-  font-weight: 600;
+.page-title-box h4 {
+  font-weight: 700;
   color: #495057;
-  margin-bottom: 8px;
+}
+
+.bg-soft-primary { background: rgba($sidebar-blue, 0.1); }
+.bg-soft-success { background: rgba($success-green, 0.1); }
+.bg-soft-info { background: rgba(#50a5f1, 0.1); }
+
+.card {
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.2s;
+  &:hover { transform: translateY(-2px); }
+}
+
+.form-label {
+  font-weight: 600;
+  color: #666;
+  font-size: 13px;
 }
 
 .form-control, .form-select {
-  border: 1px solid #ced4da;
+  border: 1px solid $border-color;
   border-radius: 8px;
-  padding: 0.6rem 0.9rem;
-  background-color: #ffffff;
-  font-size: 14px;
-  transition: all 0.2s;
-
   &:focus {
-    border-color: $primary-blue;
-    box-shadow: 0 0 0 3px rgba($primary-blue, 0.1);
-    outline: none;
-  }
-
-  &::placeholder {
-    color: #adb5bd;
-    font-size: 13px;
-  }
-
-  // Edit-Mode Specific: Read Only Fields
-  &[readonly] {
-    background-color: $bg-light;
-    border-style: dashed;
-    color: #74788d;
-    cursor: not-allowed;
+    border-color: $sidebar-blue;
+    box-shadow: 0 0 0 3px rgba($sidebar-blue, 0.1);
   }
 }
 
-textarea.form-control {
-  min-height: 100px;
-}
-
-// 6. Radio Buttons (Gender selection)
-.form-radio-primary {
-  .form-check-input {
-    width: 18px;
-    height: 18px;
-    cursor: pointer;
-    &:checked {
-      background-color: $primary-blue;
-      border-color: $primary-blue;
-    }
-  }
-  .form-check-label {
-    cursor: pointer;
-    padding-left: 5px;
-  }
-}
-
-// 7. Footer Action Bar & Buttons
-.btn {
-  border-radius: 8px;
-  padding: 10px 24px;
+.btn-primary-medical {
+  background: $sidebar-blue;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 10px;
   font-weight: 600;
-  font-size: 14px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  transition: all 0.3s ease;
-
-  &-primary {
-    background-color: $primary-blue;
-    border: none;
-    &:hover {
-      background-color: darken($primary-blue, 8%);
-      transform: translateY(-1px);
-      box-shadow: 0 4px 8px rgba($primary-blue, 0.2);
-    }
-  }
-
-  &-outline-danger {
-    color: $danger-red;
-    border: 1px solid $danger-red;
-    background: transparent;
-    &:hover {
-      background-color: $danger-red;
-      color: white;
-    }
-  }
+  box-shadow: 0 4px 10px rgba($sidebar-blue, 0.2);
+  transition: all 0.3s;
+  &:hover:not(:disabled) { background: darken($sidebar-blue, 5%); transform: translateY(-1px); }
+  &:disabled { opacity: 0.7; }
 }
 
-// 8. Loading Spinner Styling
-.spinner-border {
-  width: 3rem;
-  height: 3rem;
-  color: $primary-blue;
-}
-
-.text-danger.fs-12 {
-  display: block;
-  margin-top: 5px;
-  font-size: 12px;
-  font-weight: 500;
+.btn-light {
+  border-radius: 10px;
+  padding: 12px 25px;
+  background: #f8f9fa;
+  border: 1px solid $border-color;
 }

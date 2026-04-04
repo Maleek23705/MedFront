@@ -60,6 +60,10 @@ const routes: Routes = [
     path: 'Invoices',
     loadChildren: () => import('../componentsDashSecretary/Invoices/invoices.module').then(m => m.InvoicesModule),
   },
+  {
+    path: 'waiting-list',
+    loadChildren: () => import('../componentsDashSecretary/waiting-list/waiting-list.module').then(m => m.WaitingListModule),
+  }
 ];
 
 @NgModule({

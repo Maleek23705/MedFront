@@ -27,28 +27,28 @@ export const MENU: MenuItem[] = [
       {
         id: 6,
         label: 'Schedule Appointment',
-        link: 'appointments/create',
+        link: 'Appointments/addAppointment',
         parentId: 5,
         icon: 'ri-add-circle-line'
       },
       {
         id: 7,
         label: 'Update Appointment',
-        link: 'appointments/update/:id',
+        link: 'Appointments/updateAppointment',
         parentId: 5,
         icon: 'ri-edit-2-line'
       },
       {
         id: 8,
         label: 'View Agenda',
-        link: 'appointments/view/:id',
+        link: 'Appointments/appointmentsList',
         parentId: 5,
         icon: 'ri-eye-line'
       },
       {
         id: 9,
         label: 'Waiting List',
-        link: 'appointments/waitingList',
+        link: 'waiting-list',
         parentId: 5,
         icon: 'ri-rest-time-line' 
       }

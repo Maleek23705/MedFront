@@ -43,16 +43,13 @@ const routes: Routes = [
     ReactiveFormsModule,
     UpdateAppointmentComponent,
     AddAppointmentComponent,
-    AppointmentListComponent,
+    AppointmentListComponent
 
   ],
   providers: [AppointmentsService],
   exports: [
     RouterModule,
-    AppointmentListComponent,
-    NextAppointmentComponent,
-    UpdateAppointmentComponent,
-    AddAppointmentComponent
+    AppointmentListComponent
   ]
 })
 export class AppointmentsModule {}

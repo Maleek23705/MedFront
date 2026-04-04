@@ -4,31 +4,19 @@
     <p>Here is the clinic's activity overview for today.</p>
   </div>
 
-  <div class="stats-row">
-    <app-widgets></app-widgets>
+  <div class="stats-row mb-5"> <app-widgets></app-widgets>
+</div>
+
+<div class="left-panel">
+  <div class="card shadow-sm">
+    <app-agenda></app-agenda>
   </div>
+</div>
 
-    <div class="left-panel">
-      <div class="card">
-        <app-agenda></app-agenda>
-      </div>
-
-  <div class="main-grid">
-    
-    <div class="column-left">
-      <div class="card mb-4">
-        <div class="card-header">
-          <h2>Patient Traffic & Engagement</h2>
-        </div>
-        <div class="card-body">
-          <app-engagement-panel-secretary></app-engagement-panel-secretary>
-        </div>
-      </div>
-
-      <div class="column-right">
-      <div class="card">
-        <div class="card-header">
-          <h3>Waiting Room List</h3>
+  <div class="row g-4"> <div class="col-lg-6">
+      <div class="card h-100 shadow-sm border-0">
+        <div class="card-header bg-white py-3">
+          <h3 class="mb-0 fs-16 fw-bold text-dark">Waiting Room List</h3>
         </div>
         <div class="card-body">
           <app-waiting-list-preview></app-waiting-list-preview>
@@ -36,14 +24,27 @@
       </div>
     </div>
 
-    <div class="card">
-        <div class="card-header">
-          <h3>Recent Patients</h3>
+    <div class="col-lg-6">
+      <div class="card h-100 shadow-sm border-0">
+        <div class="card-header bg-white py-3">
+          <h3 class="mb-0 fs-16 fw-bold text-dark">Recent Patients</h3>
         </div>
-        <app-recent-patient></app-recent-patient>
+        <div class="card-body">
+          <app-recent-patient></app-recent-patient>
+        </div>
       </div>
-
+    </div>
     
+  </div>
 
+  <div class="main-grid mt-4">
+    <div class="card shadow-sm border-0">
+      <div class="card-header bg-white py-3">
+        <h2 class="mb-0 fs-18 fw-bold">Patient Traffic & Engagement</h2>
+      </div>
+      <div class="card-body">
+        <app-engagement-panel-secretary></app-engagement-panel-secretary>
+      </div>
+    </div>
   </div>
 </div>
