@@ -17,8 +17,7 @@ export const MENU: MenuItem[] = [
     id: 5,
     label: 'Appointments',
     icon: 'ri-calendar-check-line',
-
-    link: '/appointments/appointmentsList'
+    link: '/dashPatient/appointments/appointmentsList'
   },
   {
     id: 6,

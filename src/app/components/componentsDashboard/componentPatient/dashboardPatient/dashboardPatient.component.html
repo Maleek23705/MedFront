@@ -1,27 +1,10 @@
-
-<div
-  class="p-3 p-lg-4"
-  style="display: flex; flex-direction: column; gap: 6px;"
->
-  <h1 style="font-weight: 700; font-size: 26px; display: flex;"> Welcome back, 
-    <span style="color: #556ee6;">User</span>!
-  </h1>
-  <h6
-    style=" font-weight: 400; font-size: 14px; ">
-    Here's your health overview for today
-  </h6>
-</div>
-<div class="p-3 p-lg-4">
-<app-engagement-panel></app-engagement-panel>
-
 <div class="dashboard-header" style="margin-bottom: 24px;">
-  <h1 class="welcome-title">
-    Welcome back, <span class="user-name">User</span>!
+  <h1 class="dashboard-header__title">
+        <span class="dashboard-header__name">{{ userName }}</span>
   </h1>
-  <h6 class="welcome-subtitle">
-    Here's your health overview for today
-  </h6>
+  <p class="dashboard-header__subtitle">Here's your health overview for today</p>
 </div>
+ 
 
 <!-- Widgets Container -->
 <div class="widgets-container" style="display:flex; flex-direction:column; gap:24px;">
@@ -35,18 +18,25 @@
     <div class="dashboard-layout__col--narrow" style="flex:1;">
       <app-quick-actions></app-quick-actions>
     </div>
-
   </div>
 
-  <!-- Health Overview -->
-  <div style="margin-top: 8px;">
-    <app-health-overview></app-health-overview>
+    <div class="dashboard-layout__row" style="display:flex; gap:24px;">
+       <!-- Health Overview -->
+    <div style="flex: 1;">
+      <app-health-overview></app-health-overview>
+    </div>
+       <!-- Medications Card -->
+    <div style="flex: 1;">
+      <app-medications-card></app-medications-card>
+    </div>
+        <!-- Lab Results Card -->
+    <div style="flex: 1;">
+      <app-lab-results-card></app-lab-results-card>
+    </div>
   </div>
-
   <!-- Engagement Panel -->
   <div style="margin-top: 8px;">
     <app-engagement-panel></app-engagement-panel>
   </div>
-
 
 </div>

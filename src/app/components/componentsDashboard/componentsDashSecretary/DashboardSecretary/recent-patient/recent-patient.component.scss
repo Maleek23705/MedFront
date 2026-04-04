@@ -1,0 +1,89 @@
+// LAYOUT: The main card container
+.recent-patients-widget {
+  background: white;
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+
+  .widget-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px; // Balance the top spacing
+
+    h2 { font-size: 1.25rem; font-weight: 700; color: #1e293b; margin: 0; }
+    
+    // Pro touch: a "See All" button
+    .btn-see-all { 
+      background: none; border: none; color: #556ee6; font-size: 13px; 
+      font-weight: 600; cursor: pointer; transition: color 0.2s;
+      &:hover { color: #4458b8; text-decoration: underline; }
+    }
+  }
+}
+
+// PATIENT CARDS (This creates the interactive cards)
+.patient-card {
+  margin-bottom: 14px; // Use margins instead of border-bottom for a card look
+  background: #fdfdfd;
+  border: 1px solid #f1f5f9;
+  border-radius: 12px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+
+  // Interactivity (Like the Agenda rows)
+  &:hover {
+    background: white;
+    border-color: #556ee6; // Theme Blue
+    transform: translateX(6px); // Tacit slide-in feel
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.04);
+    
+    .action-col i { color: #556ee6; } // Primary blue for arrows
+  }
+}
+
+.patient-grid {
+  display: grid;
+  // Col widths: Avatar | Main Info | Metadata (Optional) | Action
+  grid-template-columns: 70px 1fr 120px 40px; 
+  align-items: center;
+  padding: 16px 20px;
+
+  .info-col {
+    .p-name { display: block; font-weight: 600; color: #1e293b; font-size: 16px; margin-bottom: 4px; }
+    .p-condition { font-size: 13px; color: #64748b; font-weight: 400; }
+  }
+
+  .meta-col {
+    font-size: 13px;
+    color: #94a3b8;
+    text-align: right;
+  }
+
+  .action-col {
+    justify-self: end;
+    i { 
+      font-size: 18px; 
+      color: #e2e8f0; // Very muted gray, pops to blue on hover
+      transition: color 0.2s;
+    }
+  }
+}
+
+// AVATAR STYLING
+.p-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 14px;
+  
+  // Status-based colors matching your palette
+  &.type-blue { background: #dbeafe; color: #1e4ed8; }
+  &.type-green { background: #ecfeff; color: #0891b2; }
+  &.type-orange { background: #fffbeb; color: #b45309; }
+  &.type-purple { background: #f5f3ff; color: #7c3aed; }
+}

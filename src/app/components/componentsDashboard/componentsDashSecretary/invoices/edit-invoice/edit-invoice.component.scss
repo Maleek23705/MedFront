@@ -1,0 +1,100 @@
+$sidebar-blue: #4c568c; 
+$success-green: #19b394;
+$border-color: #eff2f7;
+$text-muted: #8c90a6;
+
+.page-title-box {
+  padding: 1rem 0 2rem;
+  h4 i { color: $sidebar-blue; margin-right: 10px; }
+}
+
+.card {
+  border: none;
+  border-radius: 12px;
+  background: #fff;
+  margin-bottom: 1.5rem;
+  
+  .card-header {
+    border-bottom: 1px solid $border-color;
+    padding: 1rem;
+    &.bg-soft-info { background: rgba(#50a5f1, 0.08); h4 { color: #50a5f1; } }
+  }
+}
+
+.bg-blue {
+  background: linear-gradient(135deg, $sidebar-blue 0%, darken($sidebar-blue, 10%) 100%) !important;
+  border-radius: 15px;
+  padding: 1.5rem;
+  
+  // Update these lines to ensure visibility
+  h5, label, span, p {
+    color: rgba(255, 255, 255, 0.85) !important; // Soft white for labels
+    font-weight: 500;
+  }
+
+  .total-amount {
+    color: #ffffff !important; // Pure white for the actual price
+    font-size: 28px;
+    font-weight: 700;
+  }
+}
+
+.table {
+  width: 100%;
+  thead th { background: #f8fafc; font-size: 11px; color: $text-muted; padding: 12px; }
+  tbody td { padding: 12px; border-bottom: 1px solid $border-color; }
+}
+
+.form-control-sm {
+  width: 100%;
+  border: 1px solid $border-color;
+  border-radius: 6px;
+  padding: 5px 10px;
+  &:focus { border-color: $sidebar-blue; outline: none; }
+}
+
+.btn-add-item {
+  background: rgba($sidebar-blue, 0.1);
+  color: $sidebar-blue;
+  border: none;
+  padding: 5px 15px;
+  border-radius: 6px;
+  font-weight: 600;
+  &:hover { background: $sidebar-blue; color: white; }
+}
+
+.btn-delete {
+  background: transparent;
+  border: none;
+  color: #f06548;
+  font-size: 18px;
+  &:hover { opacity: 0.7; }
+}
+
+// Unified Action Buttons
+.btn-primary-medical {
+  background: $success-green;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-shadow: 0 4px 10px rgba($success-green, 0.2);
+  &:hover { background: darken($success-green, 5%); transform: translateY(-1px); }
+}
+
+.btn-soft-light {
+  background: #f8f9fa;
+  color: $text-muted;
+  border: 1px solid #edf0f2;
+  padding: 12px;
+  border-radius: 10px;
+  font-weight: 600;
+  &:hover { background: #e9ecef; color: #f06548; }
+}
+
+.spinner-border { color: $sidebar-blue; width: 3rem; height: 3rem; }

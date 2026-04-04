@@ -1,1 +1,66 @@
-<p>gmail works!</p>
+<div class="container-fluid">
+  <div class="page-title-box">
+    <h4 class="mb-0"><i class="ri-mail-send-line"></i> Patient Email Communication</h4>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-4">
+      <div class="card h-100 border-0 shadow-sm">
+        <div class="card-header bg-soft-info py-3">
+          <h5 class="card-title mb-0"><i class="ri-layout-grid-line me-2"></i> Quick Templates</h5>
+        </div>
+        <div class="card-body">
+          <div class="list-group list-group-flush">
+            <button *ngFor="let t of templates" 
+                    (click)="selectTemplate(t)"
+                    class="list-group-item list-group-item-action border-dashed mb-2 rounded p-3">
+              <div class="d-flex align-items-center">
+                <div class="flex-shrink-0 avatar-xs me-3">
+                  <div class="avatar-title bg-soft-primary text-primary rounded-circle">
+                    <i class="ri-file-text-line"></i>
+                  </div>
+                </div>
+                <div class="flex-grow-1">
+                  <h6 class="mb-1 fw-bold">{{ t.name }}</h6>
+                  <p class="text-muted mb-0 small text-truncate" style="max-width: 150px;">{{ t.subject }}</p>
+                </div>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-8">
+      <div class="card border-0 shadow-sm">
+        <div class="card-body p-4">
+          <form [formGroup]="emailForm" (ngSubmit)="onSend()">
+            <div class="mb-3">
+              <label class="form-label fw-bold text-muted">Recipient Email</label>
+              <input type="email" class="form-control medical-input" placeholder="patient@example.com" formControlName="to">
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label fw-bold text-muted">Subject</label>
+              <input type="text" class="form-control medical-input" placeholder="Enter email subject" formControlName="subject">
+            </div>
+
+            <div class="mb-4">
+              <label class="form-label fw-bold text-muted">Your Message</label>
+              <textarea class="form-control medical-input" rows="8" placeholder="Type your medical announcement here..." formControlName="message"></textarea>
+            </div>
+
+            <div class="d-flex justify-content-end gap-3 pt-3 border-top">
+              <button type="button" class="btn btn-soft-light px-4" (click)="emailForm.reset()">Clear</button>
+              <button type="submit" class="btn-primary-medical px-5" [disabled]="emailForm.invalid || isSending">
+                <i *ngIf="!isSending" class="ri-send-plane-2-fill me-2"></i>
+                <span *ngIf="isSending" class="spinner-border spinner-border-sm me-2"></span>
+                {{ isSending ? 'Sending...' : 'Send Announcement' }}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,153 @@
+// Consistent Secretary Dashboard Variables
+$primary-blue: #556ee6;
+$success-green: #34c38f;
+$info-cyan: #50a5f1;
+$bg-light: #f8f9fa;
+$border-color: #eff2f7;
+
+.row {
+  margin-bottom: 1.5rem;
+}
+
+// 1. Header & Breadcrumb Styling
+.page-title-box {
+  padding: 0 0 1.5rem 0;
+  
+  h4 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #495057;
+    margin: 0;
+  }
+
+  .breadcrumb-item {
+    font-size: 13px;
+    a { color: $primary-blue; text-decoration: none; }
+    &.active { color: #74788d; }
+  }
+}
+
+// 2. Consistent Card Design
+.card {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  margin-bottom: 24px;
+  background-color: #ffffff;
+  overflow: hidden;
+
+  .card-header {
+    padding: 1.25rem;
+    background-color: transparent;
+    border-bottom: 1px solid $border-color;
+    display: flex;
+    align-items: center;
+
+    .card-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      i {
+        font-size: 1.2rem;
+        padding: 8px;
+        border-radius: 8px;
+        // Icon background variations
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+}
+
+// 3. Section Color Variations (Matching your HTML classes)
+.bg-soft-success { 
+  i { background: rgba($success-green, 0.15); color: $success-green; }
+  h4 { color: $success-green; }
+}
+
+.bg-soft-info { 
+  i { background: rgba($info-cyan, 0.15); color: $info-cyan; }
+  h4 { color: $info-cyan; }
+}
+
+.bg-soft-secondary { 
+  i { background: rgba($primary-blue, 0.15); color: $primary-blue; }
+  h4 { color: $primary-blue; }
+}
+
+// 4. Form Field Refinement
+.form-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #495057;
+  margin-bottom: 8px;
+}
+
+.form-control, .form-select {
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  padding: 0.6rem 0.9rem;
+  background-color: #ffffff;
+  transition: all 0.2s;
+
+  &:focus {
+    border-color: $primary-blue;
+    box-shadow: 0 0 0 3px rgba($primary-blue, 0.1);
+  }
+
+  &::placeholder {
+    color: #adb5bd;
+    font-size: 13px;
+  }
+}
+
+// 5. Radio Buttons Logic
+.form-radio-primary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  
+  .form-check-input {
+    width: 18px;
+    height: 18px;
+    margin-top: 0;
+    cursor: pointer;
+    &:checked {
+      background-color: $primary-blue;
+      border-color: $primary-blue;
+    }
+  }
+}
+
+// 6. Action Buttons (Footer)
+.btn {
+  border-radius: 8px;
+  padding: 10px 24px;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.3s;
+
+  &-success {
+    background-color: $success-green;
+    border: none;
+    &:hover { background-color: darken($success-green, 5%); transform: translateY(-1px); }
+  }
+
+  &-danger {
+    background-color: #f46a6a;
+    border: none;
+    &:hover { background-color: darken(#f46a6a, 5%); }
+  }
+}
+
+// Validation Spacing
+.text-danger.fs-12 {
+  display: block;
+  margin-top: 5px;
+  font-weight: 500;
+}

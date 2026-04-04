@@ -1,0 +1,56 @@
+:host {
+  display: block;
+}
+
+.doc-actions .btn {
+  min-height: 2.25rem;
+}
+
+.doc-toolbar .form-control,
+.doc-toolbar .form-select {
+  border-radius: 0.5rem;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.doc-table-card {
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+
+.doc-table {
+  font-size: 0.875rem;
+
+  thead th {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #64748b;
+    border-bottom: 1px solid #e2e8f0;
+    padding-top: 0.85rem;
+    padding-bottom: 0.85rem;
+    white-space: nowrap;
+  }
+
+  tbody td {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    vertical-align: middle;
+  }
+
+  tbody tr:hover td {
+    background: rgba(37, 99, 235, 0.04);
+  }
+}
+
+.doc-type-pill {
+  display: inline-block;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  background: #eff6ff;
+  color: #1d4ed8;
+}

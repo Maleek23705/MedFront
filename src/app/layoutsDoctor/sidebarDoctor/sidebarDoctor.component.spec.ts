@@ -22,6 +22,4 @@ describe('SidebarDoctorComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
 });
-

@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 
-/** Route : `/doctor/messagerie` — menu : Messaging */
 @Component({
   selector: 'app-doctor-messagerie',
   templateUrl: './doctor-messagerie.component.html',
+  styleUrl: './doctor-messagerie.component.scss',
   standalone: false,
 })
 export class DoctorMessagerieComponent {}

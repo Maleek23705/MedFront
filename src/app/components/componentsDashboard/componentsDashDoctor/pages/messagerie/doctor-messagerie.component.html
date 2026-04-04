@@ -1,1 +1,18 @@
-<div class="container-fluid py-4"></div>
+<section class="communication-page p-3">
+  <header class="header d-flex align-items-center justify-content-between mb-3">
+    <div>
+      <h2>Communication medicale</h2>
+      <p>Messagerie interne du cabinet, email patient et canal WhatsApp.</p>
+    </div>
+  </header>
+
+  <nav class="tabs nav nav-pills mb-3">
+    <a class="nav-link" routerLink="emailbox" routerLinkActive="active">Emailbox</a>
+    <a class="nav-link" routerLink="chat" routerLinkActive="active">Chat</a>
+    <a class="nav-link" routerLink="whatsapp" routerLinkActive="active">WhatsApp</a>
+  </nav>
+
+  <article class="content">
+    <router-outlet></router-outlet>
+  </article>
+</section>

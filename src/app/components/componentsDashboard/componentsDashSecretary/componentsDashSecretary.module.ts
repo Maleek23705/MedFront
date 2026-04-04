@@ -17,7 +17,6 @@ import { LightboxModule } from 'ngx-lightbox';
 import { defineElement } from "@lordicon/element";
 import lottie from 'lottie-web';
 
-// --- IMPORT DU MODULE QUE TU VIENS DE CRÉER ---
 import { DashboardSecretaryModule } from './DashboardSecretary/dashboard-secretary.module'; 
 
 // Import du composant parent pour la route
@@ -30,16 +29,8 @@ const routes: Routes = [
     data: { title: 'Secretary Dashboard' }
   },
   {
-    path: 'appointments',
-    loadChildren: () => import('../componentsDashSecretary/appointments/appointments.module').then(m => m.AppointmentsModule),
-  },
-  {
     path: 'Communications',
     loadChildren: () => import('../componentsDashSecretary/Communications/communications.module').then(m => m.CommunicationsModule),
-  },
-  {
-    path: 'Invoices',
-    loadChildren: () => import('../componentsDashSecretary/Invoices/invoices.module').then(m => m.InvoicesModule),
   },
   {
     path: 'MedRecords',
@@ -48,7 +39,27 @@ const routes: Routes = [
   {
     path: 'Payments',
     loadChildren: () => import('../componentsDashSecretary/Payments/payments.module').then(m => m.PaymentsModule),
-  }
+  },
+  {
+    path: 'Appointments',
+    loadChildren: () => import('../commonComponentsDash/appointments/appointments.module').then(m => m.AppointmentsModule),
+  },
+  {
+    path: 'Reports',
+    loadChildren: () => import('../componentsDashSecretary/Reports/reports.module').then(m => m.ReportsModule),
+  },
+  {
+    path: 'Settings',
+    loadChildren: () => import('../componentsDashSecretary/Settings/settings.module').then(m => m.SettingsModule),
+  },
+  {
+    path: 'PatientsManagement',
+    loadChildren: () => import('../componentsDashSecretary/PatientsManagment/PatientsManagement.module').then(m => m.PatientsManagementModule),
+  },
+  {
+    path: 'Invoices',
+    loadChildren: () => import('../componentsDashSecretary/Invoices/invoices.module').then(m => m.InvoicesModule),
+  },
 ];
 
 @NgModule({
@@ -70,8 +81,6 @@ const routes: Routes = [
     LeafletModule,
     FlatpickrModule.forRoot(),
     RouterModule.forChild(routes),
-    
-    // --- ON AJOUTE TON MODULE ICI ---
     DashboardSecretaryModule 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

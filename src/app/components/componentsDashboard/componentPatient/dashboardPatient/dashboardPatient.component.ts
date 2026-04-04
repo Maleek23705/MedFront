@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
-
 import { QuickAction } from '../quick-actions/quick-actions.model';
 
 @Component({
   selector: 'app-dashboard-patient',
   templateUrl: './dashboardPatient.component.html',
+  styleUrl: './dashboardPatient.component.scss',
   standalone: false
 })
 export class DashboardPatientComponent {
+   userName: string = 'Kmar';
  
   handleJoinNow(): void {
     console.log('Join Now clicked');
@@ -28,4 +29,3 @@ export class DashboardPatientComponent {
 
 }
  
-

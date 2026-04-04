@@ -1,0 +1,127 @@
+.doctor-shell {
+  .doctor-shell__title {
+    font-size: 1.05rem;
+    letter-spacing: -0.02em;
+  }
+
+  .doctor-shell__metric-card {
+    border-radius: 0.65rem;
+    transition: box-shadow 0.15s ease;
+
+    &:hover {
+      box-shadow: 0 0.35rem 1rem rgba(15, 23, 42, 0.08) !important;
+    }
+  }
+
+  .letter-spacing-sm {
+    letter-spacing: 0.04em;
+  }
+
+  .doctor-shell__metric-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1.2rem;
+  }
+
+  .doctor-shell__metric-icon--primary {
+    background: rgba(64, 81, 137, 0.12);
+    color: #405189;
+  }
+
+  .doctor-shell__metric-icon--success {
+    background: rgba(25, 135, 84, 0.12);
+    color: #198754;
+  }
+
+  .doctor-shell__metric-icon--warning {
+    background: rgba(245, 166, 35, 0.18);
+    color: #d97706;
+  }
+
+  .doctor-shell__metric-icon--danger {
+    background: rgba(220, 53, 69, 0.12);
+    color: #dc3545;
+  }
+
+  .doctor-shell__metric-icon--muted {
+    background: rgba(108, 117, 125, 0.12);
+    color: #6c757d;
+  }
+
+  .card {
+    border-radius: 0.5rem;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 1px 1px rgba(15, 23, 42, 0.04);
+  }
+
+  .btn {
+    border-radius: 0.35rem;
+    font-size: 0.76rem;
+  }
+
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 520px;
+  }
+
+  .table th,
+  .table td {
+    padding: 0.55rem 0.45rem;
+    border-bottom: 1px solid #f1f5f9;
+    text-align: left;
+    font-size: 0.8rem;
+  }
+
+  .table th {
+    color: #6b7280;
+    font-weight: 600;
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+
+  .list-group-item {
+    border-color: #eef2ff;
+    border-radius: 0.35rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .form-control,
+  .form-select {
+    border-color: #dbe3ef;
+    border-radius: 0.4rem;
+  }
+
+  .doctor-shell__secondary-strip {
+    border: 1px solid #eef2ff;
+    background: #f8fafc;
+    border-radius: 0.4rem;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    overflow: hidden;
+  }
+
+  .doctor-shell__secondary-item {
+    padding: 0.6rem 0.75rem;
+    border-right: 1px solid #eef2ff;
+  }
+
+  .doctor-shell__secondary-item:last-child {
+    border-right: 0;
+  }
+
+  .doctor-shell__secondary-item h6 {
+    font-size: 0.95rem;
+  }
+
+  .doctor-shell__secondary-item p {
+    font-size: 0.75rem;
+  }
+
+  @media (max-width: 992px) {
+    .doctor-shell__secondary-strip {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+}

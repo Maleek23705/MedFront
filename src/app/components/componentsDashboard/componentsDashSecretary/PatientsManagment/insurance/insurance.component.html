@@ -1,0 +1,45 @@
+<div class="insurance-container">
+  <div class="header-section">
+    <div>
+      <h2>Insurance Management</h2>
+      <p class="subtitle">Track and verify patient coverage</p>
+    </div>
+    <button class="btn-add">
+      <i class="ri-add-circle-line"></i> Add Policy
+    </button>
+  </div>
+
+  <div class="table-card">
+    <table class="custom-table">
+      <thead>
+        <tr>
+          <th>Patient</th>
+          <th>Provider</th>
+          <th>Policy No.</th>
+          <th>Expiry Date</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of insurances">
+          <td><strong>{{ item.patientName }}</strong></td>
+          <td>
+            <span class="provider-tag" [attr.data-type]="item.type">{{ item.name }}</span>
+          </td>
+          <td><code>{{ item.policyNumber }}</code></td>
+          <td>{{ item.expiryDate | date:'mediumDate' }}</td>
+          <td>
+            <span class="status-badge" [ngClass]="getStatusClass(item.status)">
+              {{ item.status }}
+            </span>
+          </td>
+          <td class="actions">
+            <button class="btn-icon" title="Verify"><i class="ri-checkbox-circle-line"></i></button>
+            <button class="btn-icon edit" title="Edit"><i class="ri-edit-2-line"></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

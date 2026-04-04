@@ -25,51 +25,62 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 import { AddDoctorsComponent } from './add-doctors/add-doctors.component';
 import { UpdateDoctorsComponent } from './update-doctors/update-doctors.component';
-
+import { CreateDoctorsComponent } from './create-doctors/create-doctors.component';
 import { DeleteDoctorsComponent } from './delete-doctors/delete-doctors.component';
-
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { createTranslateLoader } from 'src/app/app.module';
 import { HttpClient } from '@angular/common/http';
 import { LanguageService } from 'src/app/core/services/language.service';
+import { CommonComponentsDashModule } from '../../commonComponentsDash/common-components-dash.module';
 
 
 
 
-// Pages Routing
-// import { PagesRoutingModule } from "./pages-routing.module";
- const routes: Routes = [
+/**
+ * Routes relatives au préfixe `/doctor/doctors/` (lazy depuis `componentsDashDoctor.module`).
+ *
+ * | Chemin URL complet              | Composant        | Usage                          |
+ * |--------------------------------|------------------|--------------------------------|
+ * | `/doctor/doctors/add`          | AddDoctors       | Formulaire ajout médecin       |
+ * | `/doctor/doctors/edit/:id`     | UpdateDoctors    | Édition par identifiant       |
+ * | `/doctor/doctors/create`       | CreateDoctors    | Fiche / création (dashboard)   |
+ */
+const routes: Routes = [
   {
-      path: '',
-      //component: AdduserComponent,
-      data: {
-          title: 'reclamations'
-      }, 
-      children: [ 
-          {
-              path: 'add',
-              component: AddDoctorsComponent,
-              data: {
-                  title: 'Add doctor'
-              }
-          },
-          {
-              path: 'edit/:id',
-              component: UpdateDoctorsComponent,
-              data: {
-                  title: 'Edit doctor'
-              }
-          }
-        ]
- } 
-]
+    path: '',
+    data: { title: 'doctors' },
+    children: [
+      {
+        path: '',
+        redirectTo: 'create',
+        pathMatch: 'full',
+      },
+      {
+        path: 'add',
+        component: CreateDoctorsComponent,
+        data: { title: 'Add doctor' }
+      },
+      {
+        path: 'edit/:id',
+        component: CreateDoctorsComponent,
+        data: { title: 'Edit doctor' }
+      },
+      {
+        path: 'create',
+        component: CreateDoctorsComponent,
+        data: { title: 'Create doctor' }
+      }
+    ]
+  }
+];
 
 @NgModule({
   declarations: [
     AddDoctorsComponent, 
     UpdateDoctorsComponent, 
-
+    CreateDoctorsComponent, 
+    DeleteDoctorsComponent
   ],
   imports: [
     CommonModule,
@@ -87,12 +98,14 @@ import { LanguageService } from 'src/app/core/services/language.service';
     SlickCarouselModule,
     LightboxModule,
     TranslateModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CommonComponentsDashModule
   ],
   exports: [RouterModule],
   providers: [LanguageService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
+/** Module feature « médecins » : écrans add / edit / create sous `/doctor/doctors/`. */
 export class DoctorsModule {
   constructor() {
     defineElement(lottie.loadAnimation);

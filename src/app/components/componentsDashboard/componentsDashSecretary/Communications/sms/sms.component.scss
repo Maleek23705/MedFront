@@ -1,0 +1,80 @@
+$sidebar-blue: #4c568c; 
+$success-green: #19b394;
+$warning-orange: #f1b44c;
+$border-color: #eff2f7;
+
+.page-title-box {
+  padding: 1rem 0 2rem;
+  h4 i { 
+    color: $sidebar-blue; 
+    background: rgba($sidebar-blue, 0.1); 
+    padding: 8px; 
+    border-radius: 8px;
+    margin-right: 12px; 
+  }
+}
+
+.bg-soft-warning {
+  background: rgba($warning-orange, 0.1) !important;
+}
+
+.template-card {
+  cursor: pointer;
+  border: 1px dashed $border-color;
+  transition: all 0.3s ease;
+  &:hover {
+    background: rgba($warning-orange, 0.05);
+    border-color: $warning-orange;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  }
+}
+
+.medical-input {
+  border: 1px solid $border-color;
+  border-radius: 8px;
+  padding: 12px;
+  &:focus {
+    border-color: $sidebar-blue;
+    box-shadow: 0 0 0 3px rgba($sidebar-blue, 0.1);
+    outline: none;
+  }
+}
+
+.btn-primary-medical {
+  background: $success-green;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 10px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba($success-green, 0.2);
+  transition: all 0.3s ease;
+
+  &:hover:not(:disabled) {
+    background: darken($success-green, 5%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba($success-green, 0.3);
+  }
+  &:disabled { opacity: 0.6; }
+}
+
+.btn-soft-light {
+  background: #f8f9fa;
+  color: #8c90a6;
+  border: 1px solid #edf0f2;
+  padding: 12px 25px;
+  border-radius: 10px;
+  font-weight: 600;
+  &:hover { background: #feecef; color: #f06548; }
+}
+
+.badge {
+  padding: 5px 10px;
+  font-size: 11px;
+}
+
+.bg-soft-primary { background: rgba($sidebar-blue, 0.1) !important; }
+.bg-soft-danger { background: rgba(#f06548, 0.1) !important; }

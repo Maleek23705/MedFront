@@ -19,6 +19,8 @@ import { DashboardPatientComponent } from './dashboardPatient.component';
 import { EngagementPanelComponent } from '../engagement-panel/engagement-panel.component';
 import { QuickActionsComponent } from '../quick-actions/quick-actions.component';
 import { HealthOverviewComponent } from '../health-overview/health-overview.component';
+import { MedicationsCardComponent } from '../../commonComponentsDash/medicalRecords/medications-card/medications-card.component';
+import { LabResultsCardComponent } from '../../commonComponentsDash/lab-results-card/lab-results-card.component';
 
 import { AppointmentsModule } from '../../commonComponentsDash/appointments/appointments.module'; 
 
@@ -36,7 +38,6 @@ const routes: Routes = [
 
   }
 ];
-
 
 @NgModule({
   declarations: [
@@ -63,6 +64,8 @@ const routes: Routes = [
     LightboxModule,
     TranslateModule,
     AppointmentsModule, 
+    MedicationsCardComponent,
+    LabResultsCardComponent
   ],
   exports: [RouterModule],
   providers: [LanguageService],

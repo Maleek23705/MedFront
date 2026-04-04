@@ -1,89 +1,150 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.min.css">
 <div class="vitals-card">
-
-  <h3 class="vitals-card__title">Health Metrics</h3>
+  <div class="vitals-header">
+    <div class="header-content">
+      <div class="header-text">
+        <h3 class="vitals-card__title">Health Metrics</h3>
+      </div>
+    </div>
+    <button class="refresh-btn" aria-label="Refresh data">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M23 4v6h-6M1 20v-6h6"/>
+        <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+      </svg>
+    </button>
+  </div>
 
   <div class="vitals-grid">
-
     <!-- Heart Rate -->
-    <div class="vital-item">
+    <div class="vital-item vital-item--heart">
+      <div class="vital-item__glow"></div>
       <div class="vital-header">
+        <div class="vital-icon">
+          <i class="ri-heart-pulse-line"></i>
+        </div>
         <span class="vital-label">Heart Rate</span>
-        <span class="vital-value">72 <small>bpm</small></span>
+        <span class="vital-badge vital-badge--normal">Normal</span>
       </div>
-
-      <span class="vital-badge vital-badge--green">Normal</span>
-
+      <div class="vital-value-container">
+        <span class="vital-value">72</span>
+        <span class="vital-unit">bpm</span>
+      </div>
       <div class="vital-chart">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span class="active"></span>
+        <svg class="chart-line" viewBox="0 0 100 40" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="heartChartGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#FF6B8A" stop-opacity="0.4"/>
+              <stop offset="100%" stop-color="#FF6B8A" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <path class="chart-fill" d="M0,35 L0,30 L14,25 L28,32 L42,20 L56,28 L70,22 L84,18 L98,12 L100,12 L100,40 L0,40 Z" fill="url(#heartChartGrad)"/>
+          <path class="chart-line-path" d="M0,30 L14,25 L28,32 L42,20 L56,28 L70,22 L84,18 L98,12" fill="none" stroke="#FF6B8A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle class="chart-dot" cx="98" cy="12" r="3" fill="#FF6B8A"/>
+        </svg>
+        <div class="chart-labels">
+          <span>6h</span>
+          <span>Now</span>
+        </div>
       </div>
     </div>
 
     <!-- Blood Pressure -->
-    <div class="vital-item">
+    <div class="vital-item vital-item--pressure">
+      <div class="vital-item__glow"></div>
       <div class="vital-header">
+        <div class="vital-icon">
+          <i class="ri-stethoscope-line"></i>
+        </div>
         <span class="vital-label">Blood Pressure</span>
-        <span class="vital-value">118/76 <small>mmHg</small></span>
+        <span class="vital-badge vital-badge--optimal">Optimal</span>
       </div>
-
-      <span class="vital-badge vital-badge--blue">Optimal</span>
-
+      <div class="vital-value-container">
+        <span class="vital-value">118<span class="separator">/</span><span class="secondary">76</span></span>
+        <span class="vital-unit">mmHg</span>
+      </div>
       <div class="vital-chart">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span class="active"></span>
+        <svg class="chart-line" viewBox="0 0 100 40" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="pressureChartGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#8B5CF6" stop-opacity="0.4"/>
+              <stop offset="100%" stop-color="#8B5CF6" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <path class="chart-fill" d="M0,30 L0,28 L14,30 L28,26 L42,28 L56,32 L70,24 L84,26 L98,22 L100,22 L100,40 L0,40 Z" fill="url(#pressureChartGrad)"/>
+          <path class="chart-line-path" d="M0,28 L14,30 L28,26 L42,28 L56,32 L70,24 L84,26 L98,22" fill="none" stroke="#8B5CF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle class="chart-dot" cx="98" cy="22" r="3" fill="#8B5CF6"/>
+        </svg>
+        <div class="chart-labels">
+          <span>AM</span>
+          <span>PM</span>
+        </div>
       </div>
     </div>
 
     <!-- Glucose -->
-    <div class="vital-item">
+    <div class="vital-item vital-item--glucose">
+      <div class="vital-item__glow"></div>
       <div class="vital-header">
+        <div class="vital-icon">
+          <i class="ri-drop-line"></i>
+        </div>
         <span class="vital-label">Glucose</span>
-        <span class="vital-value">5.4 <small>mmol/L</small></span>
+        <span class="vital-badge vital-badge--watch">Watch</span>
       </div>
-
-      <span class="vital-badge vital-badge--orange">Watch</span>
-
+      <div class="vital-value-container">
+        <span class="vital-value">5.4</span>
+        <span class="vital-unit">mmol/L</span>
+      </div>
       <div class="vital-chart">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span class="active"></span>
+        <svg class="chart-line" viewBox="0 0 100 40" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="glucoseChartGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#F59E0B" stop-opacity="0.4"/>
+              <stop offset="100%" stop-color="#F59E0B" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <path class="chart-fill" d="M0,32 L0,30 L14,28 L28,30 L42,26 L56,28 L70,30 L84,24 L98,20 L100,20 L100,40 L0,40 Z" fill="url(#glucoseChartGrad)"/>
+          <path class="chart-line-path" d="M0,30 L14,28 L28,30 L42,26 L56,28 L70,30 L84,24 L98,20" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle class="chart-dot" cx="98" cy="20" r="3" fill="#F59E0B"/>
+        </svg>
+        <div class="chart-labels">
+          <span>Fasting</span>
+          <span>Current</span>
+        </div>
       </div>
     </div>
 
-    <!-- Oxygen -->
-    <div class="vital-item">
+    <!-- Oxygen Saturation -->
+    <div class="vital-item vital-item--oxygen">
+      <div class="vital-item__glow"></div>
       <div class="vital-header">
-        <span class="vital-label">Oxygen Saturation</span>
-        <span class="vital-value">98 <small>%</small></span>
+        <div class="vital-icon">
+          <i class="ri-lungs-line"></i>
+        </div>
+        <span class="vital-label">O₂ Saturation</span>
+        <span class="vital-badge vital-badge--excellent">Excellent</span>
       </div>
-
-      <span class="vital-badge vital-badge--green">Excellent</span>
-
+      <div class="vital-value-container">
+        <span class="vital-value">98</span>
+        <span class="vital-unit">%</span>
+      </div>
       <div class="vital-chart">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span class="active"></span>
+        <svg class="chart-line" viewBox="0 0 100 40" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="oxygenChartGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#10B981" stop-opacity="0.4"/>
+              <stop offset="100%" stop-color="#10B981" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <path class="chart-fill" d="M0,28 L0,26 L14,28 L28,24 L42,26 L56,22 L70,24 L84,20 L98,18 L100,18 L100,40 L0,40 Z" fill="url(#oxygenChartGrad)"/>
+          <path class="chart-line-path" d="M0,26 L14,28 L28,24 L42,26 L56,22 L70,24 L84,20 L98,18" fill="none" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle class="chart-dot" cx="98" cy="18" r="3" fill="#10B981"/>
+        </svg>
+        <div class="chart-labels">
+          <span>Rest</span>
+          <span>Active</span>
+        </div>
       </div>
     </div>
-
   </div>
-
 </div>

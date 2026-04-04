@@ -5,7 +5,7 @@ export const MENU: MenuItem[] = [
     id: 1,
     label: 'Dashboard',
     icon: 'ri-dashboard-2-line',
-    link: '/',
+    link: '/dashSecretary',
     isCollapsed: true,
   },
   {
@@ -14,8 +14,8 @@ export const MENU: MenuItem[] = [
     icon: 'ri-user-settings-line',
     isCollapsed: true,
     subItems: [
-      { id: 3, label: 'All Patients', link: '/patients/list', parentId: 2, icon: 'ri-team-line' },
-      { id: 4, label: 'Insurance & CNAM', link: '/patients/insurance', parentId: 2, icon: 'ri-shield-check-line' },
+      { id: 3, label: 'All Patients', link: 'PatientsManagement/view-all', parentId: 2, icon: 'ri-team-line' },
+      { id: 4, label: 'Insurance & CNAM', link: 'PatientsManagement/insurance', parentId: 2, icon: 'ri-shield-check-line' },
     ]
   },
   {
@@ -163,14 +163,14 @@ export const MENU: MenuItem[] = [
       { 
         id: 25, 
         label: 'Daily Summary', 
-        link: '/reports/daily', 
+        link: 'Reports/daily-summary', 
         parentId: 24, 
         icon: 'ri-file-chart-line' 
       },
       { 
         id: 26, 
         label: 'Financial Statistics', 
-        link: '/reports/finance', 
+        link: 'Reports/financial-states', 
         parentId: 24, 
         icon: 'ri-line-chart-line' 
       }
@@ -180,6 +180,6 @@ export const MENU: MenuItem[] = [
     id: 27,
     label: 'Settings',
     icon: 'ri-settings-4-line',
-    link: '/settings'
+    link: 'Settings/general-settings'
   }
 ];

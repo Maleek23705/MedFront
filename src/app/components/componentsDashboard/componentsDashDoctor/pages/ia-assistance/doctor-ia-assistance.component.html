@@ -1,1 +1,24 @@
-<div class="container-fluid py-4"></div>
+<app-dashboard-shell
+  [title]="'AI assistance'"
+  [subtitle]="'Decision-support assistant for consultation preparation.'"
+  [secondaryMetrics]="[
+    { label: 'Prompts today', value: '26' },
+    { label: 'Accepted suggestions', value: '18' },
+    { label: 'Avg response', value: '2.1s' },
+    { label: 'Safety alerts', value: '4' }
+  ]"
+>
+  <div shell-actions>
+    <button class="btn btn-light">History</button>
+  </div>
+  <div class="card border-0 shadow-sm">
+    <div class="card-body">
+      <label class="form-label">Clinical prompt</label>
+      <textarea class="form-control mb-3" rows="3" [(ngModel)]="prompt" placeholder="Enter symptoms or context"></textarea>
+      <button class="btn btn-primary mb-3" (click)="runAssist()">Generate suggestions</button>
+      <ul class="list-group" *ngIf="suggestions.length">
+        <li class="list-group-item" *ngFor="let s of suggestions">{{ s }}</li>
+      </ul>
+    </div>
+  </div>
+</app-dashboard-shell>

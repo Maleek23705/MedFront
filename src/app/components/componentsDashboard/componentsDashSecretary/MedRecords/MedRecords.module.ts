@@ -74,9 +74,9 @@ import { LanguageService } from 'src/app/core/services/language.service';
 @NgModule({
   declarations: [
     
-    CreateRecordComponent,
-    EditRecordComponent,
-    ViewRecordsComponent
+    CreateRecordComponent
+    
+    
   ],
   imports: [
     CommonModule,
@@ -94,7 +94,9 @@ import { LanguageService } from 'src/app/core/services/language.service';
     SlickCarouselModule,
     LightboxModule,
     TranslateModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ViewRecordsComponent,
+    EditRecordComponent,
   ],
   exports: [RouterModule],
   providers: [LanguageService],

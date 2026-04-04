@@ -1,0 +1,97 @@
+$sidebar-blue: #4c568c; 
+$success-green: #19b394;
+$border-color: #eff2f7;
+
+.page-title-box {
+  padding: 1rem 0 2rem;
+  h4 i { 
+    color: $sidebar-blue; 
+    background: rgba($sidebar-blue, 0.1); 
+    padding: 8px; 
+    border-radius: 8px;
+    margin-right: 12px; 
+  }
+}
+
+.bg-blue {
+  // 1. Maintain the gradient background
+  background: linear-gradient(135deg, $sidebar-blue 0%, darken($sidebar-blue, 10%) 100%) !important;
+  border-radius: 12px;
+  
+  // 2. Add transition for interactivity found on other pages
+  transition: transform 0.3s ease;
+  
+  // 3. THIS IS THE FIX: Force high-contrast white text for all elements
+  h5, label, span, p, h3, div, small {
+    color: #ffffff !important; // Pure white text
+    font-weight: 500;
+  }
+
+  // Ensure the main number stands out
+  h3 {
+    font-weight: 700;
+    font-size: 28px;
+    margin-top: 5px;
+  }
+
+  // Interactivity effect found on other pages
+  &:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+  }
+}
+
+.mini-stats-wid {
+  transition: all 0.3s ease;
+  &:hover {
+    transform: translateY(-5px);
+  }
+}
+
+.avatar-sm {
+  height: 3rem;
+  width: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.transaction-row {
+  transition: background 0.2s;
+  &:hover { background-color: #f8f9fa; cursor: default; }
+}
+
+.table {
+  thead th {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 15px;
+    border: none;
+  }
+  tbody td {
+    padding: 15px;
+    border-bottom: 1px solid $border-color;
+  }
+}
+
+.btn-primary-medical {
+  background: $success-green;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 10px rgba($success-green, 0.2);
+  transition: all 0.3s;
+  &:hover { background: darken($success-green, 5%); transform: translateY(-1px); }
+}
+
+.bg-soft-success { background: rgba($success-green, 0.1) !important; color: $success-green; }
+.bg-soft-danger { background: rgba(#f06548, 0.1) !important; color: #f06548; }
+.bg-soft-primary { background: rgba($sidebar-blue, 0.1) !important; }
+
+.fs-40 { font-size: 40px; }

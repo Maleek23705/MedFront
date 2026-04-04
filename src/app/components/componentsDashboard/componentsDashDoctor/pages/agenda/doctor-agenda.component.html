@@ -1,1 +1,117 @@
-<div class="container-fluid py-4"></div>
+<section class="doctor-agenda-page calendar-layout">
+  <article class="card main-card">
+    <header class="card-header">
+      <div class="card-header-text">
+        <h2>Calendrier medical</h2>
+        <p>Gestion des rendez-vous et disponibilites du cabinet.</p>
+      </div>
+    </header>
+
+    <app-calendar-legend></app-calendar-legend>
+
+    <div class="fc-wrap">
+      <full-calendar
+        *ngIf="isBrowser"
+        [options]="calendarOptions"
+        [events]="calendarEvents"
+        [deepChangeDetection]="true"
+      ></full-calendar>
+    </div>
+    <p *ngIf="!isBrowser" class="ssr-note">Le calendrier interactif est disponible cote navigateur.</p>
+  </article>
+
+  <article class="card side-card">
+    <div class="side-card-head">
+      <h3>{{ editingEventId ? 'Modifier un rendez-vous' : 'Nouveau rendez-vous' }}</h3>
+      <span class="side-badge" [class.side-badge--edit]="!!editingEventId">{{ editingEventId ? 'Edition' : 'Creation' }}</span>
+    </div>
+
+    <form class="agenda-form" [formGroup]="eventForm" (ngSubmit)="saveEvent()" novalidate>
+      <div class="field-group">
+        <label class="field-label" for="agenda-title">Titre</label>
+        <input
+          id="agenda-title"
+          type="text"
+          class="form-control"
+          formControlName="title"
+          placeholder="Consultation generale"
+          [class.is-invalid]="eventForm.get('title')?.invalid && (eventForm.get('title')?.touched || submitAttempt)"
+        />
+        <div class="invalid-feedback" *ngIf="eventForm.get('title')?.invalid && (eventForm.get('title')?.touched || submitAttempt)">Le titre est requis.</div>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="agenda-patient">Patient</label>
+        <input
+          id="agenda-patient"
+          type="text"
+          class="form-control"
+          formControlName="patientName"
+          placeholder="Nom du patient"
+          [class.is-invalid]="eventForm.get('patientName')?.invalid && (eventForm.get('patientName')?.touched || submitAttempt)"
+        />
+        <div class="invalid-feedback" *ngIf="eventForm.get('patientName')?.invalid && (eventForm.get('patientName')?.touched || submitAttempt)">Le patient est requis.</div>
+      </div>
+
+      <div class="row g-3">
+        <div class="col-sm-6">
+          <label class="field-label" for="agenda-date">Date</label>
+          <input
+            id="agenda-date"
+            type="date"
+            class="form-control"
+            formControlName="date"
+            [class.is-invalid]="eventForm.get('date')?.invalid && (eventForm.get('date')?.touched || submitAttempt)"
+          />
+          <div class="invalid-feedback" *ngIf="eventForm.get('date')?.invalid && (eventForm.get('date')?.touched || submitAttempt)">La date est requise.</div>
+        </div>
+        <div class="col-sm-6">
+          <label class="field-label" for="agenda-type">Type</label>
+          <select id="agenda-type" class="form-select" formControlName="category">
+            <option value="Consultation">Consultation</option>
+            <option value="Suivi">Suivi</option>
+            <option value="Urgence">Urgence</option>
+            <option value="Teleconsultation">Teleconsultation</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row g-3">
+        <div class="col-sm-6">
+          <label class="field-label" for="agenda-start">Debut</label>
+          <input id="agenda-start" type="time" class="form-control" formControlName="startTime" />
+        </div>
+        <div class="col-sm-6">
+          <label class="field-label" for="agenda-end">Fin</label>
+          <input id="agenda-end" type="time" class="form-control" formControlName="endTime" />
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="agenda-lieu">Lieu</label>
+        <input
+          id="agenda-lieu"
+          type="text"
+          class="form-control"
+          formControlName="location"
+          placeholder="Cabinet 1"
+          [class.is-invalid]="eventForm.get('location')?.invalid && (eventForm.get('location')?.touched || submitAttempt)"
+        />
+        <div class="invalid-feedback" *ngIf="eventForm.get('location')?.invalid && (eventForm.get('location')?.touched || submitAttempt)">Le lieu est requis.</div>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="agenda-desc">Description</label>
+        <textarea id="agenda-desc" rows="3" class="form-control" formControlName="description" placeholder="Notes (optionnel)"></textarea>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary btn-agenda-primary">
+          {{ editingEventId ? 'Mettre a jour' : 'Ajouter' }}
+        </button>
+        <button type="button" class="btn btn-outline-secondary btn-agenda-secondary" (click)="resetForm()">Vider</button>
+        <button type="button" class="btn btn-outline-danger btn-agenda-danger" [disabled]="!editingEventId" (click)="deleteEvent()">Supprimer</button>
+      </div>
+    </form>
+  </article>
+</section>

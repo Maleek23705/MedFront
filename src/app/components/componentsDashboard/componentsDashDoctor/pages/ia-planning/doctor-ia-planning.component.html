@@ -1,1 +1,22 @@
-<div class="container-fluid py-4"></div>
+<app-dashboard-shell
+  [title]="'AI scheduling'"
+  [subtitle]="'Optimization suggestions to reduce delays and no-shows.'"
+  [secondaryMetrics]="[
+    { label: 'Optimization score', value: '92%' },
+    { label: 'Conflicts solved', value: '4' },
+    { label: 'No-show prediction', value: '2' },
+    { label: 'Suggested shifts', value: '3' }
+  ]"
+>
+  <div shell-actions>
+    <button class="btn btn-soft-primary">Apply suggestions</button>
+  </div>
+  <div class="card border-0 shadow-sm">
+    <div class="card-body">
+      <div class="alert alert-info mb-3">AI analyzed this week agenda and produced the following actions.</div>
+      <ol class="mb-0">
+        <li class="mb-2" *ngFor="let r of recommendations">{{ r }}</li>
+      </ol>
+    </div>
+  </div>
+</app-dashboard-shell>

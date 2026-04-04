@@ -1,1 +1,29 @@
-<div class="container-fluid py-4"></div>
+<app-dashboard-shell
+  [title]="'Reporting'"
+  [subtitle]="'Business intelligence exports for operational decisions.'"
+  [metrics]="[
+    { label: 'Consultations', value: '312' },
+    { label: 'No-show rate', value: '6.4%' },
+    { label: 'Avg time/patient', value: '18m' }
+  ]"
+  [secondaryMetrics]="[
+    { label: 'Financial exports', value: '12' },
+    { label: 'Medical exports', value: '9' },
+    { label: 'Operational exports', value: '7' },
+    { label: 'Last generation', value: '09:24' }
+  ]"
+>
+  <div shell-actions>
+    <button class="btn btn-soft-primary">Schedule report</button>
+  </div>
+  <div class="card border-0 shadow-sm">
+    <div class="card-body">
+      <div class="list-group">
+        <div class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let r of reports">
+          <div>{{ r.title }}</div>
+          <button class="btn btn-sm btn-soft-primary">Export {{ r.format }}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-dashboard-shell>

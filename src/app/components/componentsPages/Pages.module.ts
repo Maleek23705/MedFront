@@ -9,9 +9,7 @@ import {
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 
 import { PagesRoutingModule  } from "./pages-routing.module";
-import { Home } from './home/home';
-import { Slider } from './home/slider/slider';
-import { Pub } from './home/pub/pub';
+
 // import { SharedModule } from '../shared/shared.module';
 // // import { NftComponent } from './nft/nft.component';
 // // import { JobComponent } from './job/job.component';
@@ -42,14 +40,6 @@ import { Pub } from './home/pub/pub';
 
 @NgModule({
   declarations: [
-    //IndexComponent,
-    // NftComponent,
-    // JobComponent,
-     
-  
-    Home,
-    Slider,
-    Pub
   ],
   imports: [
     CommonModule,

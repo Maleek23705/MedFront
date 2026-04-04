@@ -1,128 +1,470 @@
-/* ── Next Appointment Card ─────────────────────────── */
-.na-card {
-  background: #ffffff;
-  border: 1px solid #e8ecf0;
-  border-radius: 16px;
-  padding: 20px;
+// ===============================================
+// APPOINTMENT CARD - FRESH NEW DESIGN
+// Remix Icon Integration
+// ===============================================
+
+// Fresh Color Palette - Teal & Coral
+$color-primary: #3B82F6;
+$color-primary-dark: #2563EB;
+$color-primary-light: #93C5FD;
+
+$color-accent: #f59E0B;
+$color-accent-light: #ffc83d;
+
+$color-bg-card: #FFFFFF;
+$color-bg-item: #F8FAFC;
+$color-text-primary: #0F172A;
+$color-text-secondary: #475569;
+$color-text-muted: #94A3B8;
+$color-border: rgba(0, 0, 0, 0.06);
+
+// Shadows
+$shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+$shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
+$shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.08);
+
+// Radius
+$radius-sm: 8px;
+$radius-md: 12px;
+$radius-lg: 16px;
+$radius-xl: 24px;
+
+// Transitions
+$transition-fast: 150ms ease;
+$transition-normal: 250ms ease;
+
+// ===============================================
+// MAIN CARD
+// ===============================================
+.apt-card {
+  background: $color-bg-card;
+  border-radius: 28px;
+  padding: 28px 32px;
+  border: 1px solid $color-border;
+  box-shadow: $shadow-lg;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  height: 100%;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(135deg, rgba($color-primary, 0.03) 0%, transparent 50%);
+    pointer-events: none;
+  }
 }
 
-.na-card__header {
+// ===============================================
+// HEADER
+// ===============================================
+.apt-header {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 1;
+
+  &__left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  &__avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid rgba($color-primary, 0.2);
+    box-shadow: 0 4px 12px rgba($color-primary, 0.15);
+    flex-shrink: 0;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  &__countdown {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 18px;
+    background: linear-gradient(135deg, $color-accent 0%, darken($color-accent, 8%) 100%);
+    border-radius: $radius-md;
+    box-shadow: 0 4px 12px rgba($color-accent, 0.3);
+    min-width: 70px;
+  }
 }
 
-.na-card__title {
-  font-size: 12px;
+.apt-label {
+  font-size: 18px;
+  font-weight: 700;
+  color: $color-text-primary;
+  margin: 0;
+  letter-spacing: -0.02em;
+  font-family: 'Poppins', sans-serif;
+}
+
+.apt-title {
+  font-size: 15px;
   font-weight: 600;
-  color: #6b7280;
-  margin-bottom: 16px;
-}
-
-.na-card__subtitle {
-  font-size: 13px;
-  color: #6b7280;
+  letter-spacing: 0.08em;
+  color: $color-text-secondary;
   margin: 0;
 }
 
-.na-card__badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  background: #eff6ff;
-  color: #3b82f6;
-  border: 1px solid #bfdbfe;
-  border-radius: 20px;
-  padding: 4px 10px;
-  font-size: 12px;
-  font-weight: 500;
-  white-space: nowrap;
-}
-
-.na-card__info {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.na-card__info-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+.apt-specialty {
   font-size: 13px;
-  color: #374151;
+  color: $color-primary;
+  margin: 0;
 }
 
-.na-card__info-row i {
-  font-size: 16px;
-  color: #9ca3af;
-  width: 18px;
+.apt-countdown__number {
+  font-size: 22px;
+  font-weight: 800;
+  color: #FFFFFF;
+  line-height: 1;
 }
 
-.na-card__alert {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: #fffbeb;
-  border: 1px solid #fde68a;
-  border-radius: 10px;
-  padding: 10px 14px;
-  font-size: 13px;
-  font-weight: 500;
-  color: #92400e;
-}
-
-.na-card__alert--urgent {
-  background: #fef2f2;
-  border-color: #fca5a5;
-  color: #991b1b;
-}
-
-.na-card__actions {
-  display: flex;
-  gap: 10px;
-}
-
-.na-btn {
-  flex: 1;
-  padding: 10px 16px;
-  border-radius: 10px;
-  font-size: 13px;
+.apt-countdown__label {
+  font-size: 9px;
   font-weight: 600;
-  cursor: pointer;
-  border: none;
+  color: rgba(255, 255, 255, 0.85);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 2px;
+}
+
+// ===============================================
+// TIMELINE - Horizontal sur une ligne
+// ===============================================
+.apt-timeline {
+  display: flex;
+  flex-direction: row;      // ✅ horizontal
+  gap: 12px;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+  padding-left: 0;
+  // ✅ flex: 1 supprimé
+
+  &::before {
+    display: none;           // ✅ ligne verticale supprimée
+  }
+
+  &__item {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 12px;
+    background: $color-bg-item;
+    border-radius: $radius-sm;
+    transition: all $transition-fast;
+
+    &:hover {
+      background: rgba($color-primary, 0.05);
+      transform: translateY(-2px);
+    }
+  }
+
+  &__icon {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba($color-primary, 0.12);
+    border-radius: $radius-sm;
+    flex-shrink: 0;
+
+    i {
+      font-size: 16px;
+      color: $color-primary;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  &__label {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: $color-text-muted;
+  }
+
+  &__value {
+    font-size: 13px;
+    font-weight: 600;
+    color: $color-text-primary;
+    white-space: nowrap;
+  }
+}
+
+// ===============================================
+// REASON
+// ===============================================
+.apt-reason {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+  background: rgba($color-accent, 0.06);
+  border-radius: $radius-md;
+  border: 1px solid rgba($color-accent, 0.1);
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+
+  &__icon {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba($color-accent, 0.15);
+    border-radius: $radius-sm;
+    flex-shrink: 0;
+
+    i {
+      font-size: 18px;
+      color: $color-accent;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__label {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: $color-accent;
+  }
+
+  &__text {
+    font-size: 13px;
+    color: $color-text-secondary;
+    line-height: 1.5;
+  }
+}
+
+// ===============================================
+// ACTIONS
+// ===============================================
+.apt-actions {
+  display: flex;
+  gap: 14px;
+  position: relative;
+  z-index: 1;
+  margin-top: 0;            // ✅ supprime le push vers le bas
+}
+
+.apt-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  transition: opacity 0.2s;
-}
-.na-btn:hover { opacity: 0.85; }
-
-.na-btn--primary {
-  background: #3b82f6;
-  color: #fff;
-}
-
-.na-btn--ghost {
-  background: transparent;
-  color: #374151;
-  border: 1px solid #d1d5db;
-}
-
-.na-card__empty {
-  text-align: center;
-  padding: 24px 0;
-  color: #9ca3af;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
   font-size: 14px;
+  font-weight: 600;
+  border-radius: $radius-sm;
+  border: none;
+  cursor: pointer;
+  transition: all $transition-fast;
+
+  i { font-size: 19px; }
+
+  &:active { transform: scale(0.98); }
+
+  &--primary {
+    flex: 1.85;
+    background: linear-gradient(135deg, $color-primary 0%, $color-primary-dark 80%);
+    color: #FFFFFF;
+    box-shadow: 0 4px 14px rgba($color-primary, 0.35);
+
+    &:hover {
+      box-shadow: 0 6px 20px rgba($color-primary, 0.45);
+      transform: translateY(-2px);
+    }
+  }
+
+  &--ghost {
+    flex: 1;
+    background: transparent;
+    color: $color-text-secondary;
+    border: 1px solid $color-border;
+
+    &:hover {
+      background: $color-bg-item;
+      border-color: rgba($color-text-muted, 0.3);
+      color: $color-text-primary;
+    }
+  }
 }
-.na-card__empty i {
-  font-size: 32px;
-  display: block;
-  margin-bottom: 8px;
+
+// ===============================================
+// ANIMATIONS
+// ===============================================
+.apt-card {
+  animation: slideIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(20px) scale(0.96); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.apt-timeline__item {
+  animation: fadeSlide 0.4s ease-out backwards;
+
+  @for $i from 1 through 3 {
+    &:nth-child(#{$i}) { animation-delay: #{$i * 0.1}s; }
+  }
+}
+
+@keyframes fadeSlide {
+  from { opacity: 0; transform: translateX(-12px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.apt-reason {
+  animation: fadeIn 0.4s ease-out 0.35s backwards;
+}
+
+.apt-actions {
+  animation: fadeIn 0.4s ease-out 0.45s backwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+// ===============================================
+// RESPONSIVE
+// ===============================================
+@media (max-width: 480px) {
+  .apt-card {
+    padding: 20px;
+    border-radius: 20px;
+  }
+
+  .apt-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+
+    &__countdown {
+      width: 100%;
+      flex-direction: row;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 18px;
+    }
+  }
+
+  .apt-countdown__number { font-size: 20px; }
+
+  .apt-timeline {
+    flex-direction: column;   // repasse en colonne sur mobile
+
+    &__item {
+      &:hover { transform: translateX(4px); }
+    }
+
+    &__value { white-space: normal; }
+  }
+
+  .apt-actions {
+    flex-direction: column;
+
+    .apt-btn { width: 100%; flex: 1; }
+  }
+}
+
+// ===============================================
+// DARK MODE
+// ===============================================
+@media (prefers-color-scheme: dark) {
+  .apt-card {
+    background: #1E293B;
+    border-color: rgba(255, 255, 255, 0.06);
+  }
+
+  .apt-header {
+    &__avatar { border-color: rgba($color-primary-light, 0.3); }
+    &__countdown {
+      background: linear-gradient(135deg, $color-accent 0%, darken($color-accent, 10%) 100%);
+    }
+  }
+
+  .apt-title    { color: #F8FAFC; }
+  .apt-specialty { color: #94A3B8; }
+
+  .apt-timeline {
+    &__item {
+      background: #334155;
+      &:hover { background: rgba($color-primary, 0.1); }
+    }
+
+    &__icon {
+      background: rgba($color-primary, 0.2);
+      i { color: $color-primary-light; }
+    }
+
+    &__label { color: #64748B; }
+    &__value { color: #F1F5F9; }
+  }
+
+  .apt-reason {
+    background: rgba($color-accent, 0.1);
+    border-color: rgba($color-accent, 0.2);
+
+    &__icon {
+      background: rgba($color-accent, 0.2);
+      i { color: $color-accent-light; }
+    }
+
+    &__label { color: $color-accent-light; }
+    &__text   { color: #CBD5E1; }
+  }
+
+  .apt-btn {
+    &--ghost {
+      background: transparent;
+      border-color: rgba(255, 255, 255, 0.1);
+      color: #94A3B8;
+
+      &:hover {
+        background: #334155;
+        border-color: rgba(255, 255, 255, 0.15);
+        color: #F1F5F9;
+      }
+    }
+  }
 }

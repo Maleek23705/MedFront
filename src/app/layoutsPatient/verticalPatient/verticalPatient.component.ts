@@ -13,83 +13,101 @@ import { Store } from '@ngrx/store';
 export class VerticalPatientComponent implements OnInit {
 
   isCondensed = false;
-  getsize:any;
+  getsize: any;
 
-  constructor(private eventService: EventService, private router: Router, private activatedRoute: ActivatedRoute,private store: Store<RootReducerState>) {
-  }
+  constructor(
+    private eventService: EventService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private store: Store<RootReducerState>
+  ) {}
 
   ngOnInit(): void {
 
     this.router.events.subscribe((event: any) => {
       if (document.documentElement.getAttribute('data-preloader') == 'enable') {
         if (event instanceof NavigationEnd) {
-          // Update the attribute state based on the current route or any other conditions
           if (event.url !== '/disabled-route') {
-            (document.getElementById("preloader") as HTMLElement).style.opacity = "1";
-            (document.getElementById("preloader") as HTMLElement).style.visibility = "";
-            setTimeout(() => {
-              (document.getElementById("preloader") as HTMLElement).style.opacity = "0";
-              (document.getElementById("preloader") as HTMLElement).style.visibility = "hidden";
-            }, 1000);
+            this.showPreloader();
           } else {
-            (document.getElementById("preloader") as HTMLElement).style.opacity = "0";
-            (document.getElementById("preloader") as HTMLElement).style.visibility = "hidden";
+            this.hidePreloader();
           }
         }
       }
     });
 
     this.handlePreloader(this.activatedRoute.snapshot.routeConfig?.path);
+
     if (document.documentElement.getAttribute('data-sidebar-size') == 'lg') {
       this.store.select(getSidebarSize).subscribe((size) => {
-        this.getsize = size
-        })
+        this.getsize = size;
+      });
+
       window.addEventListener('resize', () => {
-        var self = this;
+        const self = this;
         if (document.documentElement.clientWidth <= 767) {
           document.documentElement.setAttribute('data-sidebar-size', '');
-          document.querySelector('.hamburger-icon')?.classList.add('open')
-        }
-        else if (document.documentElement.clientWidth <= 1024) {
+          document.querySelector('.hamburger-icon')?.classList.add('open');
+        } else if (document.documentElement.clientWidth <= 1024) {
           document.documentElement.setAttribute('data-sidebar-size', 'sm');
-          document.querySelector('.hamburger-icon')?.classList.add('open')
-        }
-        else if (document.documentElement.clientWidth >= 1024) {
-          if(document.documentElement.getAttribute('data-layout-width') == 'fluid'){
+          document.querySelector('.hamburger-icon')?.classList.add('open');
+        } else if (document.documentElement.clientWidth >= 1024) {
+          if (document.documentElement.getAttribute('data-layout-width') == 'fluid') {
             document.documentElement.setAttribute('data-sidebar-size', self.getsize);
-            document.querySelector('.hamburger-icon')?.classList.remove('open')
+            document.querySelector('.hamburger-icon')?.classList.remove('open');
           }
         }
-      })
+      });
     }
   }
-  private handlePreloader(route: any) {
+
+  // ✅ Safe helper — shows preloader then hides after 1s
+  private showPreloader(): void {
+    const preloader = document.getElementById('preloader');
+    if (!preloader) return;                     // ✅ null guard
+    preloader.style.opacity = '1';
+    preloader.style.visibility = '';
+    setTimeout(() => {
+      const el = document.getElementById('preloader');
+      if (!el) return;                          // ✅ null guard inside timeout too
+      el.style.opacity = '0';
+      el.style.visibility = 'hidden';
+    }, 1000);
+  }
+
+  // ✅ Safe helper — hides preloader immediately
+  private hidePreloader(): void {
+    const preloader = document.getElementById('preloader');
+    if (!preloader) return;                     // ✅ null guard
+    preloader.style.opacity = '0';
+    preloader.style.visibility = 'hidden';
+  }
+
+  // ✅ Fixed — was crashing when preloader element didn't exist in DOM
+  private handlePreloader(route: any): void {
     if (route !== '/disabled-route') {
-      (document.getElementById("preloader") as HTMLElement).style.opacity = "1";
-      (document.getElementById("preloader") as HTMLElement).style.visibility = "";
-      setTimeout(() => {
-        (document.getElementById("preloader") as HTMLElement).style.opacity = "0";
-        (document.getElementById("preloader") as HTMLElement).style.visibility = "hidden";
-      }, 1000);
+      this.showPreloader();
     } else {
-      (document.getElementById("preloader") as HTMLElement).style.opacity = "0";
-      (document.getElementById("preloader") as HTMLElement).style.visibility = "hidden";
+      this.hidePreloader();
     }
   }
 
-
-  /**
-   * On mobile toggle button clicked
-   */
   onToggleMobileMenu() {
-    const currentSIdebarSize = document.documentElement.getAttribute("data-sidebar-size");
+    const currentSidebarSize = document.documentElement.getAttribute('data-sidebar-size');
     if (document.documentElement.clientWidth >= 767) {
-      if (currentSIdebarSize == null) {
-        (document.documentElement.getAttribute('data-sidebar-size') == null || document.documentElement.getAttribute('data-sidebar-size') == "lg") ? document.documentElement.setAttribute('data-sidebar-size', 'sm') : document.documentElement.setAttribute('data-sidebar-size', 'lg')
-      } else if (currentSIdebarSize == "md") {
-        (document.documentElement.getAttribute('data-sidebar-size') == "md") ? document.documentElement.setAttribute('data-sidebar-size', 'sm') : document.documentElement.setAttribute('data-sidebar-size', 'md')
+      if (currentSidebarSize == null) {
+        (document.documentElement.getAttribute('data-sidebar-size') == null ||
+          document.documentElement.getAttribute('data-sidebar-size') == 'lg')
+          ? document.documentElement.setAttribute('data-sidebar-size', 'sm')
+          : document.documentElement.setAttribute('data-sidebar-size', 'lg');
+      } else if (currentSidebarSize == 'md') {
+        document.documentElement.getAttribute('data-sidebar-size') == 'md'
+          ? document.documentElement.setAttribute('data-sidebar-size', 'sm')
+          : document.documentElement.setAttribute('data-sidebar-size', 'md');
       } else {
-        (document.documentElement.getAttribute('data-sidebar-size') == "sm") ? document.documentElement.setAttribute('data-sidebar-size', 'lg') : document.documentElement.setAttribute('data-sidebar-size', 'sm')
+        document.documentElement.getAttribute('data-sidebar-size') == 'sm'
+          ? document.documentElement.setAttribute('data-sidebar-size', 'lg')
+          : document.documentElement.setAttribute('data-sidebar-size', 'sm');
       }
     }
 
@@ -99,21 +117,17 @@ export class VerticalPatientComponent implements OnInit {
     this.isCondensed = !this.isCondensed;
   }
 
-  /**
-   * on settings button clicked from topbar
-   */
   onSettingsButtonClicked() {
     document.body.classList.toggle('right-bar-enabled');
     const rightBar = document.getElementById('theme-settings-offcanvas');
     if (rightBar != null) {
       rightBar.classList.toggle('show');
-      rightBar.setAttribute('style', "visibility: visible;");
-
+      rightBar.setAttribute('style', 'visibility: visible;');
     }
   }
 
   onResize(event: any) {
-    if (document.body.getAttribute('layout') == "twocolumn") {
+    if (document.body.getAttribute('layout') == 'twocolumn') {
       if (event.target.innerWidth <= 767) {
         this.eventService.broadcast('changeLayout', 'vertical');
       } else {
@@ -123,5 +137,4 @@ export class VerticalPatientComponent implements OnInit {
       }
     }
   }
-
 }

@@ -1,0 +1,32 @@
+<div class="recent-patients-widget">
+  <div class="widget-header">
+    <h2>Recent Patients</h2>
+    <button class="btn-see-all">View All</button>
+  </div>
+
+  <div class="patient-card" 
+       *ngFor="let patient of recentPatients" 
+       (click)="viewPatientDetails(patient)">
+    <div class="patient-grid">
+      
+      <div class="avatar-col">
+        <div class="p-avatar" [ngClass]="'type-' + patient.colorType">
+          {{ patient.initials }}
+        </div>
+      </div>
+      
+      <div class="info-col">
+        <h4 class="p-name">{{ patient.name }}</h4>
+        <p class="p-condition">{{ patient.condition }}</p>
+      </div>
+      
+      <div class="meta-col">
+        <span>{{ patient.lastVisit }}</span>
+      </div>
+
+      <div class="action-col">
+        <i class="ri-arrow-right-s-line"></i>
+      </div>
+    </div>
+  </div>
+</div>

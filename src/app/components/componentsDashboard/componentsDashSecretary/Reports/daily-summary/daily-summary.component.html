@@ -1,0 +1,121 @@
+<div class="container-fluid">
+  <div class="page-title-box d-flex align-items-center justify-content-between">
+    <h4 class="mb-0"><i class="ri-pie-chart-2-line"></i> Daily Activity Summary</h4>
+    <div class="d-flex gap-2">
+      <span class="text-muted me-2 pt-2">{{ today | date:'fullDate' }}</span>
+      <button class="btn-primary-medical" (click)="printReport()">
+        <i class="ri-printer-line"></i> Print Summary
+      </button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+      <div class="card stat-card shadow-sm border-0">
+        <div class="card-body">
+          <div class="d-flex align-items-center">
+            <div class="avatar-md bg-soft-primary rounded-circle me-3">
+              <i class="ri-calendar-event-line fs-24 text-primary"></i>
+            </div>
+            <div>
+              <p class="text-muted mb-1 fw-medium">Appointments</p>
+              <h4 class="mb-0 fw-bold">{{ summary.totalAppointments }}</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card stat-card shadow-sm border-0">
+        <div class="card-body">
+          <div class="d-flex align-items-center">
+            <div class="avatar-md bg-soft-success rounded-circle me-3">
+              <i class="ri-wallet-3-line fs-24 text-success"></i>
+            </div>
+            <div>
+              <p class="text-muted mb-1 fw-medium">Revenue Today</p>
+              <h4 class="mb-0 fw-bold text-success">{{ summary.totalRevenue | number:'1.3-3' }}</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card stat-card shadow-sm border-0">
+        <div class="card-body">
+          <div class="d-flex align-items-center">
+            <div class="avatar-md bg-soft-info rounded-circle me-3">
+              <i class="ri-user-add-line fs-24 text-info"></i>
+            </div>
+            <div>
+              <p class="text-muted mb-1 fw-medium">New Patients</p>
+              <h4 class="mb-0 fw-bold">{{ summary.newPatients }}</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card stat-card shadow-sm border-0">
+        <div class="card-body">
+          <div class="d-flex align-items-center">
+            <div class="avatar-md bg-soft-danger rounded-circle me-3">
+              <i class="ri-error-warning-line fs-24 text-danger"></i>
+            </div>
+            <div>
+              <p class="text-muted mb-1 fw-medium">Unpaid Fees</p>
+              <h4 class="mb-0 fw-bold text-danger">{{ summary.pendingPayments | number:'1.3-3' }}</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col-lg-12">
+      <div class="card border-0 shadow-sm">
+        <div class="card-header bg-white border-bottom py-3">
+          <h5 class="card-title mb-0">Today's Transactions & Actions</h5>
+        </div>
+        <div class="card-body p-0">
+          <div class="table-responsive">
+            <table class="table align-middle table-nowrap mb-0">
+              <thead class="bg-light">
+                <tr>
+                  <th class="ps-4">Time</th>
+                  <th>Action</th>
+                  <th>Patient</th>
+                  <th>Status / Amount</th>
+                  <th class="text-end pe-4">Details</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let act of recentActivities" class="activity-row">
+                  <td class="ps-4 text-muted">{{ act.time }}</td>
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <i [class]="act.icon + ' ' + act.color + ' fs-18 me-2'"></i>
+                      <span class="fw-medium">{{ act.action }}</span>
+                    </div>
+                  </td>
+                  <td class="fw-semibold">{{ act.patient }}</td>
+                  <td>
+                    <span *ngIf="act.amount" class="badge bg-soft-success text-success p-2 px-3">{{ act.amount }}</span>
+                    <span *ngIf="!act.amount" class="badge bg-soft-primary text-primary p-2 px-3">Scheduled</span>
+                  </td>
+                  <td class="text-end pe-4">
+                    <button class="btn btn-sm btn-light rounded-pill px-3">View</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

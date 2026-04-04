@@ -1,0 +1,52 @@
+:host {
+  display: block;
+}
+
+.view-toolbar .form-control,
+.view-toolbar .form-select {
+  border-radius: 0.5rem;
+}
+
+.view-table-card {
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+
+.view-table {
+  font-size: 0.875rem;
+
+  thead th {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #64748b;
+    border-bottom: 1px solid #e2e8f0;
+    padding-top: 0.85rem;
+    padding-bottom: 0.85rem;
+    white-space: nowrap;
+  }
+
+  tbody td {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    vertical-align: middle;
+  }
+
+  tbody tr:hover td {
+    background: rgba(79, 70, 229, 0.04);
+  }
+}
+
+.reclamation-detail__label {
+  letter-spacing: 0.04em;
+}
+
+.reclamation-detail__desc {
+  white-space: pre-wrap;
+  word-break: break-word;
+  line-height: 1.5;
+  padding: 0.75rem 1rem;
+  background: #f8fafc;
+  border-radius: 0.5rem;
+  border: 1px solid #e2e8f0;
+}

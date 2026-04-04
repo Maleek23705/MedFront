@@ -82,7 +82,7 @@ import { LanguageService } from 'src/app/core/services/language.service';
 
 @NgModule({
   declarations: [
-    CreateAppointmentComponent, 
+     
     UpdateAppointmentComponent, 
     ViewAppointmentsComponent,
     WaitingListComponent
@@ -90,6 +90,7 @@ import { LanguageService } from 'src/app/core/services/language.service';
   ],
   imports: [
     CommonModule,
+    CreateAppointmentComponent,
     FormsModule,
     NgbToastModule,
     NgbProgressbarModule,
@@ -106,7 +107,7 @@ import { LanguageService } from 'src/app/core/services/language.service';
     TranslateModule,
     ReactiveFormsModule
   ],
-  exports: [RouterModule],
+  exports: [RouterModule,CreateAppointmentComponent],
   providers: [LanguageService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

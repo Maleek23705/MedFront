@@ -72,10 +72,8 @@ import { LanguageService } from 'src/app/core/services/language.service';
 ]
 
 @NgModule({
-  declarations: [
-    CreateInvoiceComponent, 
-    EditInvoiceComponent, 
-    ViewInvoicesComponent
+  declarations: [ 
+
   ],
   imports: [
     CommonModule,
@@ -93,7 +91,10 @@ import { LanguageService } from 'src/app/core/services/language.service';
     SlickCarouselModule,
     LightboxModule,
     TranslateModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CreateInvoiceComponent,
+    EditInvoiceComponent, 
+    ViewInvoicesComponent
   ],
   exports: [RouterModule],
   providers: [LanguageService],

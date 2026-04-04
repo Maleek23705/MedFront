@@ -1,59 +1,65 @@
-<div class="na-card">
+<!-- Remix Icon CDN -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.min.css">
 
+<div class="apt-card">
   <!-- Header -->
-  <div class="na-card__header">
-    <div class="na-card__titles">
-      <h3 class="na-card__title">Next Appointment</h3>
-      <p class="na-card__subtitle" *ngIf="appointment">
-        {{ appointment.doctorName }} · {{ appointment.specialty }}
-      </p>
+  <div class="apt-header">
+    <div class="apt-header__left">
+      <div class="apt-header__avatar">
+        <img src="https://i.pravatar.cc/100?img=45" alt="Dr. Roberts">
+      </div>
+      <div class="apt-header__text">
+        <span class="apt-label">Next Visit</span>
+        <h3 class="apt-title">Dr. Sarah Roberts</h3>
+        <p class="apt-specialty">Internal Medicine</p>
+      </div>
     </div>
-    <span class="na-card__badge">
-      <i class="ri-vidicon-line"></i> Telehealth
-    </span>
+    <div class="apt-header__countdown">
+      <span class="apt-countdown__number">2</span>
+      <span class="apt-countdown__label">days left</span>
+    </div>
   </div>
 
-  <!-- No appointment -->
-  <div *ngIf="!appointment" class="na-card__empty">
-    <i class="ri-calendar-check-line"></i>
-    <p>No upcoming appointments</p>
-  </div>
-
-  <!-- Appointment details -->
-  <ng-container *ngIf="appointment">
-
-    <div class="na-card__info">
-      <div class="na-card__info-row">
+  <!-- Timeline -->
+  <div class="apt-timeline">
+    <div class="apt-timeline__item">
+      <div class="apt-timeline__icon">
         <i class="ri-calendar-line"></i>
-        <span>{{ appointment.date | date:'EEEE, MMMM d, y' }}</span>
       </div>
-      <div class="na-card__info-row">
+      <div class="apt-timeline__content">
+        <span class="apt-timeline__label">Date</span>
+        <span class="apt-timeline__value">Thursday, April 6, 2026</span>
+      </div>
+    </div>
+    <div class="apt-timeline__item">
+      <div class="apt-timeline__icon">
         <i class="ri-time-line"></i>
-        <span>{{ appointment.time }}</span>
       </div>
-      <div class="na-card__info-row" *ngIf="appointment.location">
-        <i class="ri-map-pin-line"></i>
-        <span>{{ appointment.location }}</span>
+      <div class="apt-timeline__content">
+        <span class="apt-timeline__label">Time</span>
+        <span class="apt-timeline__value">2:00 PM - 2:30 PM</span>
       </div>
     </div>
-
-    <!-- Countdown alert -->
-    <div class="na-card__alert" [class.na-card__alert--urgent]="getDaysUntil() === 0">
-      <i class="ri-alarm-warning-line"></i>
-      <span *ngIf="getDaysUntil() === 0">Today — check your schedule</span>
-      <span *ngIf="getDaysUntil() === 1">Starts tomorrow</span>
-      <span *ngIf="getDaysUntil() > 1">In {{ getDaysUntil() }} days</span>
+    <div class="apt-timeline__item">
+      <div class="apt-timeline__icon">
+        <i class="ri-video-line"></i>
+      </div>
+      <div class="apt-timeline__content">
+        <span class="apt-timeline__label">Type</span>
+        <span class="apt-timeline__value">Video Consultation</span>
+      </div>
     </div>
+  </div>
 
-    <!-- Actions -->
-    <div class="na-card__actions">
-      <button class="na-btn na-btn--primary">
-        <i class="ri-vidicon-line"></i> Join Now
-      </button>
-      <button class="na-btn na-btn--ghost">
-        View Details
-      </button>
-    </div>
-
-  </ng-container>
+  <!-- Actions -->
+  <div class="apt-actions">
+    <button class="apt-btn apt-btn--primary">
+      <i class="ri-video-line"></i>
+      Join Session
+    </button>
+    <button class="apt-btn apt-btn--ghost">
+      <i class="ri-calendar-add-line"></i>
+      View Details
+    </button>
+  </div>
 </div>

@@ -1,5 +1,4 @@
 import { AfterViewInit, Component, EventEmitter, OnInit, Output } from '@angular/core';
-
 import { NavigationEnd, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -8,21 +7,17 @@ import { MenuItem } from './menu.model';
 import { environment } from 'src/environments/environment';
 import { AuthenticationService } from 'src/app/core/services/auth.service';
 
-
 @Component({
     selector: 'app-sidebar-doctor',
     templateUrl: './sidebarDoctor.component.html',
-
     styleUrl: './sidebarDoctor.component.scss',
     standalone: false
 })
 export class SidebarDoctorComponent implements OnInit, AfterViewInit {
 
-
   menu: any;
   toggle: any = true;
   menuItems: MenuItem[] = [];
-
   @Output() mobileMenuButtonClicked = new EventEmitter();
 
   constructor(
@@ -37,7 +32,6 @@ export class SidebarDoctorComponent implements OnInit, AfterViewInit {
     this.authService.logout();
     this.router.navigate(['/auth/login']);
   }
-
 
   ngOnInit(): void {
     // Menu Items
@@ -216,6 +210,4 @@ export class SidebarDoctorComponent implements OnInit, AfterViewInit {
   SidebarHide() {
     document.body.classList.remove('vertical-sidebar-enable');
   }
-
 }
-

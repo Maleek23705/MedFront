@@ -1,92 +1,81 @@
-.card-waiting-list {
-  background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  padding: 20px;
-  width: 100%;
-  max-width: 400px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+.waiting-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 
-  .card-header {
+  .patient-item {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    justify-content: space-between;
+    padding: 12px;
+    border-radius: 12px;
+    background: #fff;
+    border: 1px solid #f1f5f9;
+    transition: all 0.2s ease;
 
-    h3 {
-      margin: 0;
-      color: #2c3e50;
-      font-size: 1.2rem;
+    &:hover {
+      border-color: #556ee6;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     }
 
-    .badge-count {
-      background: #eef2f7;
-      color: #3498db;
-      padding: 4px 10px;
-      border-radius: 20px;
-      font-weight: bold;
-      font-size: 0.9rem;
-    }
-  }
-
-  .list-container {
-    .patient-row {
+    .patient-info {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding: 12px 0;
-      border-bottom: 1px solid #f1f1f1;
+      gap: 12px;
+      flex: 1;
 
-      &:last-child {
-        border-bottom: none;
+      .avatar {
+        width: 40px; height: 40px;
+        border-radius: 10px;
+        display: flex; align-items: center; justify-content: center;
+        font-weight: 700; color: #4338ca; font-size: 14px;
       }
 
-      .patient-details {
-        display: flex;
-        flex-direction: column;
+      .name { font-size: 14px; font-weight: 600; color: #1e293b; margin: 0; }
+      .reason { font-size: 12px; color: #64748b; margin: 0; }
+    }
 
-        .patient-name {
-          font-weight: 600;
-          color: #34495e;
-          font-size: 0.95rem;
-        }
+    .appointment-meta {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 4px;
+      margin-right: 15px;
 
-        .appointment-time {
-          color: #95a5a6;
-          font-size: 0.8rem;
-        }
+      .time { font-size: 12px; font-weight: 500; color: #475569; 
+        i { font-size: 14px; vertical-align: middle; }
       }
 
       .status-badge {
-        font-size: 0.75rem;
-        padding: 5px 12px;
-        border-radius: 6px;
-        font-weight: 500;
+        font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 4px; text-transform: uppercase;
+        &.waiting { background: #f1f5f9; color: #475569; }
+        &.in-progress { background: #fffbeb; color: #b45309; }
+        &.priority { background: #fef2f2; color: #b91c1c; }
       }
+    }
 
-      .badge-red { background: #fee2e2; color: #dc2626; }
-      .badge-blue { background: #e0f2fe; color: #0284c7; }
-      .badge-gray { background: #f3f4f6; color: #4b5563; }
+    .actions {
+      display: flex;
+      gap: 5px;
+
+      .btn-icon {
+        width: 32px; height: 32px;
+        border: none; border-radius: 8px;
+        display: flex; align-items: center; justify-content: center;
+        cursor: pointer; font-size: 16px; background: #f8fafc;
+        transition: 0.2s;
+
+        &.confirm { color: #10b981; &:hover { background: #ecfdf5; } }
+        &.edit { color: #3b82f6; &:hover { background: #eff6ff; } }
+        &.delete { color: #ef4444; &:hover { background: #fef2f2; } }
+      }
     }
   }
 
-  .card-footer {
-    margin-top: 15px;
-    
-    .btn-action {
-      width: 100%;
-      padding: 10px;
-      border: none;
-      background: #3498db;
-      color: white;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 500;
-      transition: background 0.2s ease;
-
-      &:hover {
-        background: #2980b9;
-      }
-    }
+  .btn-view-all {
+    width: 100%; padding: 10px; border: 1px dashed #cbd5e1;
+    background: transparent; color: #64748b; border-radius: 8px;
+    font-size: 13px; font-weight: 500; cursor: pointer; margin-top: 10px;
+    &:hover { background: #f8fafc; color: #556ee6; border-color: #556ee6; }
   }
 }

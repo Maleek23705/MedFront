@@ -1,0 +1,29 @@
+<app-dashboard-shell
+  [title]="'Edit patient'"
+  [subtitle]="'Update demographic and medical summary fields.'"
+>
+  <form class="card border-0 shadow-sm" (ngSubmit)="update()">
+    <div class="card-body row g-3">
+      <div class="col-md-6">
+        <label class="form-label">First name</label>
+        <input class="form-control" [(ngModel)]="patient.firstName" name="firstName" />
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Last name</label>
+        <input class="form-control" [(ngModel)]="patient.lastName" name="lastName" />
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Phone</label>
+        <input class="form-control" [(ngModel)]="patient.phone" name="phone" />
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Chronic condition</label>
+        <input class="form-control" [(ngModel)]="patient.chronic" name="chronic" />
+      </div>
+    </div>
+    <div class="card-footer bg-white d-flex justify-content-end gap-2">
+      <button type="button" class="btn btn-light" routerLink="/doctor/patients">Back</button>
+      <button type="submit" class="btn btn-primary">Update</button>
+    </div>
+  </form>
+</app-dashboard-shell>

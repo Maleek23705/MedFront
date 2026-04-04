@@ -1,114 +1,558 @@
-/* ── Health Metrics Card ───────────────────────── */
+// ===============================================
+// HEALTH METRICS CARD - PREMIUM SCSS
+// ===============================================
 
-.vitals-card{
-  background:#ffffff;
-  border-radius:16px;
-  padding:20px;
-  border:1px solid #e5e7eb;
+// Design System Variables
+$color-heart: #FF6B8A;
+$color-heart-dark: #FF3D68;
+$color-pressure: #8B5CF6;
+$color-pressure-dark: #7C3AED;
+$color-glucose: #F59E0B;
+$color-glucose-dark: #D97706;
+$color-oxygen: #10B981;
+$color-oxygen-dark: #059669;
+
+$color-bg-card: #FFFFFF;
+$color-bg-item: #FAFBFC;
+$color-text-primary: #111827;
+$color-text-secondary: #6B7280;
+$color-text-muted: #9CA3AF;
+$color-border: rgba(0, 0, 0, 0.06);
+
+$shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+$shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+$shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
+$shadow-glow-heart: 0 0 20px rgba(255, 107, 138, 0.25);
+$shadow-glow-pressure: 0 0 20px rgba(139, 92, 246, 0.25);
+$shadow-glow-glucose: 0 0 20px rgba(245, 158, 11, 0.25);
+$shadow-glow-oxygen: 0 0 20px rgba(16, 185, 129, 0.25);
+
+$radius-sm: 8px;
+$radius-md: 12px;
+$radius-lg: 16px;
+$radius-xl: 20px;
+
+$transition-fast: 150ms ease;
+$transition-normal: 250ms ease;
+$transition-slow: 400ms ease;
+
+// ===============================================
+// MAIN CARD
+// ===============================================
+.vitals-card {
+  background: $color-bg-card;
+  border-radius: $radius-xl;
+  padding: 24px;
+  border: 1px solid $color-border;
+  box-shadow: $shadow-lg;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+  width: 100%;
+  max-width: 100%;       // ✅ supprime la limite fixe
+  position: relative;
+  overflow: hidden;
+
+  height: 100%;          // ✅ s'étire à la hauteur du parent
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.8) 0%, transparent 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
 }
 
-.vitals-card__title{
+// ✅ La grille s'étire pour remplir l'espace restant
+.vitals-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  position: relative;
+  z-index: 1;
+
+  .vital-item {
+    height: 100%;        // ✅ chaque item remplit sa cellule
+    box-sizing: border-box;
+  }
+}
+
+// ===============================================
+// HEADER
+// ===============================================
+.vitals-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+  z-index: 1;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header-icon {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, $color-heart 0%, $color-heart-dark 100%);
+  border-radius: $radius-md;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: $shadow-glow-heart;
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.header-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.vitals-card__title {
+  font-size: 18px;
+  font-weight: 700;
+  color: $color-text-primary;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.vitals-card__subtitle {
   font-size: 12px;
+  color: $color-text-muted;
+  margin: 0;
+}
+
+.refresh-btn {
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: $color-bg-item;
+  border-radius: $radius-sm;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $color-text-secondary;
+  transition: all $transition-fast;
+
+  &:hover {
+    background: darken($color-bg-item, 3%);
+    color: $color-text-primary;
+    transform: rotate(45deg);
+  }
+
+  &:active {
+    transform: rotate(90deg);
+  }
+}
+
+// ===============================================
+// GRID LAYOUT
+// ===============================================
+.vitals-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+// ===============================================
+// VITAL ITEMS
+// ===============================================
+.vital-item {
+  background: $color-bg-item;
+  border-radius: $radius-lg;
+  padding: 16px;
+  border: 1px solid $color-border;
+  position: relative;
+  overflow: hidden;
+  transition: all $transition-normal;
+
+  // Gradient glow effect
+  .vital-item__glow {
+    position: absolute;
+    top: -30px;
+    right: -30px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    opacity: 0.15;
+    filter: blur(20px);
+    transition: opacity $transition-normal;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: $shadow-md;
+    border-color: transparent;
+
+    .vital-item__glow {
+      opacity: 0.25;
+    }
+  }
+
+  // Heart Rate variant
+  &--heart {
+    .vital-icon { color: $color-heart; }
+    .vital-item__glow { background: $color-heart; }
+  }
+
+  // Blood Pressure variant
+  &--pressure {
+    .vital-icon { color: $color-pressure; }
+    .vital-item__glow { background: $color-pressure; }
+  }
+
+  // Glucose variant
+  &--glucose {
+    .vital-icon { color: $color-glucose; }
+    .vital-item__glow { background: $color-glucose; }
+  }
+
+  // Oxygen variant
+  &--oxygen {
+    .vital-icon { color: $color-oxygen; }
+    .vital-item__glow { background: $color-oxygen; }
+  }
+}
+
+// ===============================================
+// VITAL HEADER
+// ===============================================
+.vital-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.vital-icon {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: $radius-sm;
+  flex-shrink: 0;
+  position: relative;
+  
+  i {
+    font-size: 18px;
+    color: inherit; 
+  }
+}
+
+.vital-label {
+  font-size: 11px;
   font-weight: 600;
-  color: #6b7280;
-  margin-bottom: 16px;
   text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: $color-text-secondary;
+  flex: 1;
 }
 
-/* grid */
-
-.vitals-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:16px;
+// ===============================================
+// VALUE DISPLAY
+// ===============================================
+.vital-value-container {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-bottom: 16px;
 }
 
-/* item */
+.vital-value {
+  font-size: 28px;
+  font-weight: 700;
+  color: $color-text-primary;
+  letter-spacing: -0.02em;
+  line-height: 1;
 
-.vital-item{
-  border:1px solid #e5e7eb;
-  border-radius:12px;
-  padding:16px;
-  background:#f9fafb;
+  .separator {
+    color: $color-text-muted;
+    font-weight: 400;
+    margin: 0 2px;
+  }
+
+  .secondary {
+    font-size: 20px;
+    font-weight: 600;
+  }
 }
 
-/* header */
-
-.vital-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:6px;
+.vital-unit {
+  font-size: 12px;
+  font-weight: 500;
+  color: $color-text-muted;
 }
 
-.vital-label{
-  font-size:11px;
-  text-transform:uppercase;
-  letter-spacing:0.05em;
-  color:#6b7280;
+// ===============================================
+// BADGES
+// ===============================================
+.vital-badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+
+  // Dot indicator
+  &::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    margin-right: 4px;
+  }
+
+  &--normal {
+    background: rgba($color-heart, 0.1);
+    color: $color-heart;
+    &::before { background: $color-heart; }
+  }
+
+  &--optimal {
+    background: rgba($color-pressure, 0.1);
+    color: $color-pressure;
+    &::before { background: $color-pressure; }
+  }
+
+  &--watch {
+    background: rgba($color-glucose, 0.1);
+    color: $color-glucose;
+    &::before { background: $color-glucose; }
+  }
+
+  &--excellent {
+    background: rgba($color-oxygen, 0.1);
+    color: $color-oxygen;
+    &::before { background: $color-oxygen; }
+  }
 }
 
-.vital-value{
-  font-size:18px;
-  font-weight:600;
-  color:#111827;
+// ===============================================
+// SVG CHART
+// ===============================================
+.vital-chart {
+  height: 48px;
+  position: relative;
+  margin-top: 4px;
 }
 
-.vital-value small{
-  font-size:11px;
-  font-weight:500;
-  color:#6b7280;
+.chart-line {
+  width: 100%;
+  height: 40px;
+  overflow: visible;
 }
 
-/* badge */
-
-.vital-badge{
-  display:inline-block;
-  font-size:11px;
-  font-weight:500;
-  padding:3px 8px;
-  border-radius:999px;
-  margin-bottom:10px;
+.chart-line-path {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
-.vital-badge--green{
-  background:#dcfce7;
-  color:#16a34a;
+.chart-dot {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+
+  // Pulse animation for the dot
+  animation: pulse 2s ease-in-out infinite;
 }
 
-.vital-badge--blue{
-  background:#dbeafe;
-  color:#2563eb;
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.2);
+  }
 }
 
-.vital-badge--orange{
-  background:#fef3c7;
-  color:#d97706;
+.chart-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+  padding: 0 2px;
+
+  span {
+    font-size: 10px;
+    color: $color-text-muted;
+    font-weight: 500;
+  }
 }
 
-/* mini chart */
-
-.vital-chart{
-  display:flex;
-  align-items:flex-end;
-  gap:4px;
-  height:40px;
+// ===============================================
+// FOOTER
+// ===============================================
+.vitals-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid $color-border;
+  position: relative;
+  z-index: 1;
 }
 
-.vital-chart span{
-  flex:1;
-  background:#cbd5f5;
-  border-radius:3px;
-  height:40%;
+.footer-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+
+  &__value {
+    font-size: 14px;
+    font-weight: 700;
+    color: $color-text-primary;
+  }
+
+  &__label {
+    font-size: 11px;
+    color: $color-text-muted;
+  }
 }
 
-.vital-chart span:nth-child(2){height:55%;}
-.vital-chart span:nth-child(3){height:35%;}
-.vital-chart span:nth-child(4){height:50%;}
-.vital-chart span:nth-child(5){height:60%;}
-.vital-chart span:nth-child(6){height:45%;}
+.footer-divider {
+  width: 1px;
+  height: 32px;
+  background: $color-border;
+}
 
-.vital-chart span.active{
-  height:70%;
-  background:#3b82f6;
+// ===============================================
+// ANIMATIONS
+// ===============================================
+.vitals-card {
+  animation: slideUp 0.5s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.vital-item {
+  animation: fadeIn 0.5s ease-out backwards;
+
+  @for $i from 1 through 4 {
+    &:nth-child(#{$i}) {
+      animation-delay: #{$i * 0.1}s;
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+// ===============================================
+// RESPONSIVE
+// ===============================================
+@media (max-width: 480px) {
+  .vitals-card {
+    padding: 16px;
+    border-radius: $radius-lg;
+  }
+
+  .vitals-grid {
+    gap: 12px;
+  }
+
+  .vital-item {
+    padding: 14px;
+  }
+
+  .vital-value {
+    font-size: 24px;
+  }
+
+  .vitals-footer {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .footer-divider {
+    width: 60px;
+    height: 1px;
+  }
+}
+
+// ===============================================
+// DARK MODE SUPPORT
+// ===============================================
+@media (prefers-color-scheme: dark) {
+  .vitals-card {
+    background: #1a1a2e;
+    border-color: rgba(255, 255, 255, 0.08);
+
+    &::before {
+      background: linear-gradient(180deg, rgba(26, 26, 46, 0.8) 0%, transparent 100%);
+    }
+  }
+
+  .vitals-header {
+    .header-icon {
+      background: linear-gradient(135deg, $color-heart 0%, $color-heart-dark 100%);
+    }
+  }
+
+  .vital-item {
+    background: #252542;
+    border-color: rgba(255, 255, 255, 0.06);
+
+    &:hover {
+      background: #2a2a4a;
+    }
+  }
+
+  .vital-value {
+    color: #FFFFFF;
+  }
+
+  .vital-label {
+    color: #9CA3AF;
+  }
+
+  .refresh-btn {
+    background: rgba(255, 255, 255, 0.05);
+    color: #9CA3AF;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #FFFFFF;
+    }
+  }
 }

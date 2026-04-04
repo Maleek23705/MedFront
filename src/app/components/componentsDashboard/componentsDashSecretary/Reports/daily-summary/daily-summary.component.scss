@@ -1,0 +1,81 @@
+$sidebar-blue: #4c568c; 
+$success-green: #19b394;
+$border-color: #eff2f7;
+
+.page-title-box {
+  padding: 1rem 0 2rem;
+  h4 i { 
+    color: $sidebar-blue; 
+    background: rgba($sidebar-blue, 0.1); 
+    padding: 8px; 
+    border-radius: 8px;
+    margin-right: 12px; 
+  }
+}
+
+// Interactive Stat Cards
+.stat-card {
+  transition: all 0.3s ease;
+  cursor: pointer;
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08) !important;
+  }
+}
+
+.avatar-md {
+  height: 3.5rem;
+  width: 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Activity Table Styling
+.activity-row {
+  transition: background 0.2s ease;
+  &:hover {
+    background-color: #fbfcfe;
+  }
+}
+
+.table {
+  thead th {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #8c90a6;
+    padding: 15px;
+    border: none;
+  }
+  tbody td {
+    padding: 18px 15px;
+    border-bottom: 1px solid $border-color;
+  }
+}
+
+.btn-primary-medical {
+  background: $sidebar-blue; // Using blue for reports to distinguish from "Saving"
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 10px rgba($sidebar-blue, 0.2);
+  transition: all 0.3s;
+  &:hover { background: darken($sidebar-blue, 5%); transform: translateY(-1px); }
+}
+
+// Soft Colors for Avatars
+.bg-soft-primary { background: rgba($sidebar-blue, 0.1) !important; }
+.bg-soft-success { background: rgba($success-green, 0.1) !important; }
+.bg-soft-info { background: rgba(#50a5f1, 0.1) !important; }
+.bg-soft-danger { background: rgba(#f06548, 0.1) !important; }
+
+@media print {
+  .btn-primary-medical, .page-title-box button { display: none; }
+  .card { box-shadow: none !important; border: 1px solid #ddd !important; }
+}

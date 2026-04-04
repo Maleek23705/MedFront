@@ -1,1 +1,125 @@
-<p>create-invoice works!</p>
+<div class="container-fluid">
+  <div class="page-title-box d-flex align-items-center justify-content-between">
+    <h4 class="mb-0"><i class="ri-file-add-line"></i> Generate New Invoice</h4>
+    <span class="badge bg-soft-primary text-primary fs-14">#{{ invoiceForm.get('invoiceNumber')?.value }}</span>
+  </div>
+
+  <form [formGroup]="invoiceForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="card">
+          <div class="card-header bg-soft-info">
+            <h4 class="card-title mb-0 text-primary-medical">Billing Information</h4>
+          </div>
+          <div class="card-body">
+            <div class="row gy-3">
+              <div class="col-md-6">
+                <label class="form-label">Patient Name</label>
+                <input type="text" class="form-control" placeholder="Enter patient name" formControlName="patientName">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Patient CIN</label>
+                <input type="text" class="form-control" placeholder="8-digit CIN" formControlName="patientCIN">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Date</label>
+                <input type="date" class="form-control" formControlName="invoiceDate">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Due Date</label>
+                <input type="date" class="form-control" formControlName="dueDate">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Method</label>
+                <select class="form-select" formControlName="paymentMethod">
+                  <option value="Cash">Cash</option>
+                  <option value="Check">Check</option>
+                  <option value="Insurance">Insurance</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header d-flex justify-content-between align-items-center">
+            <h4 class="card-title mb-0">Items & Services</h4>
+            <button type="button" class="btn-add-item" (click)="addItem()">
+              <i class="ri-add-circle-line"></i> Add
+            </button>
+          </div>
+          <div class="card-body p-0">
+            <table class="table align-middle">
+              <thead>
+                <tr>
+                  <th style="width: 40%;">Description</th>
+                  <th>Price</th>
+                  <th>Qty</th>
+                  <th>Total</th>
+                  <th style="width: 50px;"></th>
+                </tr>
+              </thead>
+              <tbody formArrayName="items">
+                <tr *ngFor="let item of items.controls; let i=index" [formGroupName]="i">
+                  <td>
+                    <input type="text" class="form-control-sm" placeholder="e.g. Consultation" formControlName="description">
+                  </td>
+                  <td>
+                    <input type="number" class="form-control-sm" formControlName="unitPrice">
+                  </td>
+                  <td>
+                    <input type="number" class="form-control-sm" formControlName="quantity">
+                  </td>
+                  <td class="fw-bold">
+                    {{ (item.get('unitPrice')?.value * item.get('quantity')?.value) | number:'1.3-3' }}
+                  </td>
+                  <td>
+                    <button type="button" class="btn-delete" (click)="removeItem(i)">
+                      <i class="ri-delete-bin-line"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="card bg-blue text-white mb-4 shadow-lg">
+          <div class="card-body p-4">
+            <h5 class="text-uppercase fw-semibold mb-1 opacity-75" style="font-size: 13px; letter-spacing: 1px;">
+              Total Amount Due
+            </h5>
+            
+            <div class="total-amount mb-3">
+              {{ calculateTotal() | number:'1.3-3' }} <span class="fs-18 fw-medium">TND</span>
+            </div>
+
+            <div class="pt-3 border-top border-white border-opacity-10">
+              <div class="d-flex justify-content-between mb-1 opacity-75">
+                <span>Sub Total:</span>
+                <span>{{ calculateSubtotal() | number:'1.3-3' }}</span>
+              </div>
+              <div class="d-flex justify-content-between opacity-75">
+                <span>VAT (7%):</span>
+                <span>+ {{ calculateVAT() | number:'1.3-3' }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="action-card shadow-sm p-3 bg-white">
+          <div class="d-flex flex-column gap-3">
+            <button type="submit" class="btn-primary-medical w-100">
+              <i class="ri-printer-line"></i> Print & Save Invoice
+            </button>
+            <button type="button" class="btn-soft-light w-100" (click)="onDiscard()">
+              Discard Changes
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

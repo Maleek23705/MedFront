@@ -1,0 +1,179 @@
+.agenda-container {
+  background: white;
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  
+  /* ADDED: Space between the 4 top boxes and the agenda */
+  margin-top: 32px; 
+}
+
+.agenda-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; /* Aligned to start to handle the title + legend stack */
+  margin-bottom: 30px; 
+
+  .header-main-info {
+    display: flex;
+    flex-direction: column;
+    /* ADDED: Space between "Today's Agenda" and the legend tags */
+    gap: 16px; 
+
+    h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin: 0;
+    }
+
+    .legend-wrapper {
+      /* Scales the legend slightly to not overwhelm the header */
+      transform: scale(0.9);
+      transform-origin: left center;
+      
+      /* Ensure it doesn't hug the title too closely */
+      margin-top: 4px; 
+    }
+  }
+
+  .header-actions {
+    display: flex;
+    gap: 12px;
+    padding-top: 4px; 
+
+    button {
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+
+      &.btn-outline {
+        background: white;
+        border: 1px solid #e2e8f0;
+        color: #64748b;
+        &:hover { background: #f8fafc; border-color: #cbd5e1; }
+      }
+
+      &.btn-filled {
+        background: #556ee6;
+        border: none;
+        color: white;
+        &:hover { 
+          background: #4458b8; 
+          box-shadow: 0 4px 10px rgba(85, 110, 230, 0.3); 
+        }
+      }
+
+      i { font-size: 18px; }
+    }
+  }
+}
+
+.appointment-row {
+  display: grid;
+  /* Grid Layout: Time | Main Info | Location | Action */
+  grid-template-columns: 100px 1fr 180px 50px; 
+  align-items: center;
+  padding: 20px;
+  margin-bottom: 15px;
+  border-radius: 12px;
+  background: #fdfdfd;
+  border: 1px solid #f1f5f9;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    background: white;
+    transform: translateX(4px); 
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.04);
+    border-color: #556ee6;
+  }
+
+  .time-block {
+    display: flex;
+    flex-direction: column;
+    .start-time { font-weight: 700; color: #1e293b; font-size: 15px; }
+    .end-time { font-size: 12px; color: #94a3b8; margin-top: 2px; }
+  }
+
+  .details-block {
+    .patient-name { 
+      margin: 0 0 6px 0; 
+      font-size: 16px; 
+      font-weight: 600;
+      color: #334155; 
+    }
+    .meta-data {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      .divider { color: #e2e8f0; font-size: 12px; }
+      
+      .appt-subtext { 
+        font-size: 13px; 
+        color: #64748b; 
+        font-weight: 400;
+      }
+    }
+  }
+
+  .location-block {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #64748b;
+    font-size: 14px;
+    i { 
+      color: #556ee6; 
+      font-size: 18px;
+    }
+  }
+
+  .options-block {
+    text-align: right;
+    .btn-more {
+      border: none;
+      background: #f1f5f9;
+      color: #64748b;
+      cursor: pointer;
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      &:hover { background: #556ee6; color: white; }
+    }
+  }
+}
+
+.category-badge {
+  padding: 4px 12px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: capitalize;
+  letter-spacing: 0.3px;
+
+  &.consultation { background: #dbeafe; color: #1e4ed8; }
+  &.suivi { background: #ecfeff; color: #0891b2; }
+  &.urgence { background: #fee2e2; color: #dc2626; }
+  &.teleconsultation { background: #f5f3ff; color: #7c3aed; }
+}
+
+.loading-state {
+  padding: 40px;
+  text-align: center;
+  color: #94a3b8;
+  font-style: italic;
+  background: #f8fafc;
+  border-radius: 12px;
+  border: 1px dashed #e2e8f0;
+}

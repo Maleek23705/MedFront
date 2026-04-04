@@ -1,1 +1,91 @@
-<p>create-doctors works!</p>
+<section class="doctor-crud-layout">
+  <article class="card main-card">
+    <header class="head-row">
+      <div>
+        <h2>Doctors</h2>
+        <p>CRUD medecins organisee avec fiche detaillee.</p>
+      </div>
+      <button class="btn btn-primary" type="button" (click)="toggleForm()">
+        {{ showForm ? 'Fermer le formulaire' : 'Nouveau medecin' }}
+      </button>
+    </header>
+
+    <div class="stats-row">
+      <div class="stat"><strong>{{ totalCount }}</strong><span>Total doctors</span></div>
+      <div class="stat"><strong>{{ activeCount }}</strong><span>Active</span></div>
+      <div class="stat"><strong>{{ onLeaveCount }}</strong><span>On leave</span></div>
+    </div>
+
+    <div class="toolbar">
+      <input type="search" [(ngModel)]="searchTerm" [ngModelOptions]="{ standalone: true }" placeholder="Search doctor by name, id, specialty..." />
+    </div>
+
+    <div class="table-wrap">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Specialty</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let doctor of filteredDoctors" [class.active]="selectedDoctor?.id === doctor.id" (click)="selectDoctor(doctor)">
+            <td>{{ doctor.id }}</td>
+            <td>{{ doctor.firstName }} {{ doctor.lastName }}</td>
+            <td>{{ doctor.specialty }}</td>
+            <td>{{ doctor.email }}</td>
+            <td>{{ doctor.phone }}</td>
+            <td><span class="status" [class]="statusClass(doctor.status)">{{ doctor.status }}</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </article>
+
+  <article class="card side-card">
+    <section *ngIf="selectedDoctor" class="detail-box">
+      <div class="detail-head">
+        <h3>Doctor details</h3>
+        <div class="detail-actions">
+          <button class="btn btn-light" type="button" (click)="editSelectedDoctor()">Edit</button>
+          <button class="btn btn-danger" type="button" (click)="deleteSelectedDoctor()">Delete</button>
+        </div>
+      </div>
+      <p><strong>ID:</strong> {{ selectedDoctor.id }}</p>
+      <p><strong>Name:</strong> {{ selectedDoctor.firstName }} {{ selectedDoctor.lastName }}</p>
+      <p><strong>Specialty:</strong> {{ selectedDoctor.specialty }}</p>
+      <p><strong>Email:</strong> {{ selectedDoctor.email }}</p>
+      <p><strong>Phone:</strong> {{ selectedDoctor.phone }}</p>
+      <p><strong>Experience:</strong> {{ selectedDoctor.yearsExperience }} years</p>
+      <p><strong>Availability:</strong> {{ selectedDoctor.availability }}</p>
+      <p><strong>Status:</strong> {{ selectedDoctor.status }}</p>
+    </section>
+
+    <form *ngIf="showForm" [formGroup]="doctorForm" (ngSubmit)="saveDoctor()" class="form-box">
+      <h3>{{ editingId ? 'Edit doctor' : 'New doctor' }}</h3>
+      <div class="row2">
+        <input type="text" formControlName="firstName" placeholder="First name" />
+        <input type="text" formControlName="lastName" placeholder="Last name" />
+      </div>
+      <input type="email" formControlName="email" placeholder="Email" />
+      <input type="text" formControlName="phone" placeholder="Phone" />
+      <input type="text" formControlName="specialty" placeholder="Specialty" />
+      <div class="row2">
+        <input type="number" formControlName="yearsExperience" placeholder="Years experience" />
+        <select formControlName="status">
+          <option value="Active">Active</option>
+          <option value="On leave">On leave</option>
+          <option value="Inactive">Inactive</option>
+        </select>
+      </div>
+      <input type="text" formControlName="availability" placeholder="Availability" />
+      <button class="btn btn-primary" type="submit" [disabled]="doctorForm.invalid">
+        {{ editingId ? 'Update' : 'Save' }}
+      </button>
+    </form>
+  </article>
+</section>

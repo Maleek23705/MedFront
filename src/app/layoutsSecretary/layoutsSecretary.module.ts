@@ -13,7 +13,6 @@ import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 import { LayoutSecretaryComponent } from './layoutsSecretary.component';
 import { VerticalSecretaryComponent } from './verticalSecretary/verticalSecretary.component';
 import { SidebarSecretaryComponent } from './sidebar-secretary/sidebar-secretary.component';
-import { SidebarSECRETARYComponent } from './sidebarSecretary/sidebarSecretary.component';
 import { FooterSecretaryComponent } from './footerSecretary/footerSecretary.component';
 import { RightsidebarComponent } from './rightsidebarSecretary/rightsidebarSecretary.component';
 import { TwoColumnSecretaryComponent } from './two-column-secretary/two-column-secretary.component';
@@ -26,7 +25,6 @@ import { A11yModule } from "@angular/cdk/a11y";
   declarations: [
     LayoutSecretaryComponent,
     VerticalSecretaryComponent,
-    SidebarSECRETARYComponent,
     FooterSecretaryComponent,
     RightsidebarComponent,
     TwoColumnSecretaryComponent,

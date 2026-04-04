@@ -1,1 +1,33 @@
-<p>update-doctors works!</p>
+<app-dashboard-shell
+  [title]="'Edit doctor'"
+  [subtitle]="'Update doctor identity, specialty and contact fields.'"
+>
+  <form class="card border-0 shadow-sm" (ngSubmit)="update()">
+    <div class="card-body row g-3">
+      <div class="col-md-6">
+        <label class="form-label">First name</label>
+        <input class="form-control" [(ngModel)]="doctor.firstName" name="firstName" />
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Last name</label>
+        <input class="form-control" [(ngModel)]="doctor.lastName" name="lastName" />
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Email</label>
+        <input class="form-control" [(ngModel)]="doctor.email" name="email" />
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Phone</label>
+        <input class="form-control" [(ngModel)]="doctor.phone" name="phone" />
+      </div>
+      <div class="col-md-12">
+        <label class="form-label">Specialty</label>
+        <input class="form-control" [(ngModel)]="doctor.specialty" name="specialty" />
+      </div>
+    </div>
+    <div class="card-footer bg-white d-flex justify-content-end gap-2">
+      <button type="button" class="btn btn-light" routerLink="/doctor/dashboard">Cancel</button>
+      <button type="submit" class="btn btn-primary">Update doctor</button>
+    </div>
+  </form>
+</app-dashboard-shell>

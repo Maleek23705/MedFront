@@ -1,0 +1,58 @@
+<div class="patients-page">
+  <div class="page-header">
+    <div class="title-group">
+      <h1>Patient Directory</h1>
+      <p>Total Patients: {{ patients.length }}</p>
+    </div>
+    <div class="action-bar">
+      <div class="search-box">
+        <i class="ri-search-line"></i>
+        <input type="text" [(ngModel)]="searchTerm" placeholder="Search name or phone...">
+      </div>
+      <button class="btn-primary">
+        <i class="ri-user-add-line"></i> New Patient
+      </button>
+    </div>
+  </div>
+
+  <div class="table-container">
+    <table class="patients-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Gender/Age</th>
+          <th>Contact</th>
+          <th>Last Visit</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of filteredPatients">
+          <td class="name-cell">
+            <div class="avatar">{{ p.fullName.charAt(0) }}</div>
+            <span>{{ p.fullName }}</span>
+          </td>
+          <td>{{ p.gender }} / {{ p.age }}y</td>
+          <td>{{ p.phone }}</td>
+          <td>{{ p.lastVisit | date:'dd MMM yyyy' }}</td>
+          <td>
+            <span class="status-pill" [attr.data-status]="p.status">
+              {{ p.status }}
+            </span>
+          </td>
+          <td class="actions">
+            <button class="action-btn view"><i class="ri-eye-line"></i></button>
+            <button class="action-btn edit"><i class="ri-pencil-line"></i></button>
+            <button class="action-btn delete" (click)="deletePatient(p.id)"><i class="ri-delete-bin-line"></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <div *ngIf="filteredPatients.length === 0" class="empty-state">
+      <i class="ri-user-search-line"></i>
+      <p>No patients found matching "{{ searchTerm }}"</p>
+    </div>
+  </div>
+</div>

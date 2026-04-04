@@ -1,0 +1,159 @@
+$sidebar-blue: #4c568c; 
+$success-green: #19b394;
+$info-cyan: #50a5f1;
+$border-color: #eff2f7;
+$text-muted: #8c90a6;
+
+.page-title-box {
+  padding: 1rem 0 2rem;
+  h4 i { 
+    color: $sidebar-blue; 
+    background: rgba($sidebar-blue, 0.1); 
+    padding: 8px; 
+    border-radius: 8px;
+    margin-right: 12px; 
+  }
+}
+
+.card {
+  border: none;
+  border-radius: 12px;
+  background: #fff;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  
+  .card-header {
+    border-bottom: 1px solid $border-color;
+    padding: 1.25rem;
+    
+    // Support for the soft-info header style seen in Edit Page
+    &.bg-soft-info {
+      background: rgba($info-cyan, 0.08) !important;
+      .card-title { color: $info-cyan !important; }
+    }
+    
+    .card-title { font-size: 15px; font-weight: 700; color: #495057; }
+  }
+}
+
+// Enhanced Summary Card with VAT Breakdown Support
+.bg-blue {
+  background: linear-gradient(135deg, $sidebar-blue 0%, darken($sidebar-blue, 10%) 100%) !important;
+  border-radius: 15px;
+  padding: 0; // Padding handled by card-body in HTML for better alignment
+  
+  .card-body {
+    padding: 1.5rem;
+  }
+  
+  h5, label, span, p, small {
+    color: rgba(255, 255, 255, 0.85) !important; // Crisp white text
+    font-weight: 500;
+  }
+
+  .total-amount {
+    color: #ffffff !important;
+    font-size: 32px; // Increased size for the main total
+    font-weight: 800;
+    margin: 5px 0;
+    
+    span {
+        font-size: 18px;
+        margin-left: 4px;
+    }
+  }
+
+  // Divider and breakdown styling
+  .border-top {
+    border-top: 1px solid rgba(255, 255, 255, 0.15) !important;
+    margin-top: 1rem;
+    padding-top: 1rem;
+  }
+  
+  .opacity-75 {
+    opacity: 0.75;
+  }
+}
+
+.table {
+  width: 100%;
+  thead th { 
+    background: #f8fafc; 
+    font-size: 11px; 
+    color: $text-muted; 
+    padding: 12px; 
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  tbody td { padding: 15px; border-bottom: 1px solid $border-color; }
+}
+
+.form-control-sm, .form-select {
+  width: 100%;
+  border: 1px solid $border-color;
+  border-radius: 8px;
+  padding: 8px 12px;
+  transition: all 0.2s ease;
+  
+  &:focus { 
+    border-color: $sidebar-blue; 
+    outline: none; 
+    box-shadow: 0 0 0 3px rgba($sidebar-blue, 0.1); 
+  }
+}
+
+.btn-add-item {
+  background: rgba($sidebar-blue, 0.1);
+  color: $sidebar-blue;
+  border: none;
+  padding: 6px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 13px;
+  &:hover { background: $sidebar-blue; color: white; }
+}
+
+.btn-delete {
+  background: transparent;
+  border: none;
+  color: #f06548;
+  font-size: 18px;
+  transition: transform 0.2s;
+  &:hover { opacity: 0.8; transform: scale(1.1); }
+}
+
+.btn-primary-medical {
+  background: $success-green;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-shadow: 0 4px 10px rgba($success-green, 0.2);
+  transition: all 0.3s;
+  
+  &:hover { 
+    background: darken($success-green, 5%); 
+    transform: translateY(-1px);
+    box-shadow: 0 6px 15px rgba($success-green, 0.3);
+  }
+}
+
+.btn-soft-light {
+  background: #f8f9fa;
+  color: $text-muted;
+  border: 1px solid #edf0f2;
+  padding: 12px;
+  border-radius: 10px;
+  font-weight: 600;
+  transition: background 0.2s;
+  
+  &:hover { 
+    background: #e9ecef; 
+    color: #f06548; // Turns red on hover to signal destructive action
+  }
+}

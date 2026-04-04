@@ -1,0 +1,66 @@
+<div class="lab-card">
+  <!-- Header -->
+  <div class="lab-header">
+    <div class="lab-header__left">
+      <div class="lab-header__icon">
+        <i class="ri-test-tube-line"></i>
+      </div>
+      <div class="lab-header__text">
+        <h3 class="lab-title">Recent Lab Results</h3>
+        <p class="lab-subtitle">Blood work & diagnostics</p>
+      </div>
+    </div>
+    <button class="lab-header__action" (click)="onMoreOptions()">
+      <i class="ri-more-2-line"></i>
+    </button>
+  </div>
+
+  <!-- Results List (Data State) -->
+  <div class="lab-results" *ngIf="!isEmptyState">
+    <div
+      class="lab-result"
+      *ngFor="let result of labResults; trackBy: trackByLabResultId"
+      (click)="onViewAll()">
+      <div class="lab-result__left">
+        <div class="lab-result__icon" [ngClass]="getIconColorClass(result.iconColor)">
+          <i [class]="result.icon"></i>
+        </div>
+        <div class="lab-result__info">
+          <span class="lab-result__name">{{ result.name }}</span>
+          <span class="lab-result__date">{{ result.date }}</span>
+        </div>
+      </div>
+      <div class="lab-result__right">
+        <div class="lab-result__value" [ngClass]="getValueColorClass(result.status)">
+          <span class="lab-result__number">{{ result.value }}</span>
+          <span class="lab-result__unit">{{ result.unit }}</span>
+        </div>
+        <div class="lab-result__status" [ngClass]="getStatusColorClass(result.status)">
+          <i [class]="getStatusIcon(result.status)"></i>
+          <span>{{ getStatusLabel(result.status) }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Empty State -->
+  <div class="lab-empty" *ngIf="isEmptyState">
+    <div class="lab-empty__icon">
+      <i class="ri-file-list-3-line"></i>
+    </div>
+    <h4 class="lab-empty__title">No Lab Results Yet</h4>
+    <p class="lab-empty__text">Schedule your first lab work appointment to get started with tracking your health metrics.</p>
+    <button class="lab-empty__btn" (click)="onViewAll()">
+      <i class="ri-calendar-line"></i>
+      Schedule Lab Work
+    </button>
+  </div>
+
+  <!-- Footer -->
+  <div class="lab-footer" *ngIf="!isEmptyState">
+    <button class="lab-footer__btn" (click)="onViewAll()">
+      <i class="ri-arrow-right-s-line"></i>
+      View All Results
+    </button>
+  </div>
+</div>

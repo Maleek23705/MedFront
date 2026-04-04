@@ -1,0 +1,59 @@
+<div class="med-card">
+  <!-- Header -->
+  <div class="med-header">
+    <div class="med-header__left">
+      <div class="med-header__icon">
+        <i class="ri-capsule-fill"></i>
+      </div>
+      <div class="med-header__text">
+        <h3 class="med-title">My Medications</h3>
+        <p class="med-subtitle" *ngIf="hasMedications">{{ totalMedications }} prescribed</p>
+        <p class="med-subtitle" *ngIf="!hasMedications">Prescribed & supplements</p>
+      </div>
+    </div>
+    <button class="med-header__action" (click)="onHeaderAdd()">
+      <i class="ri-add-line"></i>
+    </button>
+  </div>
+
+  <!-- Medication List (With Data) -->
+  <div class="med-list" *ngIf="hasMedications">
+    <div
+      class="med-item"
+      *ngFor="let medication of medications; trackBy: trackByMedicationId"
+      (click)="onMedicationClick(medication)">
+      <div class="med-item__left">
+        <div class="med-item__icon" [ngClass]="getIconColorClass(medication.iconColor)">
+          <i [class]="medication.icon"></i>
+        </div>
+        <div class="med-item__info">
+          <span class="med-item__name">{{ medication.name }}</span>
+          <span class="med-item__dosage">{{ medication.dosage }}</span>
+        </div>
+      </div>
+      <div class="med-item__schedule">
+        <div class="med-schedule__time">
+          <i [class]="medication.schedule.timeIcon"></i>
+          <span>{{ medication.schedule.time }}</span>
+        </div>
+        <div class="med-schedule__meal">
+          <i [class]="medication.schedule.mealIcon"></i>
+          <span>{{ medication.schedule.mealTime }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Empty State (First Login / No Data) -->
+  <div class="med-empty" *ngIf="isEmpty">
+    <div class="med-empty__icon">
+      <i [class]="emptyStateData.icon"></i>
+    </div>
+    <h4 class="med-empty__title">{{ emptyStateData.title }}</h4>
+    <p class="med-empty__text">{{ emptyStateData.description }}</p>
+    <button class="med-empty__btn" (click)="onAddMedication()">
+      <i [class]="emptyStateData.buttonIcon"></i>
+      {{ emptyStateData.buttonText }}
+    </button>
+  </div>
+</div>

@@ -1,0 +1,83 @@
+$sidebar-blue: #4c568c; 
+$success-green: #19b394;
+$border-color: #eff2f7;
+$text-muted: #8c90a6;
+
+.page-title-box {
+  padding: 1rem 0 2rem;
+  h4 i { 
+    color: $sidebar-blue; 
+    background: rgba($sidebar-blue, 0.1); 
+    padding: 8px; 
+    border-radius: 8px;
+    margin-right: 12px; 
+  }
+}
+
+.card {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.search-box {
+  position: relative;
+  .form-control {
+    padding-left: 35px;
+    border-radius: 8px;
+    &:focus { border-color: $sidebar-blue; box-shadow: none; }
+  }
+  .search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: $text-muted;
+  }
+}
+
+.table {
+  thead th {
+    background: #f8fafc;
+    color: $text-muted;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 15px 20px;
+    border: none;
+  }
+  tbody td {
+    padding: 18px 20px;
+    border-bottom: 1px solid $border-color;
+  }
+}
+
+// Medical Badges
+.badge {
+  padding: 6px 10px;
+  border-radius: 5px;
+  font-weight: 600;
+  &.badge-soft-danger { background: rgba(#f06548, 0.1); color: #f06548; }
+  &.badge-soft-warning { background: rgba(#f1b44c, 0.1); color: #f1b44c; }
+}
+
+.btn-primary-medical {
+  background: $success-green;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 13px;
+  transition: all 0.2s;
+  &:hover { background: darken($success-green, 5%); transform: translateY(-1px); }
+}
+
+.btn-soft-primary {
+  background: rgba($sidebar-blue, 0.1);
+  color: $sidebar-blue;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 8px;
+  &:hover { background: $sidebar-blue; color: white; }
+}

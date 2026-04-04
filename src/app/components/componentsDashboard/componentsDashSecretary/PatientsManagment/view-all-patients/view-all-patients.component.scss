@@ -1,0 +1,82 @@
+.patients-page {
+  padding: 2rem;
+  background: #fdfdfd;
+
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 24px;
+
+    h1 { font-size: 1.6rem; color: #1a1d21; margin: 0; }
+    p { color: #718096; margin: 5px 0 0; }
+  }
+
+  .action-bar {
+    display: flex;
+    gap: 15px;
+
+    .search-box {
+      position: relative;
+      i { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #a0aec0; }
+      input {
+        padding: 10px 15px 10px 40px;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        width: 300px;
+        outline: none;
+        &:focus { border-color: #556ee6; }
+      }
+    }
+  }
+}
+
+.table-container {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  border: 1px solid #edf2f7;
+  overflow: hidden;
+}
+
+.patients-table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th { background: #f8fafc; padding: 15px; text-align: left; color: #4a5568; font-weight: 600; font-size: 0.85rem; }
+  td { padding: 15px; border-bottom: 1px solid #edf2f7; vertical-align: middle; }
+
+  .name-cell {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 500;
+    
+    .avatar {
+      width: 35px; height: 35px; background: #556ee6; color: white;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.9rem;
+    }
+  }
+
+  .status-pill {
+    padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600;
+    &[data-status="In Treatment"] { background: #ebf4ff; color: #3182ce; }
+    &[data-status="Recovered"] { background: #f0fff4; color: #38a169; }
+    &[data-status="New"] { background: #faf5ff; color: #805ad5; }
+  }
+
+  .actions {
+    display: flex; gap: 8px;
+    .action-btn {
+      border: none; background: #f7fafc; padding: 6px; border-radius: 6px; cursor: pointer; transition: 0.2s;
+      i { font-size: 1.1rem; color: #718096; }
+      &:hover i { color: #556ee6; }
+      &.delete:hover i { color: #e53e3e; }
+    }
+  }
+}
+
+.btn-primary {
+  background: #556ee6; color: white; border: none; padding: 10px 20px; border-radius: 8px;
+  font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px;
+}

@@ -8,15 +8,18 @@ export class AppointmentsService {
   private appointments: Appointment[] = [
     {
       id: 1,
+      patientName: 'John Doe',
       doctorName: 'Dr. Sarah Johnson',
       specialty: 'Cardiology',
       date: new Date('2026-04-10'),
       time: '09:00',
       status: 'scheduled',
-      location: 'Room 204'
+      location: 'Room 204',
+      
     },
     {
       id: 2,
+      patientName: 'Jane titi Smith',
       doctorName: 'Dr. Mark Davis',
       specialty: 'Neurology',
       date: new Date('2026-04-18'),
@@ -26,6 +29,7 @@ export class AppointmentsService {
     },
     {
       id: 3,
+      patientName: 'Michael Brown',
       doctorName: 'Dr. Emily Clarke',
       specialty: 'Dermatology',
       date: new Date('2026-03-01'),
@@ -35,12 +39,23 @@ export class AppointmentsService {
     },
     {
       id: 4,
+      patientName: 'Emily Davis',
       doctorName: 'Dr. Ali Hassan',
       specialty: 'Orthopedics',
       date: new Date('2026-02-15'),
       time: '10:00',
       status: 'cancelled',
       location: 'Room 210'
+    },
+    {
+      id: 5,
+      patientName: 'David Wilson',
+      doctorName: 'Dr. Laura Martinez',
+      specialty: 'Pediatrics',
+      date: new Date('2026-05-05'),
+      time: '13:30',
+      status: 'completed',
+      location: 'Room 102'
     }
   ];
 

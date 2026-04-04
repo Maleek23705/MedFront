@@ -1,0 +1,52 @@
+<div class="agenda-container">
+  <div class="agenda-header">
+    <div class="header-main-info">
+      <h2>Today's Agenda</h2>
+      <div class="legend-wrapper">
+        <app-calendar-legend></app-calendar-legend>
+      </div>
+    </div>
+    
+    <div class="header-actions">
+      <button class="btn-outline">
+        <i class="ri-calendar-line"></i> Week View
+      </button>
+      <button class="btn-filled">
+        <i class="ri-add-line"></i> Add Appointment
+      </button>
+    </div>
+  </div>
+
+  <div class="appointment-list">
+    <div class="loading-state" *ngIf="todayAppointments.length === 0">
+       <p>No appointments scheduled for today.</p>
+    </div>
+
+    <div class="appointment-row" *ngFor="let appt of todayAppointments">
+      <div class="time-block">
+        <span class="start-time">{{ appt.startTime }}</span>
+        <span class="end-time">{{ appt.endTime }}</span>
+      </div>
+      
+      <div class="details-block">
+        <h4 class="patient-name">{{ appt.patientName }}</h4>
+        <div class="meta-data">
+           <span class="category-badge" [ngClass]="appt.category.toLowerCase()">
+             {{ appt.category }}
+           </span>
+           <span class="divider">|</span>
+           <span class="appt-subtext">{{ appt.title }}</span>
+        </div>
+      </div>
+
+      <div class="location-block">
+        <i class="ri-map-pin-2-line"></i> 
+        <span>{{ appt.location }}</span>
+      </div>
+
+      <div class="options-block">
+        <button class="btn-more"><i class="ri-more-2-fill"></i></button>
+      </div>
+    </div>
+  </div>
+</div>
