@@ -25,46 +25,38 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 import { CreateRecordComponent } from './create-record/create-record.component';
 import { EditRecordComponent } from './edit-record/edit-record.component';
-import { ViewRecordsComponent } from './view-records/view-records.component';
-
+import { ViewRecordComponent } from './view-record/view-record.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
-import { createTranslateLoader } from 'src/app/app.module';
-import { HttpClient } from '@angular/common/http';
 import { LanguageService } from 'src/app/core/services/language.service';
 
 
-
-
-// Pages Routing
-// import { PagesRoutingModule } from "./pages-routing.module";
  const routes: Routes = [
   {
       path: '',
-      //component: AdduserComponent,
       data: {
-          title: 'Medical Record'
+          title: 'Patient Record'
       }, 
       children: [ 
           {
               path: 'create',
               component: CreateRecordComponent,
               data: {
-                  title: 'Create record'
+                  title: 'create record'
               }
           },
           {
               path: 'edit/:id',
               component: EditRecordComponent,
               data: {
-                  title: 'Edit record'
+                  title: 'edit record'
               }
           },
           {
               path: 'view/:id',
-              component: ViewRecordsComponent,
+              component: ViewRecordComponent,
               data: {
-                  title: 'View records'
+                  title: 'view record'
               }
           }
         ]
@@ -73,9 +65,7 @@ import { LanguageService } from 'src/app/core/services/language.service';
 
 @NgModule({
   declarations: [
-    
-    CreateRecordComponent
-    
+   
     
   ],
   imports: [
@@ -95,14 +85,15 @@ import { LanguageService } from 'src/app/core/services/language.service';
     LightboxModule,
     TranslateModule,
     ReactiveFormsModule,
-    ViewRecordsComponent,
+    CreateRecordComponent,
     EditRecordComponent,
+    ViewRecordComponent
   ],
   exports: [RouterModule],
   providers: [LanguageService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class MedRecordsModule {
+export class PatientRecordModule {
   constructor() {
     defineElement(lottie.loadAnimation);
   }

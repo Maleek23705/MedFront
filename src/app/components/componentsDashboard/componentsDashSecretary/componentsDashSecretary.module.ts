@@ -33,8 +33,8 @@ const routes: Routes = [
     loadChildren: () => import('../componentsDashSecretary/Communications/communications.module').then(m => m.CommunicationsModule),
   },
   {
-    path: 'MedRecords',
-    loadChildren: () => import('../componentsDashSecretary/MedRecords/MedRecords.module').then(m => m.MedRecordsModule),
+    path: 'PatientRecord',
+    loadChildren: () => import('../componentsDashSecretary/PatientRecord/PatientRecord.module').then(m => m.PatientRecordModule),
   },
   {
     path: 'Payments',

@@ -1,37 +1,70 @@
+// --- VARIABLES DE THÈME (Cohérence Velzon) ---
+$primary-blue: #556ee6;
+$success-green: #19b394;
+$danger-red: #f06548;
+$text-dark: #1e293b;
+$text-muted: #64748b;
+$bg-light: #f8fafc;
+$border-color: #e2e8f0;
+
 .insurance-container {
   padding: 1.5rem;
 
+  // --- SECTION HEADER ---
   .header-section {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 2rem;
 
-    h2 { margin: 0; color: #1e293b; font-size: 1.5rem; font-weight: 700; }
-    .subtitle { color: #64748b; margin: 4px 0 0; font-size: 0.9rem; }
-  }
+    h2 { 
+      margin: 0; 
+      color: $text-dark; 
+      font-size: 1.5rem; 
+      font-weight: 700; 
+    }
+    
+    .subtitle { 
+      color: $text-muted; 
+      margin: 4px 0 0; 
+      font-size: 0.9rem; 
+    }
 
-  .btn-add {
-    background: #556ee6;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 8px;
-    font-weight: 600;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    transition: background 0.2s;
+    // --- BOUTON ADD POLICY (DESIGN CORRIGÉ) ---
+    // Remplace l'aspect par défaut par le style Velzon
+    .btn-filled-primary {
+      background-color: $primary-blue;
+      color: white;
+      border: none;
+      padding: 10px 22px;
+      border-radius: 10px; // Coins arrondis cohérents
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba($primary-blue, 0.25);
 
-    &:hover { background: #4458cc; }
+      i { font-size: 18px; }
+
+      &:hover {
+        background-color: darken($primary-blue, 8%);
+        transform: translateY(-1px);
+        box-shadow: 0 6px 15px rgba($primary-blue, 0.35);
+      }
+      
+      &:active { transform: translateY(0); }
+    }
   }
 }
 
+// --- CONTENEUR DE LA TABLE ---
 .table-card {
   background: white;
   border-radius: 12px;
-  border: 1px solid #e2e8f0;
+  border: 1px solid $border-color;
   overflow: hidden;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
@@ -42,7 +75,7 @@
   text-align: left;
 
   th {
-    background: #f8fafc;
+    background: $bg-light;
     padding: 16px;
     color: #475569;
     font-size: 0.8rem;
@@ -55,14 +88,60 @@
     border-bottom: 1px solid #f1f5f9;
     color: #334155;
     font-size: 0.95rem;
+    vertical-align: middle;
   }
 
   tr:last-child td { border-bottom: none; }
 
+  // --- BOUTONS D'ACTION (DESIGN SOFT-UI) ---
+  // Style extrait de votre interface de gestion
+  .actions {
+    text-align: right;
+
+    .task-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+
+      .btn-action {
+        width: 34px;
+        height: 34px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        border: none;
+        font-size: 17px;
+        transition: all 0.2s ease;
+        cursor: pointer;
+
+        // État de base : Fond à 10% d'opacité
+        &.btn-check {
+          background: rgba($success-green, 0.1);
+          color: $success-green;
+          &:hover { background: $success-green; color: white; }
+        }
+
+        &.btn-edit {
+          background: rgba($primary-blue, 0.1);
+          color: $primary-blue;
+          &:hover { background: $primary-blue; color: white; }
+        }
+
+        &.btn-delete {
+          background: rgba($danger-red, 0.1);
+          color: $danger-red;
+          &:hover { background: $danger-red; color: white; }
+        }
+      }
+    }
+  }
+
+  // --- BADGES & TAGS ---
   .status-badge {
-    padding: 4px 10px;
+    padding: 5px 12px;
     border-radius: 6px;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-weight: 600;
 
     &.active { background: #dcfce7; color: #166534; }
@@ -72,21 +151,9 @@
 
   .provider-tag {
     font-weight: 600;
-    color: #556ee6;
-    background: #eff6ff;
-    padding: 2px 8px;
-    border-radius: 4px;
-  }
-
-  .btn-icon {
-    border: none;
-    background: transparent;
-    color: #94a3b8;
-    cursor: pointer;
-    font-size: 1.2rem;
-    transition: color 0.2s;
-
-    &:hover { color: #556ee6; }
-    &.edit:hover { color: #f59e0b; }
+    color: $primary-blue;
+    background: rgba($primary-blue, 0.08);
+    padding: 4px 10px;
+    border-radius: 6px;
   }
 }

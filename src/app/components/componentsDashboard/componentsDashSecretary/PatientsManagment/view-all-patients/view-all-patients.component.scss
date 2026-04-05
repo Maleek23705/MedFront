@@ -1,3 +1,11 @@
+// --- VARIABLES DE THÈME (Cohérence Velzon) ---
+$primary-blue: #556ee6;
+$success-green: #19b394;
+$danger-red: #f06548;
+$text-dark: #1a1d21;
+$text-muted: #718096;
+$border-color: #e2e8f0;
+
 .patients-page {
   padding: 2rem;
   background: #fdfdfd;
@@ -8,8 +16,8 @@
     align-items: flex-end;
     margin-bottom: 24px;
 
-    h1 { font-size: 1.6rem; color: #1a1d21; margin: 0; }
-    p { color: #718096; margin: 5px 0 0; }
+    h1 { font-size: 1.6rem; color: $text-dark; margin: 0; font-weight: 700; }
+    p { color: $text-muted; margin: 5px 0 0; }
   }
 
   .action-bar {
@@ -21,12 +29,35 @@
       i { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #a0aec0; }
       input {
         padding: 10px 15px 10px 40px;
-        border: 1px solid #e2e8f0;
+        border: 1px solid $border-color;
         border-radius: 8px;
         width: 300px;
         outline: none;
-        &:focus { border-color: #556ee6; }
+        transition: all 0.2s;
+        &:focus { border-color: $primary-blue; box-shadow: 0 0 0 3px rgba($primary-blue, 0.1); }
       }
+    }
+  }
+
+  // --- BOUTON NEW PATIENT (Style Velzon Corrigé) ---
+  .btn-primary {
+    background-color: $primary-blue !important;
+    color: white !important;
+    border: none !important;
+    padding: 10px 22px;
+    border-radius: 10px; // Coins arrondis
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba($primary-blue, 0.25);
+
+    &:hover {
+      background-color: darken($primary-blue, 8%) !important;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 15px rgba($primary-blue, 0.35);
     }
   }
 }
@@ -43,18 +74,28 @@
   width: 100%;
   border-collapse: collapse;
 
-  th { background: #f8fafc; padding: 15px; text-align: left; color: #4a5568; font-weight: 600; font-size: 0.85rem; }
+  th { 
+    background: #f8fafc; 
+    padding: 15px; 
+    text-align: left; 
+    color: #4a5568; 
+    font-weight: 600; 
+    font-size: 0.85rem; 
+    text-transform: uppercase;
+  }
+  
   td { padding: 15px; border-bottom: 1px solid #edf2f7; vertical-align: middle; }
 
   .name-cell {
     display: flex;
     align-items: center;
     gap: 12px;
-    font-weight: 500;
+    font-weight: 600;
     
     .avatar {
-      width: 35px; height: 35px; background: #556ee6; color: white;
+      width: 35px; height: 35px; background: rgba($primary-blue, 0.15); color: $primary-blue;
       border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.9rem;
+      font-weight: 700;
     }
   }
 
@@ -65,18 +106,48 @@
     &[data-status="New"] { background: #faf5ff; color: #805ad5; }
   }
 
+  // --- BOUTONS D'ACTION (DESIGN SOFT-UI) ---
   .actions {
-    display: flex; gap: 8px;
+    display: flex; 
+    gap: 8px;
+
     .action-btn {
-      border: none; background: #f7fafc; padding: 6px; border-radius: 6px; cursor: pointer; transition: 0.2s;
-      i { font-size: 1.1rem; color: #718096; }
-      &:hover i { color: #556ee6; }
-      &.delete:hover i { color: #e53e3e; }
+      /* Dimensions fixes pour carré parfait */
+      width: 34px !important;
+      height: 34px !important;
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+      border: none !important;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      padding: 0;
+
+      i { font-size: 1.1rem; }
+
+      // État de base : Fond à 10% d'opacité
+      &.view {
+        background: rgba($primary-blue, 0.1) !important;
+        i { color: $primary-blue !important; }
+        &:hover { background: $primary-blue !important; i { color: white !important; } }
+      }
+
+      &.edit {
+        background: rgba($success-green, 0.1) !important;
+        i { color: $success-green !important; }
+        &:hover { background: $success-green !important; i { color: white !important; } }
+      }
+
+      &.delete {
+        background: rgba($danger-red, 0.1) !important;
+        i { color: $danger-red !important; }
+        &:hover { background: $danger-red !important; i { color: white !important; } }
+      }
+
+      &:hover {
+        transform: translateY(-2px);
+      }
     }
   }
-}
-
-.btn-primary {
-  background: #556ee6; color: white; border: none; padding: 10px 20px; border-radius: 8px;
-  font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px;
 }

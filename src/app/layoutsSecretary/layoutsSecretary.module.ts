@@ -14,7 +14,7 @@ import { LayoutSecretaryComponent } from './layoutsSecretary.component';
 import { VerticalSecretaryComponent } from './verticalSecretary/verticalSecretary.component';
 import { SidebarSecretaryComponent } from './sidebar-secretary/sidebar-secretary.component';
 import { FooterSecretaryComponent } from './footerSecretary/footerSecretary.component';
-import { RightsidebarComponent } from './rightsidebarSecretary/rightsidebarSecretary.component';
+import { TopbarSecretaryComponent } from './topbarSecretary/topbar-secretary.component';
 import { TwoColumnSecretaryComponent } from './two-column-secretary/two-column-secretary.component';
 import { TwoColumnSidebarSecretaryComponent } from './two-column-sidebar-secretary/two-column-sidebar-secretary.component';
 // import { CdkAriaLive } from "../../../node_modules/@angular/cdk/a11y/index";
@@ -26,7 +26,7 @@ import { A11yModule } from "@angular/cdk/a11y";
     LayoutSecretaryComponent,
     VerticalSecretaryComponent,
     FooterSecretaryComponent,
-    RightsidebarComponent,
+    TopbarSecretaryComponent,
     TwoColumnSecretaryComponent,
     TwoColumnSidebarSecretaryComponent,
     SidebarSecretaryComponent

@@ -1,0 +1,82 @@
+// --- Theme Variables ---
+$brand-primary: #556ee6; // Brand Purple
+$brand-hover: #485ec4;
+$border-color: #e9ebec; // Velzon border
+$text-muted: #878a99;
+$bg-light: #f3f3f9;
+
+// --- Top Bar Styling ---
+.page-title-box {
+  padding: 1.25rem 1.5rem;
+  background-color: #ffffff;
+  border-bottom: 1px solid #eff2f7;
+  margin: -1.5rem -1.5rem 1.5rem -1.5rem;
+  
+  h4 {
+    font-size: 13px;
+    font-weight: 800; // Bold title
+    color: $brand-primary;
+    margin-bottom: 2px;
+  }
+}
+
+.breadcrumb-item {
+  font-size: 12px;
+  & + .breadcrumb-item::before {
+    content: "\ea6e"; // Arrow separator
+    font-family: "remixicon";
+    padding-right: 8px;
+    color: #ced4da;
+  }
+}
+
+// --- Pill Buttons ---
+.btn-booking, .btn-save-patient {
+  background-color: $brand-primary;
+  color: white;
+  border: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba($brand-primary, 0.25);
+
+  &:hover:not(:disabled) {
+    background-color: $brand-hover;
+    transform: translateY(-1px);
+  }
+}
+
+.btn-booking {
+  border-radius: 8px; // Header pill shape
+  padding: 8px 18px;
+  font-size: 13px;
+}
+
+.btn-save-patient {
+  border-radius: 12px; // Large form pill shape
+  padding: 14px 24px;
+  font-size: 15px;
+  &:disabled { background-color: #a6b0cf; cursor: not-allowed; opacity: 0.8; }
+}
+
+// --- Search & Forms ---
+.search-container {
+  max-width: 600px;
+  .input-group-text { border-radius: 4px 0 0 4px; background-color: #f3f6f9 !important; border: 1px solid $border-color; }
+  .custom-input { border-radius: 0 4px 4px 0 !important; border-left: none; }
+}
+
+.card { border: none; box-shadow: 0 1px 2px rgba(56, 65, 74, 0.15); border-radius: 0.25rem; }
+
+.custom-input, .form-select {
+  border: 1px solid $border-color;
+  border-radius: 4px;
+  padding: 10px 15px;
+  font-size: 13px;
+  &:focus { border-color: rgba($brand-primary, 0.5); outline: none; box-shadow: none; }
+}
+
+.bg-soft-info { background-color: rgba(41, 156, 219, 0.1) !important; color: #299cdb !important; }

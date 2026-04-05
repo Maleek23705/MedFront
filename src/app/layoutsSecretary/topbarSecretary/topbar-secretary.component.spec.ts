@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RightsidebarComponent } from './rightsidebarSecretary.component';
+import { TopbarSecretaryComponent } from './topbar-secretary.component';
 
-describe('RightsidebarComponent', () => {
-  let component: RightsidebarComponent;
-  let fixture: ComponentFixture<RightsidebarComponent>;
+describe('TopbarSecretaryComponent', () => {
+  let component: TopbarSecretaryComponent;
+  let fixture: ComponentFixture<TopbarSecretaryComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RightsidebarComponent ]
+      declarations: [ TopbarSecretaryComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RightsidebarComponent);
+    fixture = TestBed.createComponent(TopbarSecretaryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

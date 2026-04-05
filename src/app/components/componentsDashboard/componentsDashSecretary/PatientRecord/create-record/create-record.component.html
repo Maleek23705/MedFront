@@ -1,0 +1,119 @@
+<div class="container-fluid">
+  <div class="page-title-box d-flex align-items-center justify-content-between">
+    <div>
+      <h4 class="mb-1 text-primary-medical"><i class="ri-user-add-line me-2"></i>Patient Admission</h4>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb m-0 fs-13">
+          <li class="breadcrumb-item text-muted">Secretary</li>
+          <li class="breadcrumb-item active">New Registration</li>
+        </ol>
+      </nav>
+    </div>
+    <button class="btn btn-primary-medical shadow-primary" 
+            routerLink="/dashboard/common/appointments">
+      <i class="ri-calendar-check-line me-1"></i> Go to Booking Page
+    </button>
+  </div>
+
+  <form [formGroup]="recordForm" (ngSubmit)="saveRecord()">
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="card border-0 shadow-sm mb-4">
+          <div class="card-header bg-soft-info border-0 py-3">
+            <h5 class="card-title mb-0 text-primary-medical">Personal Identification</h5>
+          </div>
+          <div class="card-body p-4">
+            <div class="row gy-4">
+              <div class="col-md-6">
+                <label class="form-label text-muted">First Name</label>
+                <input type="text" class="form-control custom-input" placeholder="e.g. Ahmed" formControlName="firstName">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label text-muted">Last Name</label>
+                <input type="text" class="form-control custom-input" placeholder="e.g. Ben Salah" formControlName="lastName">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label text-muted">National ID (CIN)</label>
+                <input type="text" class="form-control custom-input" placeholder="8-digit number" formControlName="cin">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label text-muted">Phone Number</label>
+                <input type="text" class="form-control custom-input" placeholder="+216 -- --- ---" formControlName="phone">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label text-muted">Date of Birth</label>
+                <input type="date" class="form-control custom-input" formControlName="dob">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label text-muted">Gender</label>
+                <select class="form-select custom-input" formControlName="gender">
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card border-0 shadow-sm">
+          <div class="card-body p-4">
+            <div class="row align-items-center">
+              <div class="col-md-6">
+                <label class="form-label text-muted">Date of Arrival</label>
+                <input type="date" class="form-control custom-input" formControlName="arrivalDate">
+              </div>
+              <div class="col-md-6 text-end">
+                <button type="submit" 
+                        class="btn-save-patient w-100" 
+                        [disabled]="recordForm.invalid">
+                  <i class="ri-save-3-line"></i>
+                  Save Patient Profile
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="card border-0 shadow-sm">
+          <div class="card-header bg-white border-0 py-3">
+            <h5 class="card-title mb-0">Existing Appointments</h5>
+          </div>
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <table class="table align-middle mb-0">
+                <thead class="table-light fs-11">
+                  <tr>
+                    <th class="ps-3">Date</th>
+                    <th>Time</th>
+                    <th class="text-end pe-3">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let appt of appointments">
+                    <td class="ps-3 fs-13">{{ appt.date }}</td>
+                    <td class="fs-13">{{ appt.time }}</td>
+                    <td class="text-end pe-3">
+                      <div class="d-flex justify-content-end gap-1">
+                        <button type="button" class="btn btn-action print" (click)="printAppointment(appt)">
+                          <i class="ri-printer-line"></i>
+                        </button>
+                        <button type="button" class="btn btn-action view" (click)="viewAppointment(appt)">
+                          <i class="ri-eye-line"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr *ngIf="appointments.length === 0">
+                    <td colspan="3" class="text-center py-4 text-muted fs-13">No appointments found for this profile.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

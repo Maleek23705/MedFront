@@ -1,0 +1,147 @@
+// --- Variables ---
+$brand-primary: #556ee6; // Specific purple from your reference
+$brand-hover: #485ec4;
+$success-green: #34c38f;
+$border-color: #eff2f7;
+$text-muted: #878a99;
+
+// --- Layout & Header ---
+.page-title-box { 
+  padding: 1.5rem 0; 
+  
+  .text-primary-medical {
+    color: $brand-primary !important;
+    font-weight: 700;
+  }
+}
+
+// --- Form Controls ---
+.custom-input {
+  border: 1px solid $border-color;
+  border-radius: 10px; // Soft UI rounded corners
+  padding: 11px 15px;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  
+  &:focus { 
+    border-color: $brand-primary; 
+    box-shadow: 0 0 0 3px rgba($brand-primary, 0.1); 
+    outline: none;
+  }
+
+  &::placeholder {
+    color: lighten($text-muted, 15%);
+  }
+}
+
+.form-label {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+// --- Interactive Buttons ---
+
+// Main Save Action
+.btn-save-patient {
+  background-color: $brand-primary;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 24px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+
+  &:hover:not(:disabled) {
+    background-color: $brand-hover;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba($brand-primary, 0.25);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    background-color: #a6b0cf;
+    cursor: not-allowed;
+    opacity: 0.7;
+    transform: none;
+  }
+}
+
+// Header Navigation Button
+.btn-primary-medical {
+  background-color: $brand-primary;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  padding: 8px 16px;
+  transition: opacity 0.2s;
+
+  &.shadow-primary { 
+    box-shadow: 0 4px 12px rgba($brand-primary, 0.2); 
+  }
+
+  &:hover {
+    opacity: 0.9;
+    color: white;
+  }
+}
+
+// --- Table Action Buttons ---
+.btn-action {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  border: none;
+  transition: all 0.2s;
+  
+  // Soft Purple style for printing
+  &.print { 
+    background: rgba($brand-primary, 0.1); 
+    color: $brand-primary; 
+    
+    &:hover {
+      background: $brand-primary;
+      color: white;
+    }
+  }
+  
+  // Outlined/Soft style for viewing
+  &.view { 
+    background: rgba($brand-primary, 0.05); 
+    color: #495057; 
+    border: 1px solid $border-color; 
+    
+    &:hover {
+      background: #f3f6f9;
+      border-color: darken($border-color, 5%);
+    }
+  }
+  
+  &:hover { 
+    transform: scale(1.1); 
+  }
+}
+
+// --- Utility Classes ---
+.bg-soft-info { 
+  background-color: rgba(41, 156, 219, 0.1) !important; 
+}
+
+.card {
+  transition: box-shadow 0.3s ease;
+  &:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05) !important;
+  }
+}

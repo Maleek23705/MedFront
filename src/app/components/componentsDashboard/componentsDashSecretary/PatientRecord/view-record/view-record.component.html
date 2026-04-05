@@ -1,0 +1,86 @@
+<div class="container-fluid">
+  <div class="page-title-box d-flex align-items-center justify-content-between">
+    <div class="page-title-left">
+      <h4 class="mb-1 text-primary-medical fw-bold text-uppercase">
+        <i class="ri-team-line me-1"></i> Patient Directory
+      </h4>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb m-0 fs-13">
+          <li class="breadcrumb-item text-muted">Secretary</li>
+          <li class="breadcrumb-item active">Patient List</li>
+        </ol>
+      </nav>
+    </div>
+    <button class="btn-booking" routerLink="/dashboard/secretary/patients/add-patient">
+      <i class="ri-user-add-line"></i> New Registration
+    </button>
+  </div>
+
+  <div class="card border-0 shadow-sm">
+    <div class="card-header border-0 pt-4 px-4">
+      <div class="row align-items-center">
+        <div class="col">
+          <h5 class="card-title mb-0">Total Patients: {{patients.length}}</h5>
+        </div>
+        <div class="col-auto">
+          <div class="input-group search-container">
+            <span class="input-group-text bg-light border-end-0">
+              <i class="ri-search-line text-muted"></i>
+            </span>
+            <input type="text" class="form-control border-start-0 ps-0" 
+                   placeholder="Search name or CIN..." [(ngModel)]="searchTerm">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table table-hover align-middle table-nowrap mb-0">
+          <thead class="table-light text-muted">
+            <tr class="fs-12 text-uppercase">
+              <th class="ps-4">Full Name</th>
+              <th>CIN / ID</th>
+              <th>Phone</th>
+              <th>Birth Date</th>
+              <th>Gender</th>
+              <th>Status</th>
+              <th class="text-end pe-4">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let p of filteredPatients">
+              <td class="ps-4">
+                <div class="d-flex align-items-center">
+                  <div class="avatar-sm bg-soft-primary text-primary rounded-circle me-2 d-flex align-items-center justify-content-center fw-bold">
+                    {{p.name.charAt(0)}}
+                  </div>
+                  <span class="fw-semibold text-dark">{{p.name}}</span>
+                </div>
+              </td>
+              <td class="fs-13 text-muted">{{p.cin}}</td>
+              <td class="fs-13">{{p.phone}}</td>
+              <td class="fs-13">{{p.dob}}</td>
+              <td><span class="badge bg-light text-dark fs-11">{{p.gender}}</span></td>
+              <td>
+                <span class="badge" [ngClass]="p.status === 'Active' ? 'bg-soft-success text-success' : 'bg-soft-info text-info'">
+                  {{p.status}}
+                </span>
+              </td>
+              <td class="text-end pe-4">
+                <div class="d-flex justify-content-end gap-2">
+                  <button class="btn btn-icon-sm btn-soft-secondary" title="View Profile" [routerLink]="['/dashboard/secretary/patients/view', p.id]">
+                    <i class="ri-eye-line"></i>
+                  </button>
+                  <button class="btn btn-icon-sm btn-soft-primary" title="Edit" [routerLink]="['/dashboard/secretary/patients/edit', p.id]">
+                    <i class="ri-edit-2-line"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -56,28 +56,28 @@ export const MENU: MenuItem[] = [
   },
   {
     id: 10,
-    label: 'Medical Records',
+    label: 'Patient Records',
     icon: 'ri-folder-user-line',
     isCollapsed: true,
     subItems: [
       {
         id: 11,
-        label: 'New Record',
-        link: 'MedRecords/create',
+        label: 'New Patient Record',
+        link: 'PatientRecord/create',
         parentId: 10,
         icon: 'ri-file-add-line'
       },
       {
         id: 12,
-        label: 'Modify Record',
-        link: 'MedRecords/edit/:id',
+        label: 'Modify Patient Record',
+        link: 'PatientRecord/edit/:id',
         parentId: 10,
         icon: 'ri-ball-pen-line'
       },
       {
         id: 13,
         label: 'Patient History',
-        link: 'MedRecords/view/:id',
+        link: 'PatientRecord/view/:id',
         parentId: 10,
         icon: 'ri-history-line'
       }

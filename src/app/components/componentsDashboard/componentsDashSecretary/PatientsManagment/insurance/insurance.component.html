@@ -4,12 +4,12 @@
       <h2>Insurance Management</h2>
       <p class="subtitle">Track and verify patient coverage</p>
     </div>
-    <button class="btn-add">
+    <button class="btn-filled-primary">
       <i class="ri-add-circle-line"></i> Add Policy
     </button>
   </div>
 
-  <div class="table-card">
+  <div class="table-card shadow-sm">
     <table class="custom-table">
       <thead>
         <tr>
@@ -18,25 +18,34 @@
           <th>Policy No.</th>
           <th>Expiry Date</th>
           <th>Status</th>
-          <th>Actions</th>
+          <th class="text-end">Actions</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let item of insurances">
           <td><strong>{{ item.patientName }}</strong></td>
           <td>
-            <span class="provider-tag" [attr.data-type]="item.type">{{ item.name }}</span>
+            <span class="provider-tag">{{ item.name }}</span>
           </td>
           <td><code>{{ item.policyNumber }}</code></td>
           <td>{{ item.expiryDate | date:'mediumDate' }}</td>
           <td>
-            <span class="status-badge" [ngClass]="getStatusClass(item.status)">
+            <span class="status-badge" [ngClass]="item.status.toLowerCase()">
               {{ item.status }}
             </span>
           </td>
           <td class="actions">
-            <button class="btn-icon" title="Verify"><i class="ri-checkbox-circle-line"></i></button>
-            <button class="btn-icon edit" title="Edit"><i class="ri-edit-2-line"></i></button>
+            <div class="task-actions">
+              <button class="btn-action btn-check" title="Verify">
+                <i class="ri-checkbox-circle-line"></i>
+              </button>
+              <button class="btn-action btn-edit" title="Edit">
+                <i class="ri-edit-2-line"></i>
+              </button>
+              <button class="btn-action btn-delete" title="Delete">
+                <i class="ri-delete-bin-line"></i>
+              </button>
+            </div>
           </td>
         </tr>
       </tbody>

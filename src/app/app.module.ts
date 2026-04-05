@@ -43,7 +43,7 @@ import { Addcause } from './components/componentsAdmin/causes/addcause/addcause'
 import { Editcause } from './components/componentsAdmin/causes/editcause/editcause';
 //----------------------
 import { LayoutsPatientModule } from './layoutsPatient/layoutPatient.module';
-import  { LayoutsSecretaryModule } from './layoutsSecretary/layoutsSecretary.module';
+import { LayoutsSecretaryModule } from './layoutsSecretary/layoutsSecretary.module';
 import { LayoutsWebSiteModule } from './layoutsWebSite/layoutsWebSite.module';
 import { LayoutsAdminModule } from './layoutsAdmin/layoutAdmin.module';
 import { LayoutsDoctorModule } from './layoutsDoctor/layoutsDoctor.module';
